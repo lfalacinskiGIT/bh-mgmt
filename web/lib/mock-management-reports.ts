@@ -48,6 +48,117 @@ const sourceRecordsByDataset: Record<Exclude<MockDatasetName, "incomplete">, Sou
   stress: sourceRecordsStressData as SourceRecord[],
 };
 
+const trendSeedMonthsTarget = 8;
+
+function getMonthKey(postedAt: string): string {
+  return postedAt.slice(0, 7);
+}
+
+function shiftMonth(month: string, deltaMonths: number): string {
+  const [yearRaw, monthRaw] = month.split("-");
+  const year = Number(yearRaw);
+  const monthIndex = Number(monthRaw) - 1;
+
+  if (Number.isNaN(year) || Number.isNaN(monthIndex)) {
+    return month;
+  }
+
+  const date = new Date(Date.UTC(year, monthIndex, 1));
+  date.setUTCMonth(date.getUTCMonth() + deltaMonths);
+
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
+function buildRecentMonthKeys(lastMonth: string, count: number): string[] {
+  const keys: string[] = [];
+
+  for (let offset = count - 1; offset >= 0; offset -= 1) {
+    keys.push(shiftMonth(lastMonth, -offset));
+  }
+
+  return keys;
+}
+
+function monthToPostedAt(month: string): string {
+  return `${month}-28`;
+}
+
+function sumByTypeForContract(records: SourceRecord[], contractId: string, type: SourceRecordType): number {
+  return records
+    .filter((record) => record.contractId === contractId && record.type === type)
+    .reduce((sum, record) => sum + record.netAmount, 0);
+}
+
+function buildContractTrendSeedRecords(dataset: Exclude<MockDatasetName, "incomplete">, baseRecords: SourceRecord[]): SourceRecord[] {
+  const contracts = getContractEconomics(dataset);
+  const contractsWithRecords = new Set(baseRecords.filter((record) => record.contractId).map((record) => record.contractId));
+  const lastMonth = baseRecords.length > 0 ? getMonthKey(baseRecords.at(-1)?.postedAt ?? "2026-06-30") : "2026-06";
+  const targetMonths = buildRecentMonthKeys(lastMonth, trendSeedMonthsTarget);
+  const distribution = [0.08, 0.09, 0.1, 0.11, 0.12, 0.14, 0.16, 0.2];
+  const seedRecords: SourceRecord[] = [];
+
+  contracts.forEach((contract, index) => {
+    const existingContractRecords = baseRecords.filter((record) => record.contractId === contract.id);
+    const existingMonths = new Set(existingContractRecords.map((record) => getMonthKey(record.postedAt)));
+
+    const missingMonths = targetMonths.filter((month) => !existingMonths.has(month));
+
+    if (contractsWithRecords.has(contract.id) && missingMonths.length === 0) {
+      return;
+    }
+
+    const totalCost = getContractTotalCost(contract);
+    const existingRevenue = sumByTypeForContract(baseRecords, contract.id, "revenue");
+    const existingCost = sumByTypeForContract(baseRecords, contract.id, "cost");
+    const revenueLeft = Math.max(0, contract.revenueRecognizedNet - existingRevenue);
+    const costLeft = Math.max(0, totalCost - existingCost);
+
+    const distributionTotal = missingMonths.reduce((sum, month) => {
+      const monthIndex = targetMonths.indexOf(month);
+      return sum + (distribution[monthIndex] ?? 0.1);
+    }, 0);
+
+    missingMonths.forEach((month, monthSeedIndex) => {
+      const monthIndex = targetMonths.indexOf(month);
+      const weight = distribution[monthIndex] ?? 0.1;
+      const baseShare = distributionTotal > 0 ? weight / distributionTotal : 1 / Math.max(1, missingMonths.length);
+
+      const revenueNet = Math.max(0, Math.round(revenueLeft * baseShare));
+      const costNet = Math.max(0, Math.round(costLeft * baseShare));
+
+      seedRecords.push(
+        {
+          id: `seed-${dataset}-${contract.id}-r-${month}`,
+          postedAt: monthToPostedAt(month),
+          type: "revenue",
+          origin: "optima-source",
+          contractId: contract.id,
+          netAmount: revenueNet,
+          referenceKey: `SEED-REV-${contract.id}-${month}`,
+          description: `Seed przychodu dla ${contract.number}`,
+        },
+        {
+          id: `seed-${dataset}-${contract.id}-c-${month}`,
+          postedAt: monthToPostedAt(month),
+          type: "cost",
+          origin: monthSeedIndex % 3 === 0 ? "managerial-sheet" : index % 2 === 0 ? "virtual-warehouse" : "payroll",
+          contractId: contract.id,
+          netAmount: costNet,
+          referenceKey: `SEED-COST-${contract.id}-${month}`,
+          description: `Seed kosztu dla ${contract.number}`,
+        },
+      );
+    });
+  });
+
+  return seedRecords;
+}
+
+function getSeededSourceRecords(dataset: Exclude<MockDatasetName, "incomplete">): SourceRecord[] {
+  const baseRecords = sourceRecordsByDataset[dataset] ?? sourceRecordsByDataset.baseline;
+  return [...baseRecords, ...buildContractTrendSeedRecords(dataset, baseRecords)];
+}
+
 function buildIncompleteSourceRecordsDataset(source: SourceRecord[]): SourceRecord[] {
   return source.slice(0, Math.max(6, source.length - 3)).map((record, index) => ({
     ...record,
@@ -57,10 +168,10 @@ function buildIncompleteSourceRecordsDataset(source: SourceRecord[]): SourceReco
 
 export function getSourceRecords(dataset: MockDatasetName = "baseline"): SourceRecord[] {
   if (dataset === "incomplete") {
-    return buildIncompleteSourceRecordsDataset(sourceRecordsByDataset.baseline);
+    return buildIncompleteSourceRecordsDataset(getSeededSourceRecords("baseline"));
   }
 
-  return sourceRecordsByDataset[dataset] ?? sourceRecordsByDataset.baseline;
+  return getSeededSourceRecords(dataset);
 }
 
 export const mockSourceRecords: SourceRecord[] = getSourceRecords("baseline");

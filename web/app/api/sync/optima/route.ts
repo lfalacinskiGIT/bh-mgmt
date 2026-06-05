@@ -1,6 +1,7 @@
 import { appendMockInvoices, getAllMockInvoices, type MockInvoice } from "@/lib/mock-invoices-store";
 import { appendSyncAuditLog } from "@/lib/mock-sync-audit-log";
 import { isMockMode } from "@/lib/mock-mode";
+import { getContractEconomics } from "@/lib/mock-contract-economics";
 
 type SyncResult = {
   success: boolean;
@@ -30,6 +31,8 @@ function createInvoice(index: number): MockInvoice {
   const net = randomInt(1500, 20000);
   const gross = Math.round(net * 1.23 * 100) / 100;
   const statusPool: Array<MockInvoice["status"]> = ["issued", "paid", "overdue"];
+  const flowPool: Array<MockInvoice["flowType"]> = ["revenue", "cost"];
+  const contracts = getContractEconomics("baseline");
 
   return {
     id: crypto.randomUUID(),
@@ -40,6 +43,8 @@ function createInvoice(index: number): MockInvoice {
     issueDate,
     dueDate: due.toISOString().slice(0, 10),
     status: statusPool[randomInt(0, statusPool.length - 1)],
+    flowType: flowPool[randomInt(0, flowPool.length - 1)],
+    contractId: randomInt(0, 100) > 60 ? (contracts[randomInt(0, contracts.length - 1)]?.id ?? null) : null,
     source: "mock-sync",
     createdAt: now.toISOString(),
   };

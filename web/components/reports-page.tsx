@@ -24,11 +24,51 @@ interface ReportsPageProps {
   initialInvoices: MockInvoice[];
 }
 
+type MapCityCoordinate = {
+  lat: number;
+  lon: number;
+};
+
 const currency = new Intl.NumberFormat("pl-PL", {
   style: "currency",
   currency: "PLN",
   maximumFractionDigits: 2,
 });
+
+const mapPolandBounds = {
+  minLat: 49.0,
+  maxLat: 54.95,
+  minLon: 14.0,
+  maxLon: 24.7,
+};
+
+const contractCityCoordinates: Record<string, MapCityCoordinate> = {
+  Gdańsk: { lat: 54.352, lon: 18.646 },
+  Poznań: { lat: 52.406, lon: 16.925 },
+  Wrocław: { lat: 51.107, lon: 17.038 },
+  Łódź: { lat: 51.759, lon: 19.456 },
+  Katowice: { lat: 50.264, lon: 19.023 },
+};
+
+const stageDotClass: Record<string, string> = {
+  "#f28b25": "bg-[#f28b25]",
+  "#e0ad3b": "bg-[#e0ad3b]",
+  "#4cb24f": "bg-[#4cb24f]",
+  "#3d8bfd": "bg-[#3d8bfd]",
+  "#db1832": "bg-[#db1832]",
+};
+
+function projectMapPoint(lat: number, lon: number): { left: string; top: string } {
+  const horizontalRange = mapPolandBounds.maxLon - mapPolandBounds.minLon;
+  const verticalRange = mapPolandBounds.maxLat - mapPolandBounds.minLat;
+  const left = ((lon - mapPolandBounds.minLon) / horizontalRange) * 100;
+  const top = ((mapPolandBounds.maxLat - lat) / verticalRange) * 100;
+
+  return {
+    left: `${Math.min(96, Math.max(4, left))}%`,
+    top: `${Math.min(96, Math.max(4, top))}%`,
+  };
+}
 
 function csvEscape(value: string | number): string {
   const text = String(value ?? "");
@@ -91,6 +131,7 @@ function matchesPeriod(period: string, month: string, latestPeriod: string): boo
 export function ReportsPage({ initialInvoices }: ReportsPageProps) {
   const [dataset, setDataset] = useState<MockDatasetName>(() => readMockDatasetFromStorage());
   const [selectedPeriod, setSelectedPeriod] = useState<string>("all");
+  const [selectedMapContractId, setSelectedMapContractId] = useState<string>("");
 
   useEffect(() => {
     persistMockDataset(dataset);
@@ -103,6 +144,63 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
 
   const contractTotals = getContractEconomicsTotals(contractsData);
   const lineSummary = getLineOfBusinessSummary(contractsData);
+
+  const pipeline = useMemo(
+    () => [
+      { label: "Nowe", value: contractsData.filter((contract) => contract.status === "nowy").length, color: "#f28b25" },
+      { label: "Negocjacje", value: contractsData.filter((contract) => contract.status === "negocjacje").length, color: "#e0ad3b" },
+      { label: "Podpisane", value: contractsData.filter((contract) => contract.status === "podpisany").length, color: "#4cb24f" },
+      { label: "Realizacja", value: contractsData.filter((contract) => contract.status === "realizacja").length, color: "#3d8bfd" },
+      { label: "Zakończone", value: contractsData.filter((contract) => contract.status === "zakończony").length, color: "#db1832" },
+    ],
+    [contractsData],
+  );
+
+  const mapCityGroups = useMemo(() => {
+    const grouped = new Map<string, { city: string; count: number; contractId: string; lat: number; lon: number }>();
+
+    contractsData.forEach((contract) => {
+      const coordinates = contractCityCoordinates[contract.city];
+
+      if (!coordinates) {
+        return;
+      }
+
+      const existing = grouped.get(contract.city);
+      if (existing) {
+        existing.count += 1;
+        return;
+      }
+
+      grouped.set(contract.city, {
+        city: contract.city,
+        count: 1,
+        contractId: contract.id,
+        lat: coordinates.lat,
+        lon: coordinates.lon,
+      });
+    });
+
+    return Array.from(grouped.values()).sort((left, right) => right.count - left.count || left.city.localeCompare(right.city));
+  }, [contractsData]);
+
+  useEffect(() => {
+    if (mapCityGroups.length === 0) {
+      setSelectedMapContractId("");
+      return;
+    }
+
+    const stillExists = contractsData.some((contract) => contract.id === selectedMapContractId);
+    if (!stillExists) {
+      setSelectedMapContractId(mapCityGroups[0].contractId);
+    }
+  }, [contractsData, mapCityGroups, selectedMapContractId]);
+
+  const selectedMapContract = contractsData.find((contract) => contract.id === selectedMapContractId) ?? contractsData[0] ?? null;
+  const selectedMapCity = selectedMapContract ? contractCityCoordinates[selectedMapContract.city] : null;
+  const mapSrc = selectedMapCity
+    ? `https://www.openstreetmap.org/export/embed.html?bbox=${(selectedMapCity.lon - 0.55).toFixed(6)}%2C${(selectedMapCity.lat - 0.35).toFixed(6)}%2C${(selectedMapCity.lon + 0.55).toFixed(6)}%2C${(selectedMapCity.lat + 0.35).toFixed(6)}&layer=mapnik&marker=${selectedMapCity.lat.toFixed(6)}%2C${selectedMapCity.lon.toFixed(6)}`
+    : `https://www.openstreetmap.org/export/embed.html?bbox=${mapPolandBounds.minLon}%2C${mapPolandBounds.minLat}%2C${mapPolandBounds.maxLon}%2C${mapPolandBounds.maxLat}&layer=mapnik`;
 
   const lineSummaryWithDrilldown = useMemo(() => {
     return lineSummary.map((line) => {
@@ -269,6 +367,96 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
           <p className="mt-2 text-3xl font-semibold text-[#383433]">{currency.format(contractTotals.marginReserveNet)}</p>
         </article>
       </div>
+
+      <section className="mt-6 rounded-2xl bg-white p-4 shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:p-6">
+        <div className="mb-4">
+          <h2 className="text-[22px] font-semibold tracking-tight text-[#383433]">Mapa kontraktów</h2>
+          <p className="text-sm text-[var(--brand-muted)]">Przegląd etapów i lokalizacji</p>
+        </div>
+
+        <div className="relative overflow-hidden rounded-2xl border border-[rgb(107_107_107_/_14%)] bg-[#f4f0e8] p-4 md:p-6">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.85),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(232,240,214,0.65),transparent_34%)]" />
+          <div className="relative flex min-h-[880px] flex-col gap-4">
+            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {pipeline.map((stage) => (
+                <div key={stage.label} className="rounded-2xl border border-white/60 bg-white/72 p-4 shadow-sm backdrop-blur-sm">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-semibold text-[#4c4540]">{stage.label}</p>
+                    <span className={`h-3 w-3 rounded-full ${stageDotClass[stage.color]}`} />
+                  </div>
+                  <p className="mt-3 text-4xl font-semibold text-[#383433]">{stage.value}</p>
+                  <p className="mt-2 text-xs text-[var(--brand-muted)]">Kontrakty na obecnym etapie</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="relative flex-1 overflow-hidden rounded-2xl border border-white/70 bg-white/45 shadow-sm">
+              <iframe
+                title="OpenStreetMap kontraktów"
+                src={mapSrc}
+                className="absolute inset-0 h-full w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.06),rgba(255,255,255,0.12))]" />
+
+              <div className="absolute left-4 top-4 rounded-lg border border-white/70 bg-white/90 px-3 py-2 shadow-sm backdrop-blur-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">OpenStreetMap View</p>
+                <p className="mt-1 text-sm font-semibold text-[#383433]">
+                  {selectedMapContract ? `${selectedMapContract.city} • ${selectedMapContract.number}` : "Widok kontraktów"}
+                </p>
+              </div>
+
+              <div className="absolute right-4 top-4 rounded-lg border border-white/70 bg-white/90 px-3 py-2 shadow-sm backdrop-blur-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Miasta</p>
+                <p className="mt-1 text-sm font-semibold text-[#383433]">{mapCityGroups.length} lokalizacji</p>
+              </div>
+
+              <div className="absolute inset-0">
+                {mapCityGroups.map((marker) => {
+                  const position = projectMapPoint(marker.lat, marker.lon);
+                  const isSelected = selectedMapContract?.city === marker.city;
+
+                  return (
+                    <button
+                      key={marker.city}
+                      type="button"
+                      onClick={() => setSelectedMapContractId(marker.contractId)}
+                      className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow-lg transition hover:scale-105 ${
+                        isSelected ? "bg-[#db1832] text-white" : "bg-[#3d8bfd] text-white"
+                      }`}
+                      style={{ left: position.left, top: position.top }}
+                      aria-label={`Pokaż kontrakty w mieście ${marker.city}`}
+                      title={`${marker.city} • ${marker.count} kontrakt${marker.count === 1 ? "" : marker.count < 5 ? "y" : "ów"}`}
+                    >
+                      <span className="flex h-11 w-11 items-center justify-center text-sm font-semibold">{marker.count}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="absolute bottom-3 left-3 max-w-[360px] rounded-xl border border-white/70 bg-white/92 px-3 py-2 shadow-sm backdrop-blur-sm">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Legenda</p>
+                <p className="mt-1 text-xs leading-snug text-[#383433]">Punkty pokazują liczbę kontraktów w mieście. Kliknij marker lub etykietę, aby podmienić wybrany kontrakt.</p>
+                <div className="mt-2 flex max-w-full gap-1 overflow-x-auto pb-1">
+                  {mapCityGroups.map((marker) => (
+                    <button
+                      key={`${marker.city}-chip`}
+                      type="button"
+                      onClick={() => setSelectedMapContractId(marker.contractId)}
+                      className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-semibold shadow-sm transition ${
+                        selectedMapContract?.city === marker.city ? "bg-[#383433] text-white" : "bg-[#faf8f6] text-[#383433]"
+                      }`}
+                    >
+                      {marker.city} ({marker.count})
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="mt-6 rounded-2xl bg-white p-4 shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:p-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">

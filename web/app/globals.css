@@ -8,6 +8,24 @@
   --brand-surface: #ffffff;
 }
 
+html[data-theme="light"] {
+  --background: #f7f7f7;
+  --foreground: #1f1f1f;
+  --brand-primary: #e4650e;
+  --brand-muted: #6b6b6b;
+  --brand-surface: #ffffff;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  --background: #111315;
+  --foreground: #eceff3;
+  --brand-primary: #ff8e3a;
+  --brand-muted: #9aa3ad;
+  --brand-surface: #1a1e22;
+  color-scheme: dark;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -23,7 +41,99 @@ body {
     radial-gradient(circle at 80% 20%, rgb(107 107 107 / 12%), transparent 40%);
 }
 
+html[data-theme="dark"] body {
+  background-image:
+    radial-gradient(circle at 10% 10%, rgb(255 142 58 / 13%), transparent 45%),
+    radial-gradient(circle at 80% 20%, rgb(66 74 84 / 28%), transparent 40%);
+}
+
 .card-surface {
   background: var(--brand-surface);
   border: 1px solid rgb(107 107 107 / 18%);
+}
+
+html[data-theme="dark"] .card-surface {
+  border-color: rgb(154 163 173 / 22%);
+}
+
+/* Global dark-theme harmonization for existing utility-heavy components */
+html[data-theme="dark"] .bg-white,
+html[data-theme="dark"] .bg-white\/90,
+html[data-theme="dark"] .bg-white\/95 {
+  background-color: #1a1e22 !important;
+}
+
+html[data-theme="dark"] .bg-\[\#fbfaf8\],
+html[data-theme="dark"] .bg-\[\#faf8f6\],
+html[data-theme="dark"] .bg-\[\#f7f4ef\],
+html[data-theme="dark"] .bg-\[\#fffaf5\],
+html[data-theme="dark"] .bg-\[\#fff7ef\],
+html[data-theme="dark"] .bg-\[\#fff5eb\],
+html[data-theme="dark"] .bg-\[\#fff4ea\] {
+  background-color: #20252b !important;
+}
+
+html[data-theme="dark"] .text-\[\#383433\],
+html[data-theme="dark"] .text-\[\#473126\],
+html[data-theme="dark"] .text-\[\#2d2b28\] {
+  color: #e7ebf0 !important;
+}
+
+html[data-theme="dark"] .text-\[var\(--brand-muted\)\] {
+  color: #9aa3ad !important;
+}
+
+html[data-theme="dark"] .border-\[rgb\(107_107_107_\/_10\%\)\],
+html[data-theme="dark"] .border-\[rgb\(107_107_107_\/_12\%\)\],
+html[data-theme="dark"] .border-\[rgb\(107_107_107_\/_14\%\)\],
+html[data-theme="dark"] .border-\[rgb\(107_107_107_\/_16\%\)\],
+html[data-theme="dark"] .border-\[rgb\(107_107_107_\/_18\%\)\],
+html[data-theme="dark"] .border-\[rgb\(107_107_107_\/_20\%\)\] {
+  border-color: rgb(154 163 173 / 26%) !important;
+}
+
+html[data-theme="dark"] .shadow-sm,
+html[data-theme="dark"] .shadow-lg,
+html[data-theme="dark"] .shadow-\[0_2px_8px_rgba\(0\,0\,0\,0\.06\)\],
+html[data-theme="dark"] .shadow-\[0_2px_12px_rgba\(0\,0\,0\,0\.06\)\],
+html[data-theme="dark"] .shadow-\[0_2px_18px_rgba\(0\,0\,0\,0\.03\)\],
+html[data-theme="dark"] .shadow-\[0_0_24px_rgba\(0\,0\,0\,0\.04\)\] {
+  box-shadow: 0 6px 20px rgb(0 0 0 / 30%) !important;
+}
+
+.finance-line-anim {
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: finance-line-draw 950ms ease-out forwards;
+}
+
+.finance-point-anim {
+  opacity: 0;
+  transform-origin: center;
+  animation: finance-point-pop 500ms ease-out forwards;
+}
+
+@keyframes finance-line-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes finance-point-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .finance-line-anim,
+  .finance-point-anim {
+    animation: none;
+    opacity: 1;
+  }
 }

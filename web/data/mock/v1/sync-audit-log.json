@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "923790ce-595b-4a80-b81f-3562ef6880fa",
+    "provider": "optima",
+    "mode": "quick",
+    "startedAt": "2026-06-05T19:28:37.235Z",
+    "finishedAt": "2026-06-05T19:28:37.240Z",
+    "created": 3,
+    "updated": 0,
+    "skipped": 0,
+    "errors": 0,
+    "status": "success",
+    "message": "Added 3 invoice(s) from mock sync"
+  }
+]

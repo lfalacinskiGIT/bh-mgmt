@@ -2,8 +2,10 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { z } from "zod";
 import { MockDataValidationError } from "@/lib/mock-json-validation";
+import { getContractEconomics } from "@/lib/mock-contract-economics";
 
 export type InvoiceStatus = "issued" | "paid" | "overdue";
+export type InvoiceFlowType = "revenue" | "cost";
 
 export interface MockInvoice {
   id: string;
@@ -14,6 +16,8 @@ export interface MockInvoice {
   issueDate: string;
   dueDate: string;
   status: InvoiceStatus;
+  flowType: InvoiceFlowType;
+  contractId: string | null;
   source: "mock-sync" | "seed";
   createdAt: string;
 }
@@ -21,6 +25,7 @@ export interface MockInvoice {
 const MOCK_FILE_PATH = path.join(process.cwd(), "data", "mock", "v1", "invoices.json");
 const TARGET_INVOICE_COUNT = 150;
 const invoiceStatuses: InvoiceStatus[] = ["issued", "paid", "overdue"];
+const invoiceFlowTypes: InvoiceFlowType[] = ["revenue", "cost"];
 
 const invoiceSchema = z.object({
   id: z.string().min(1),
@@ -31,11 +36,21 @@ const invoiceSchema = z.object({
   issueDate: z.string().min(1),
   dueDate: z.string().min(1),
   status: z.enum(["issued", "paid", "overdue"]),
+  flowType: z.enum(["revenue", "cost"]).optional(),
+  contractId: z.string().nullable().optional(),
   source: z.enum(["mock-sync", "seed"]),
   createdAt: z.string().min(1),
 });
 
 const invoicesSchema = z.array(invoiceSchema);
+
+function normalizeInvoices(invoices: Array<z.infer<typeof invoiceSchema>>): MockInvoice[] {
+  return invoices.map((invoice, index) => ({
+    ...invoice,
+    flowType: invoice.flowType ?? invoiceFlowTypes[index % invoiceFlowTypes.length],
+    contractId: invoice.contractId ?? null,
+  }));
+}
 
 function shiftIsoDate(dateIso: string, dayOffset: number): string {
   const date = new Date(`${dateIso}T00:00:00Z`);
@@ -49,6 +64,7 @@ function expandInvoices(invoices: MockInvoice[]): MockInvoice[] {
   }
 
   const expanded = [...invoices];
+  const contracts = getContractEconomics("baseline");
 
   for (let index = invoices.length; index < TARGET_INVOICE_COUNT; index += 1) {
     const template = invoices[index % invoices.length];
@@ -69,6 +85,8 @@ function expandInvoices(invoices: MockInvoice[]): MockInvoice[] {
       issueDate,
       dueDate,
       status: invoiceStatuses[index % invoiceStatuses.length],
+      flowType: invoiceFlowTypes[index % invoiceFlowTypes.length],
+      contractId: index % 3 === 0 ? (contracts[index % contracts.length]?.id ?? null) : null,
       source: template.source,
       createdAt: new Date(`${issueDate}T08:00:00.000Z`).toISOString(),
     });
@@ -96,7 +114,7 @@ export async function getAllMockInvoices(): Promise<MockInvoice[]> {
       throw new MockDataValidationError(MOCK_FILE_PATH, `Invalid invoices.json schema. ${details}`);
     }
 
-    return expandInvoices(validated.data);
+    return expandInvoices(normalizeInvoices(validated.data));
   } catch (error) {
     if (
       error &&
@@ -127,4 +145,27 @@ export async function saveAllMockInvoices(invoices: MockInvoice[]): Promise<void
 export async function appendMockInvoices(invoices: MockInvoice[]): Promise<void> {
   const existing = await getAllMockInvoices();
   await saveAllMockInvoices([...invoices, ...existing]);
+}
+
+export async function updateMockInvoice(
+  id: string,
+  changes: Partial<Pick<MockInvoice, "flowType" | "contractId" | "status">>,
+): Promise<MockInvoice | null> {
+  const invoices = await getAllMockInvoices();
+  const index = invoices.findIndex((invoice) => invoice.id === id);
+
+  if (index === -1) {
+    return null;
+  }
+
+  const updatedInvoice: MockInvoice = {
+    ...invoices[index],
+    ...changes,
+    contractId: changes.contractId === undefined ? invoices[index].contractId : changes.contractId,
+  };
+
+  invoices[index] = updatedInvoice;
+  await saveAllMockInvoices(invoices);
+
+  return updatedInvoice;
 }

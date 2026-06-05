@@ -2,7 +2,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "@/components/app-shell";
-import type { MockInvoice, InvoiceStatus } from "@/lib/mock-invoices-store";
+import { getContractEconomics } from "@/lib/mock-contract-economics";
+import { useMockDataset } from "@/lib/use-mock-dataset";
+import type { InvoiceFlowType, MockInvoice, InvoiceStatus } from "@/lib/mock-invoices-store";
 
 interface InvoicesPageProps {
   initialInvoices: MockInvoice[];
@@ -33,6 +35,16 @@ const statusFilters: Array<{ value: InvoiceStatus | "all"; label: string }> = [
   { value: "overdue", label: "Przeterminowane" },
 ];
 
+const flowTypeLabel: Record<InvoiceFlowType, string> = {
+  revenue: "Przychodowa",
+  cost: "Kosztowa",
+};
+
+const flowTypeClass: Record<InvoiceFlowType, string> = {
+  revenue: "bg-emerald-100 text-emerald-800",
+  cost: "bg-rose-100 text-rose-800",
+};
+
 function getYear(invoice: MockInvoice) {
   return new Date(invoice.issueDate).getFullYear().toString();
 }
@@ -42,6 +54,7 @@ function formatDate(value: string) {
 }
 
 export function InvoicesPage({ initialInvoices }: InvoicesPageProps) {
+  const [dataset] = useMockDataset();
   const [invoices, setInvoices] = useState<MockInvoice[]>(initialInvoices);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<InvoiceStatus | "all">("all");
@@ -52,6 +65,9 @@ export function InvoicesPage({ initialInvoices }: InvoicesPageProps) {
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncMessage, setSyncMessage] = useState<string | null>(null);
 
+  const contracts = useMemo(() => getContractEconomics(dataset), [dataset]);
+  const contractById = useMemo(() => new Map(contracts.map((contract) => [contract.id, contract])), [contracts]);
+
   useEffect(() => {
     document.body.style.overflow = showDetailsPanel ? "hidden" : "";
 
@@ -61,9 +77,9 @@ export function InvoicesPage({ initialInvoices }: InvoicesPageProps) {
   }, [showDetailsPanel]);
 
   const availableYears = useMemo(() => {
-    const years = new Set(initialInvoices.map((invoice) => getYear(invoice)));
+    const years = new Set(invoices.map((invoice) => getYear(invoice)));
     return Array.from(years).sort((left, right) => Number(right) - Number(left));
-  }, [initialInvoices]);
+  }, [invoices]);
 
   const filteredInvoices = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -97,6 +113,8 @@ export function InvoicesPage({ initialInvoices }: InvoicesPageProps) {
     const net = filteredInvoices.reduce((sum, invoice) => sum + invoice.netAmount, 0);
     const overdue = filteredInvoices.filter((invoice) => invoice.status === "overdue").reduce((sum, invoice) => sum + invoice.grossAmount, 0);
     const paid = filteredInvoices.filter((invoice) => invoice.status === "paid").length;
+    const revenueGross = filteredInvoices.filter((invoice) => invoice.flowType === "revenue").reduce((sum, invoice) => sum + invoice.grossAmount, 0);
+    const costGross = filteredInvoices.filter((invoice) => invoice.flowType === "cost").reduce((sum, invoice) => sum + invoice.grossAmount, 0);
 
     return {
       count: filteredInvoices.length,
@@ -104,8 +122,36 @@ export function InvoicesPage({ initialInvoices }: InvoicesPageProps) {
       gross,
       overdue,
       paid,
+      revenueGross,
+      costGross,
     };
   }, [filteredInvoices]);
+
+  async function updateInvoice(invoiceId: string, changes: Partial<Pick<MockInvoice, "flowType" | "contractId">>) {
+    const previous = invoices;
+
+    setInvoices((current) =>
+      current.map((invoice) =>
+        invoice.id === invoiceId
+          ? {
+              ...invoice,
+              ...changes,
+            }
+          : invoice,
+      ),
+    );
+
+    const response = await fetch("/api/finance/invoices", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: invoiceId, ...changes }),
+    });
+
+    if (!response.ok) {
+      setInvoices(previous);
+      throw new Error(`Update failed: ${response.status}`);
+    }
+  }
 
   async function runSync() {
     try {
@@ -152,12 +198,12 @@ export function InvoicesPage({ initialInvoices }: InvoicesPageProps) {
           <p className="mt-2 text-3xl font-semibold text-[#383433]">{currency.format(totals.gross)}</p>
         </article>
         <article className="card-surface rounded-xl border-l-[4px] border-l-[#4cb24f] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Netto</p>
-          <p className="mt-2 text-3xl font-semibold text-[#383433]">{currency.format(totals.net)}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Przychody brutto</p>
+          <p className="mt-2 text-3xl font-semibold text-[#383433]">{currency.format(totals.revenueGross)}</p>
         </article>
         <article className="card-surface rounded-xl border-l-[4px] border-l-[#db1832] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Przeterminowane</p>
-          <p className="mt-2 text-3xl font-semibold text-[#383433]">{currency.format(totals.overdue)}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Koszty brutto</p>
+          <p className="mt-2 text-3xl font-semibold text-[#383433]">{currency.format(totals.costGross)}</p>
         </article>
       </div>
 
@@ -292,6 +338,16 @@ export function InvoicesPage({ initialInvoices }: InvoicesPageProps) {
                           <p className="text-xs text-[var(--brand-muted)]">Brutto</p>
                           <p className="font-medium text-[#383433]">{currency.format(invoice.grossAmount)}</p>
                         </div>
+                        <div>
+                          <p className="text-xs text-[var(--brand-muted)]">Typ</p>
+                          <span className={`mt-1 inline-flex rounded-full px-2.5 py-1 text-[11px] font-semibold ${flowTypeClass[invoice.flowType]}`}>
+                            {flowTypeLabel[invoice.flowType]}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="text-xs text-[var(--brand-muted)]">Kontrakt</p>
+                          <p className="font-medium text-[#383433]">{invoice.contractId ? (contractById.get(invoice.contractId)?.number ?? "Nieznany") : "Niepowiązana"}</p>
+                        </div>
                       </div>
                     </button>
                   );
@@ -309,6 +365,8 @@ export function InvoicesPage({ initialInvoices }: InvoicesPageProps) {
                       <th className="px-3 py-2">Netto</th>
                       <th className="px-3 py-2">Brutto</th>
                       <th className="px-3 py-2">Status</th>
+                      <th className="px-3 py-2">Typ</th>
+                      <th className="px-3 py-2">Kontrakt</th>
                       <th className="px-3 py-2">Źródło</th>
                     </tr>
                   </thead>
@@ -335,6 +393,12 @@ export function InvoicesPage({ initialInvoices }: InvoicesPageProps) {
                               {statusLabel[invoice.status]}
                             </span>
                           </td>
+                          <td className="px-3 py-3">
+                            <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${flowTypeClass[invoice.flowType]}`}>
+                              {flowTypeLabel[invoice.flowType]}
+                            </span>
+                          </td>
+                          <td className="px-3 py-3 text-[#383433]">{invoice.contractId ? (contractById.get(invoice.contractId)?.number ?? "Nieznany") : "Niepowiązana"}</td>
                           <td className="rounded-r-lg px-3 py-3 text-[#383433]">{invoice.source === "seed" ? "Seed" : "Sync"}</td>
                         </tr>
                       );
@@ -391,12 +455,54 @@ export function InvoicesPage({ initialInvoices }: InvoicesPageProps) {
                         <p className="mt-1 font-semibold text-[#383433]">{selectedInvoice.source === "seed" ? "Seed" : "Sync"}</p>
                       </div>
                       <div className="rounded-xl bg-white px-4 py-3 shadow-sm">
+                        <p className="text-xs text-[var(--brand-muted)]">Typ dokumentu</p>
+                        <span className={`mt-1 inline-flex rounded-full px-2.5 py-1 text-[11px] font-semibold ${flowTypeClass[selectedInvoice.flowType]}`}>
+                          {flowTypeLabel[selectedInvoice.flowType]}
+                        </span>
+                      </div>
+                      <div className="rounded-xl bg-white px-4 py-3 shadow-sm">
                         <p className="text-xs text-[var(--brand-muted)]">Netto</p>
                         <p className="mt-1 font-semibold text-[#383433]">{currency.format(selectedInvoice.netAmount)}</p>
                       </div>
                       <div className="rounded-xl bg-white px-4 py-3 shadow-sm">
                         <p className="text-xs text-[var(--brand-muted)]">Brutto</p>
                         <p className="mt-1 font-semibold text-[#383433]">{currency.format(selectedInvoice.grossAmount)}</p>
+                      </div>
+                    </div>
+
+                    <div className="rounded-2xl bg-white px-4 py-4 shadow-sm">
+                      <p className="text-sm font-semibold text-[#383433]">Powiązanie biznesowe</p>
+                      <div className="mt-3 space-y-2">
+                        <label className="block text-xs text-[var(--brand-muted)]" htmlFor="invoice-flow-type">Typ faktury</label>
+                        <select
+                          id="invoice-flow-type"
+                          value={selectedInvoice.flowType}
+                          onChange={(event) => {
+                            void updateInvoice(selectedInvoice.id, { flowType: event.target.value as InvoiceFlowType });
+                          }}
+                          className="h-10 w-full rounded-xl border border-[rgb(107_107_107_/_14%)] bg-[#fbfaf8] px-3 text-sm text-[#383433]"
+                        >
+                          <option value="revenue">Przychodowa</option>
+                          <option value="cost">Kosztowa</option>
+                        </select>
+
+                        <label className="block text-xs text-[var(--brand-muted)]" htmlFor="invoice-contract-link">Powiązanie z kontraktem</label>
+                        <select
+                          id="invoice-contract-link"
+                          value={selectedInvoice.contractId ?? ""}
+                          onChange={(event) => {
+                            const nextContractId = event.target.value || null;
+                            void updateInvoice(selectedInvoice.id, { contractId: nextContractId });
+                          }}
+                          className="h-10 w-full rounded-xl border border-[rgb(107_107_107_/_14%)] bg-[#fbfaf8] px-3 text-sm text-[#383433]"
+                        >
+                          <option value="">Niepowiązana</option>
+                          {contracts.map((contract) => (
+                            <option key={contract.id} value={contract.id}>
+                              {contract.number} • {contract.clientName}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                     </div>
 

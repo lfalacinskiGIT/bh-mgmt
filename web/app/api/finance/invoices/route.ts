@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getAllMockInvoices, type MockInvoice } from "@/lib/mock-invoices-store";
+import { getAllMockInvoices, updateMockInvoice, type InvoiceFlowType, type MockInvoice } from "@/lib/mock-invoices-store";
 import { MockDataValidationError } from "@/lib/mock-json-validation";
 import { isMockMode } from "@/lib/mock-mode";
 
@@ -8,6 +8,10 @@ interface InvoicesResponse {
   total: number;
   page: number;
   pageSize: number;
+}
+
+function isInvoiceFlowType(value: string): value is InvoiceFlowType {
+  return value === "revenue" || value === "cost";
 }
 
 export async function GET(request: NextRequest) {
@@ -67,4 +71,51 @@ export async function GET(request: NextRequest) {
     page,
     pageSize,
   } satisfies InvoicesResponse);
+}
+
+export async function PATCH(request: NextRequest) {
+  if (!isMockMode()) {
+    return Response.json({ message: "Only MOCK_MODE is supported in this prototype" }, { status: 400 });
+  }
+
+  const body = (await request.json()) as {
+    id?: string;
+    flowType?: string;
+    contractId?: string | null;
+    status?: MockInvoice["status"];
+  };
+
+  if (!body.id) {
+    return Response.json({ message: "Invoice id is required" }, { status: 400 });
+  }
+
+  const changes: Partial<Pick<MockInvoice, "flowType" | "contractId" | "status">> = {};
+
+  if (body.flowType !== undefined) {
+    if (!isInvoiceFlowType(body.flowType)) {
+      return Response.json({ message: "Invalid flowType" }, { status: 400 });
+    }
+
+    changes.flowType = body.flowType;
+  }
+
+  if (body.contractId !== undefined) {
+    changes.contractId = body.contractId;
+  }
+
+  if (body.status !== undefined) {
+    if (body.status !== "issued" && body.status !== "paid" && body.status !== "overdue") {
+      return Response.json({ message: "Invalid status" }, { status: 400 });
+    }
+
+    changes.status = body.status;
+  }
+
+  const updated = await updateMockInvoice(body.id, changes);
+
+  if (!updated) {
+    return Response.json({ message: "Invoice not found" }, { status: 404 });
+  }
+
+  return Response.json({ item: updated });
 }
