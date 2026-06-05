@@ -15,6 +15,8 @@ import {
 } from "@/lib/mock-contract-economics";
 import { normalizeMockDataset, persistMockDataset, readMockDatasetFromStorage } from "@/lib/mock-dataset";
 import { getSourceRecords } from "@/lib/mock-management-reports";
+import { getTeamMemberNameMap } from "@/lib/mock-team";
+import { getTimeEntries } from "@/lib/mock-time-tracking";
 import type { MockInvoice } from "@/lib/mock-invoices-store";
 
 const currency = new Intl.NumberFormat("pl-PL", {
@@ -275,7 +277,7 @@ export function ContractsPage() {
   const [viewMode, setViewMode] = useState<"cards" | "list">("list");
   const [showSidePanel, setShowSidePanel] = useState(false);
   const [panelMode, setPanelMode] = useState<"compact" | "expanded">("compact");
-  const [panelTab, setPanelTab] = useState<"overview" | "finance" | "documents" | "timeline">("overview");
+  const [panelTab, setPanelTab] = useState<"overview" | "finance" | "worktime" | "documents" | "timeline">("overview");
   const [invoices, setInvoices] = useState<MockInvoice[]>([]);
   const [isInvoicesLoading, setIsInvoicesLoading] = useState(false);
   const [invoiceActionId, setInvoiceActionId] = useState<string | null>(null);
@@ -710,6 +712,37 @@ export function ContractsPage() {
   }, [invoices, selectedContract]);
 
   const unlinkedInvoices = useMemo(() => invoices.filter((invoice) => !invoice.contractId), [invoices]);
+  const teamNameById = useMemo(() => getTeamMemberNameMap(dataset), [dataset]);
+
+  const contractTimeEntries = useMemo(() => {
+    if (!selectedContract) {
+      return [];
+    }
+
+    return getTimeEntries(dataset)
+      .filter((entry) => entry.contractId && (selectedContract.id === entry.contractId || selectedContract.id.startsWith(`${entry.contractId}-`)))
+      .sort((left, right) => right.workDate.localeCompare(left.workDate));
+  }, [dataset, selectedContract]);
+
+  const contractTimeSummary = useMemo(() => {
+    const totalHours = contractTimeEntries.reduce((sum, entry) => sum + entry.hours, 0);
+    const employees = new Set(contractTimeEntries.map((entry) => entry.employeeId));
+    const byEmployee = Array.from(
+      contractTimeEntries.reduce((map, entry) => {
+        map.set(entry.employeeId, (map.get(entry.employeeId) ?? 0) + entry.hours);
+        return map;
+      }, new Map<string, number>()).entries(),
+    )
+      .map(([employeeId, loggedHours]) => ({ employeeId, loggedHours }))
+      .sort((left, right) => right.loggedHours - left.loggedHours);
+
+    return {
+      totalHours,
+      employeesCount: employees.size,
+      entriesCount: contractTimeEntries.length,
+      byEmployee,
+    };
+  }, [contractTimeEntries]);
 
   const monthlyFinanceRows = useMemo(() => {
     if (!selectedContractMonthlyTrend) {
@@ -829,9 +862,9 @@ export function ContractsPage() {
               aria-label="Zestaw danych"
               className="h-10 rounded-lg border border-[rgb(107_107_107_/_16%)] bg-white px-3 text-sm text-[#383433]"
             >
-              <option value="baseline">Dataset: Baseline</option>
-              <option value="stress">Dataset: Stress</option>
-              <option value="incomplete">Dataset: Incomplete</option>
+              <option value="baseline">Zestaw: Bazowy</option>
+              <option value="stress">Zestaw: Stresowy</option>
+              <option value="incomplete">Zestaw: Niekompletny</option>
             </select>
             <select
               value={lineOfBusinessFilter}
@@ -1099,17 +1132,24 @@ export function ContractsPage() {
               </button>
               <button
                 type="button"
-                onClick={() => setPanelTab("documents")}
-                className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${panelTab === "documents" ? "bg-white text-[#383433] shadow-sm" : "text-[var(--brand-muted)]"}`}
+                onClick={() => setPanelTab("worktime")}
+                className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${panelTab === "worktime" ? "bg-white text-[#383433] shadow-sm" : "text-[var(--brand-muted)]"}`}
               >
-                Dokumenty
+                Czas pracy
               </button>
               <button
                 type="button"
                 onClick={() => setPanelTab("timeline")}
                 className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${panelTab === "timeline" ? "bg-white text-[#383433] shadow-sm" : "text-[var(--brand-muted)]"}`}
               >
-                Oś czasu
+                Audit trail
+              </button>
+              <button
+                type="button"
+                onClick={() => setPanelTab("documents")}
+                className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${panelTab === "documents" ? "bg-white text-[#383433] shadow-sm" : "text-[var(--brand-muted)]"}`}
+              >
+                Dokumenty
               </button>
             </div>
 
@@ -1131,6 +1171,36 @@ export function ContractsPage() {
 
                 {panelTab === "overview" ? (
                   <>
+                    <article className="rounded-2xl border border-[rgb(107_107_107_/_14%)] bg-white p-4">
+                      <h4 className="text-sm font-semibold text-[#383433]">Progress ribbon kontraktu</h4>
+                      <div className="mt-3 space-y-3 text-xs">
+                        <div>
+                          <div className="mb-1 flex items-center justify-between">
+                            <span className="text-[var(--brand-muted)]">Przychód rozpoznany</span>
+                            <span className="font-semibold text-[#383433]">{currency.format(selectedContract.revenueRecognizedNet)}</span>
+                          </div>
+                          <progress className="h-2 w-full overflow-hidden rounded-full [appearance:none] [&::-webkit-progress-bar]:bg-[#f3eee8] [&::-webkit-progress-value]:bg-[#3d8bfd] [&::-moz-progress-bar]:bg-[#3d8bfd]" max={Math.max(1, selectedContract.valueContractNet)} value={selectedContract.revenueRecognizedNet} />
+                        </div>
+                        <div>
+                          <div className="mb-1 flex items-center justify-between">
+                            <span className="text-[var(--brand-muted)]">Koszt całkowity</span>
+                            <span className="font-semibold text-[#383433]">{currency.format(selectedContractStats.totalCost)}</span>
+                          </div>
+                          <progress className="h-2 w-full overflow-hidden rounded-full [appearance:none] [&::-webkit-progress-bar]:bg-[#f3eee8] [&::-webkit-progress-value]:bg-[#f28b25] [&::-moz-progress-bar]:bg-[#f28b25]" max={Math.max(1, selectedContract.valueContractNet)} value={selectedContractStats.totalCost} />
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="rounded-lg bg-[#faf8f6] px-2 py-2">
+                            <p className="text-[var(--brand-muted)]">Marża zarządcza</p>
+                            <p className="mt-1 font-semibold text-[#383433]">{(selectedContractStats.managerialMargin * 100).toFixed(1)}%</p>
+                          </div>
+                          <div className="rounded-lg bg-[#faf8f6] px-2 py-2">
+                            <p className="text-[var(--brand-muted)]">Zapas marży</p>
+                            <p className="mt-1 font-semibold text-[#383433]">{currency.format(selectedContractStats.marginReserve)}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
                     <div className={`grid gap-3 ${panelMode === "expanded" ? "md:grid-cols-2" : "grid-cols-1"}`}>
                       <article className="rounded-xl border border-[rgb(107_107_107_/_14%)] bg-white p-3">
                         <p className="text-xs text-[var(--brand-muted)]">Wartość umowna</p>
@@ -1470,8 +1540,82 @@ export function ContractsPage() {
                   </article>
                 ) : null}
 
+                {panelTab === "worktime" ? (
+                  <article className="rounded-2xl border border-[rgb(107_107_107_/_14%)] bg-white p-4">
+                    <h4 className="text-sm font-semibold text-[#383433]">Czas pracy kontraktu</h4>
+                    <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
+                      <div className="rounded-lg bg-[#faf8f6] px-2 py-2">
+                        <p className="text-[var(--brand-muted)]">Wpisy</p>
+                        <p className="mt-1 font-semibold text-[#383433]">{contractTimeSummary.entriesCount}</p>
+                      </div>
+                      <div className="rounded-lg bg-[#faf8f6] px-2 py-2">
+                        <p className="text-[var(--brand-muted)]">Godziny</p>
+                        <p className="mt-1 font-semibold text-[#383433]">{contractTimeSummary.totalHours.toFixed(1)} h</p>
+                      </div>
+                      <div className="rounded-lg bg-[#faf8f6] px-2 py-2">
+                        <p className="text-[var(--brand-muted)]">Osoby</p>
+                        <p className="mt-1 font-semibold text-[#383433]">{contractTimeSummary.employeesCount}</p>
+                      </div>
+                    </div>
+
+                    <div className="mt-3 rounded-lg border border-[rgb(107_107_107_/_10%)] bg-[#fffaf5] p-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--brand-muted)]">Godziny per osoba</p>
+                      <div className="mt-2 space-y-1">
+                        {contractTimeSummary.byEmployee.length > 0 ? (
+                          contractTimeSummary.byEmployee.map((row) => (
+                            <div key={row.employeeId} className="flex items-center justify-between text-xs text-[#383433]">
+                              <span>{teamNameById.get(row.employeeId) ?? row.employeeId}</span>
+                              <span className="font-semibold">{row.loggedHours.toFixed(1)} h</span>
+                            </div>
+                          ))
+                        ) : (
+                          <p className="text-xs text-[var(--brand-muted)]">Brak wpisów czasu dla kontraktu.</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="mt-3 max-h-[220px] space-y-2 overflow-auto pr-1">
+                      {contractTimeEntries.length > 0 ? (
+                        contractTimeEntries.map((entry) => (
+                          <div key={entry.id} className="rounded-lg border border-[rgb(107_107_107_/_12%)] bg-[#fffaf5] px-3 py-2">
+                            <div className="flex items-center justify-between gap-2">
+                              <p className="text-xs font-semibold text-[#383433]">{teamNameById.get(entry.employeeId) ?? entry.employeeId}</p>
+                              <span className="text-[11px] text-[var(--brand-muted)]">{entry.workDate}</span>
+                            </div>
+                            <p className="mt-1 text-xs text-[var(--brand-muted)]">Kategoria: {entry.category}</p>
+                            <p className="mt-1 text-sm font-semibold text-[#383433]">{entry.hours.toFixed(1)} h</p>
+                          </div>
+                        ))
+                      ) : null}
+                    </div>
+                  </article>
+                ) : null}
+
                 {panelTab === "timeline" && selectedContractProperties ? (
                   <aside className="rounded-2xl border border-[rgb(107_107_107_/_14%)] bg-white p-4">
+                    <div className="mb-4 rounded-xl border border-[rgb(107_107_107_/_10%)] bg-[#fffaf5] p-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand-muted)]">Status timeline</p>
+                      <div className="mt-2 flex items-center gap-2 text-xs">
+                        {[
+                          { key: "nowy", label: "Nowy" },
+                          { key: "negocjacje", label: "Negocjacje" },
+                          { key: "podpisany", label: "Podpisany" },
+                          { key: "realizacja", label: "Realizacja" },
+                          { key: "zakończony", label: "Zakończony" },
+                        ].map((milestone, index) => {
+                          const active = selectedContract.status === milestone.key;
+                          return (
+                            <div key={milestone.key} className="flex items-center gap-2">
+                              <span className={`rounded-full px-2 py-1 font-semibold ${active ? "bg-[var(--brand-primary)] text-white" : "bg-[#faf8f6] text-[var(--brand-muted)]"}`}>
+                                {milestone.label}
+                              </span>
+                              {index < 4 ? <span className="text-[var(--brand-muted)]">→</span> : null}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+
                     <h4 className="text-sm font-semibold text-[#383433]">Właściwości i podsumowanie</h4>
                     <div className="mt-3 space-y-2 text-sm">
                       <div className="flex items-center justify-between"><span className="text-[var(--brand-muted)]">Klient</span><span className="font-semibold text-[#383433]">{selectedContract.clientName}</span></div>

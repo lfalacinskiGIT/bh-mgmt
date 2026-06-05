@@ -31,6 +31,7 @@ export function IntegrationsPage({ initialInvoices, isMockEnabled }: Integration
   const [validationStatus, setValidationStatus] = useState<"idle" | "ok" | "error">("idle");
   const [validationSummary, setValidationSummary] = useState<string>("Walidacja nieuruchomiona");
   const [auditPreview, setAuditPreview] = useState<Array<{ id: string; finishedAt: string; status: string; created: number; errors: number }>>([]);
+  const [auditHistory, setAuditHistory] = useState<Array<{ id: string; finishedAt: string; status: string; created: number; errors: number }>>([]);
 
   const sourceStats = useMemo(() => {
     const mockSourceCount = initialInvoices.filter((invoice) => invoice.source === "mock-sync").length;
@@ -66,6 +67,7 @@ export function IntegrationsPage({ initialInvoices, isMockEnabled }: Integration
               items: Array<{ id: string; finishedAt: string; status: string; created: number; errors: number }>;
             };
             setAuditPreview((auditPayload.items ?? []).slice(0, 4));
+            setAuditHistory((auditPayload.items ?? []).slice(0, 7));
           }
         }
       } catch {
@@ -136,8 +138,8 @@ export function IntegrationsPage({ initialInvoices, isMockEnabled }: Integration
       <section className="mt-6 rounded-2xl bg-white p-4 shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:p-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <h2 className="text-[22px] font-semibold tracking-tight text-[#383433]">Comarch ERP Optima</h2>
-            <p className="text-sm text-[var(--brand-muted)]">Pierwsza wersja warstwy integracyjnej dla sprintu 1</p>
+            <h2 className="text-[22px] font-semibold tracking-tight text-[#383433]">Sync cockpit</h2>
+            <p className="text-sm text-[var(--brand-muted)]">Status providerów, diagnostyka i historia synchronizacji</p>
           </div>
 
           <button
@@ -182,11 +184,23 @@ export function IntegrationsPage({ initialInvoices, isMockEnabled }: Integration
           </article>
         </div>
 
+        <div className="mt-5 rounded-xl border border-[rgb(107_107_107_/_14%)] bg-[#fffaf5] p-4">
+          <div className="flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
+            <h3 className="text-base font-semibold text-[#383433]">Przepływ danych</h3>
+            <span className="text-xs text-[var(--brand-muted)]">Optima -&gt; warstwa pośrednia -&gt; kontrakty/raporty</span>
+          </div>
+          <div className="mt-3 grid gap-2 md:grid-cols-3">
+            <div className="rounded-lg border border-[rgb(107_107_107_/_12%)] bg-white px-3 py-2 text-sm text-[#383433]">1. Źródło: Optima/iFirma</div>
+            <div className="rounded-lg border border-[rgb(107_107_107_/_12%)] bg-white px-3 py-2 text-sm text-[#383433]">2. Warstwa pośrednia: walidacja + audyt</div>
+            <div className="rounded-lg border border-[rgb(107_107_107_/_12%)] bg-white px-3 py-2 text-sm text-[#383433]">3. Konsumpcja: faktury, kontrakty, raporty</div>
+          </div>
+        </div>
+
         <div className="mt-5 grid gap-4 xl:grid-cols-2">
           <article className="rounded-xl border border-[rgb(107_107_107_/_14%)] bg-white p-4 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Walidacja danych mock</p>
             <p className={`mt-2 text-sm font-semibold ${validationStatus === "ok" ? "text-emerald-700" : validationStatus === "error" ? "text-rose-700" : "text-[#383433]"}`}>
-              {validationStatus === "ok" ? "Status: OK" : validationStatus === "error" ? "Status: ERROR" : "Status: IDLE"}
+              {validationStatus === "ok" ? "Status: OK" : validationStatus === "error" ? "Status: Błąd" : "Status: Oczekuje"}
             </p>
             <p className="mt-1 text-sm text-[var(--brand-muted)]">{validationSummary}</p>
           </article>
@@ -198,9 +212,9 @@ export function IntegrationsPage({ initialInvoices, isMockEnabled }: Integration
                 auditPreview.map((entry) => (
                   <div key={entry.id} className="flex items-center justify-between rounded-lg bg-[#faf8f6] px-3 py-2">
                     <span>{formatDateTime(entry.finishedAt)}</span>
-                    <span className={entry.status === "success" ? "text-emerald-700" : "text-rose-700"}>{entry.status}</span>
+                    <span className={entry.status === "success" ? "text-emerald-700" : "text-rose-700"}>{entry.status === "success" ? "OK" : "Błąd"}</span>
                     <span>+{entry.created}</span>
-                    <span>err {entry.errors}</span>
+                    <span>bł. {entry.errors}</span>
                   </div>
                 ))
               ) : (
@@ -209,6 +223,24 @@ export function IntegrationsPage({ initialInvoices, isMockEnabled }: Integration
             </div>
           </article>
         </div>
+
+        <article className="mt-5 rounded-xl border border-[rgb(107_107_107_/_14%)] bg-white p-4 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Oś czasu sync (ostatnie 7 uruchomień)</p>
+          <div className="mt-3 space-y-2">
+            {auditHistory.length > 0 ? (
+              auditHistory.map((entry) => (
+                <div key={`timeline-${entry.id}`} className="flex items-center justify-between rounded-lg bg-[#faf8f6] px-3 py-2 text-sm">
+                  <span className="text-[#383433]">{formatDateTime(entry.finishedAt)}</span>
+                  <span className={entry.status === "success" ? "text-emerald-700" : "text-rose-700"}>{entry.status === "success" ? "OK" : "Błąd"}</span>
+                  <span className="text-[#5a524d]">+{entry.created}</span>
+                  <span className="text-[#5a524d]">bł. {entry.errors}</span>
+                </div>
+              ))
+            ) : (
+              <p className="text-sm text-[var(--brand-muted)]">Brak danych historycznych synchronizacji.</p>
+            )}
+          </div>
+        </article>
       </section>
     </AppShell>
   );

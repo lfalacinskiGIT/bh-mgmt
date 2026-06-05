@@ -53,3 +53,7 @@ export function getTeamSummary(dataset: MockDatasetName = "baseline") {
     disciplines,
   };
 }
+
+export function getTeamMemberNameMap(dataset: MockDatasetName = "baseline") {
+  return new Map(getTeamMembers(dataset).map((member) => [member.id, member.name]));
+}

@@ -132,6 +132,7 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
   const [dataset, setDataset] = useState<MockDatasetName>(() => readMockDatasetFromStorage());
   const [selectedPeriod, setSelectedPeriod] = useState<string>("all");
   const [selectedMapContractId, setSelectedMapContractId] = useState<string>("");
+  const [presentationMode, setPresentationMode] = useState<boolean>(false);
 
   useEffect(() => {
     persistMockDataset(dataset);
@@ -471,9 +472,9 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
               aria-label="Zestaw danych"
               className="h-10 rounded-xl border border-[rgb(107_107_107_/_18%)] bg-[#fbfaf8] px-3 text-sm text-[#383433]"
             >
-              <option value="baseline">Dataset: Baseline</option>
-              <option value="stress">Dataset: Stress</option>
-              <option value="incomplete">Dataset: Incomplete</option>
+              <option value="baseline">Zestaw: Bazowy</option>
+              <option value="stress">Zestaw: Stresowy</option>
+              <option value="incomplete">Zestaw: Niekompletny</option>
             </select>
             <select
               value={selectedPeriod}
@@ -495,6 +496,13 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
               className="h-10 rounded-xl border border-[rgb(107_107_107_/_18%)] bg-white px-4 text-sm font-semibold text-[#383433] shadow-sm transition hover:bg-[#fff7ef]"
             >
               Eksport CSV
+            </button>
+            <button
+              type="button"
+              onClick={() => setPresentationMode((current) => !current)}
+              className="h-10 rounded-xl border border-[rgb(107_107_107_/_18%)] bg-white px-4 text-sm font-semibold text-[#383433] shadow-sm transition hover:bg-[#fff7ef]"
+            >
+              {presentationMode ? "Tryb szczegółowy" : "Tryb prezentacji"}
             </button>
           </div>
         </div>
@@ -562,7 +570,7 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
             <h2 className="text-[22px] font-semibold tracking-tight text-[#383433]">Uzgodnienie: kontrakty vs poza kontraktami</h2>
             <p className="text-sm text-[var(--brand-muted)]">MVP opcji 1 z filtrem okresu dla zapisów źródłowych</p>
           </div>
-          <p className="text-sm text-[var(--brand-muted)]">{selectedPeriodLabel} • dataset: {dataset} • rekordy źródłowe: {filteredManagementRecords.length}</p>
+          <p className="text-sm text-[var(--brand-muted)]">{selectedPeriodLabel} • zestaw: {dataset} • rekordy źródłowe: {filteredManagementRecords.length}</p>
         </div>
 
         <div className="mt-4 grid gap-4 lg:grid-cols-3">
@@ -601,9 +609,11 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
           </article>
         </div>
 
-        <div className="mt-4 rounded-xl border border-[rgb(107_107_107_/_14%)] bg-[#fffaf5] px-4 py-3 text-sm text-[#6a563f]">
-          Dane fakturowe (Optima sync): {invoicesCount} dokumentów, {currency.format(invoicesNet)} netto.
-        </div>
+        {presentationMode ? null : (
+          <div className="mt-4 rounded-xl border border-[rgb(107_107_107_/_14%)] bg-[#fffaf5] px-4 py-3 text-sm text-[#6a563f]">
+            Dane fakturowe (Optima sync): {invoicesCount} dokumentów, {currency.format(invoicesNet)} netto.
+          </div>
+        )}
 
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           <article className="rounded-xl border border-[rgb(107_107_107_/_14%)] bg-white p-4">
@@ -622,14 +632,14 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
 
         <div className="mt-5 rounded-2xl border border-[rgb(107_107_107_/_14%)] bg-[#fffaf5] p-4">
           <div className="flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
-            <h3 className="text-base font-semibold text-[#383433]">Difference bridge</h3>
+            <h3 className="text-base font-semibold text-[#383433]">Bridge storyboard</h3>
             <span className="text-xs text-[var(--brand-muted)]">Krokowe wyjaśnienie różnicy kosztowej</span>
           </div>
           <div className="mt-3 space-y-2">
-            {reconciliationBridge.map((item) => (
+            {reconciliationBridge.map((item, index) => (
               <div key={item.id} className="rounded-xl border border-[rgb(107_107_107_/_12%)] bg-white px-3 py-3">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-semibold text-[#383433]">{item.label}</p>
+                  <p className="text-sm font-semibold text-[#383433]">{index + 1}. {item.label}</p>
                   <span
                     className={`text-sm font-semibold ${
                       item.direction === "plus"
@@ -689,7 +699,7 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
         </div>
 
         <div className="mt-4 grid gap-3 md:grid-cols-2">
-          {kwsRules.map((rule) => (
+          {(presentationMode ? kwsRules.slice(0, 2) : kwsRules).map((rule) => (
             <article key={rule.id} className="rounded-xl border border-[rgb(107_107_107_/_14%)] bg-[#faf8f6] p-4">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="text-sm font-semibold text-[#383433]">{rule.name}</h3>
@@ -702,7 +712,7 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
                         : "bg-emerald-100 text-emerald-800"
                   }`}
                 >
-                  {rule.status}
+                    {rule.status === "critical" ? "Wysoki" : rule.status === "warning" ? "Średni" : "OK"}
                 </span>
               </div>
               <p className="mt-2 text-xs text-[var(--brand-muted)]">{rule.description}</p>
@@ -711,17 +721,18 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
           ))}
         </div>
 
+        {presentationMode ? null : (
         <div className="mt-4 overflow-x-auto rounded-2xl border border-[rgb(107_107_107_/_14%)]">
           <table className="min-w-full border-separate border-spacing-y-2 bg-white px-3 py-2 text-sm">
             <thead>
               <tr className="text-left text-[var(--brand-muted)]">
-                <th className="px-3 py-2">Severity</th>
-                <th className="px-3 py-2">Rule</th>
-                <th className="px-3 py-2">Contract</th>
-                <th className="px-3 py-2">Reference</th>
-                <th className="px-3 py-2">Amount</th>
-                <th className="px-3 py-2">At risk</th>
-                <th className="px-3 py-2">Note</th>
+                <th className="px-3 py-2">Poziom</th>
+                <th className="px-3 py-2">Reguła</th>
+                <th className="px-3 py-2">Kontrakt</th>
+                <th className="px-3 py-2">Referencja</th>
+                <th className="px-3 py-2">Kwota</th>
+                <th className="px-3 py-2">Kwota ryzyka</th>
+                <th className="px-3 py-2">Opis</th>
               </tr>
             </thead>
             <tbody>
@@ -730,7 +741,7 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
                   <tr key={risk.id} className="rounded-lg bg-[#faf8f6] shadow-sm">
                     <td className="rounded-l-lg px-3 py-3">
                       <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${risk.severity === "high" ? "bg-rose-100 text-rose-800" : "bg-amber-100 text-amber-800"}`}>
-                        {risk.severity}
+                        {risk.severity === "high" ? "Wysoki" : "Średni"}
                       </span>
                     </td>
                     <td className="px-3 py-3 font-medium text-[#383433]">{risk.ruleCode}</td>
@@ -751,6 +762,7 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
             </tbody>
           </table>
         </div>
+        )}
       </section>
     </AppShell>
   );

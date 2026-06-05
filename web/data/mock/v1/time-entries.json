@@ -2,7 +2,7 @@
   {
     "id": "te-1",
     "contractId": "c1",
-    "employeeId": "emp-1",
+    "employeeId": "jan-kowalski",
     "workDate": "2026-06-03",
     "hours": 8,
     "category": "project"
@@ -10,9 +10,969 @@
   {
     "id": "te-2",
     "contractId": "c2",
-    "employeeId": "emp-2",
+    "employeeId": "anna-maj",
     "workDate": "2026-06-04",
     "hours": 6,
     "category": "project"
+  },
+  {
+    "id": "te-3",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2025-06-03",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-4",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2025-06-05",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-5",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2025-06-07",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-6",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2025-06-09",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-7",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2025-06-11",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-8",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2025-06-13",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-9",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2025-06-15",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-10",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2025-06-17",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-11",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2025-06-19",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-12",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2025-06-21",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-13",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2025-07-04",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-14",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2025-07-06",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-15",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2025-07-08",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-16",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2025-07-10",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-17",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2025-07-12",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-18",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2025-07-14",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-19",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2025-07-16",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-20",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2025-07-18",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-21",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2025-07-20",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-22",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2025-07-22",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-23",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2025-08-05",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-24",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2025-08-07",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-25",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2025-08-09",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-26",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2025-08-11",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-27",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2025-08-13",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-28",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2025-08-15",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-29",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2025-08-17",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-30",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2025-08-19",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-31",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2025-08-21",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-32",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2025-08-23",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-33",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2025-09-06",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-34",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2025-09-08",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-35",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2025-09-10",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-36",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2025-09-12",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-37",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2025-09-14",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-38",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2025-09-16",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-39",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2025-09-18",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-40",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2025-09-20",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-41",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2025-09-22",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-42",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2025-09-24",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-43",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2025-10-07",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-44",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2025-10-09",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-45",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2025-10-11",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-46",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2025-10-13",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-47",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2025-10-15",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-48",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2025-10-17",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-49",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2025-10-19",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-50",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2025-10-21",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-51",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2025-10-23",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-52",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2025-10-25",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-53",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2025-11-08",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-54",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2025-11-10",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-55",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2025-11-12",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-56",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2025-11-14",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-57",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2025-11-16",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-58",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2025-11-18",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-59",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2025-11-20",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-60",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2025-11-22",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-61",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2025-11-24",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-62",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2025-11-26",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-63",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2025-12-09",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-64",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2025-12-11",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-65",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2025-12-13",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-66",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2025-12-15",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-67",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2025-12-17",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-68",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2025-12-19",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-69",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2025-12-21",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-70",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2025-12-23",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-71",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2025-12-25",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-72",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2025-12-01",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-73",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2026-01-10",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-74",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2026-01-12",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-75",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2026-01-14",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-76",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2026-01-16",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-77",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2026-01-18",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-78",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2026-01-20",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-79",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2026-01-22",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-80",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2026-01-24",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-81",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2026-01-26",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-82",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2026-01-02",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-83",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2026-02-11",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-84",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2026-02-13",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-85",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2026-02-15",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-86",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2026-02-17",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-87",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2026-02-19",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-88",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2026-02-21",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-89",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2026-02-23",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-90",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2026-02-25",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-91",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2026-02-01",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-92",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2026-02-03",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-93",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2026-03-12",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-94",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2026-03-14",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-95",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2026-03-16",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-96",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2026-03-18",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-97",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2026-03-20",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-98",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2026-03-22",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-99",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2026-03-24",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-100",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2026-03-26",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-101",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2026-03-02",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-102",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2026-03-04",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-103",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2026-04-13",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-104",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2026-04-15",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-105",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2026-04-17",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-106",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2026-04-19",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-107",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2026-04-21",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-108",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2026-04-23",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-109",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2026-04-25",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-110",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2026-04-01",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-111",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2026-04-03",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-112",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2026-04-05",
+    "hours": 8,
+    "category": "absence"
+  },
+  {
+    "id": "te-113",
+    "contractId": "c1",
+    "employeeId": "jan-kowalski",
+    "workDate": "2026-05-14",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-114",
+    "contractId": "c2",
+    "employeeId": "anna-maj",
+    "workDate": "2026-05-16",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-115",
+    "contractId": "c1",
+    "employeeId": "marta-lis",
+    "workDate": "2026-05-18",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-116",
+    "contractId": null,
+    "employeeId": "julia-bak",
+    "workDate": "2026-05-20",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-117",
+    "contractId": "c1",
+    "employeeId": "pawel-domanski",
+    "workDate": "2026-05-22",
+    "hours": 7,
+    "category": "project"
+  },
+  {
+    "id": "te-118",
+    "contractId": "c2",
+    "employeeId": "oliwia-zawadzka",
+    "workDate": "2026-05-24",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-119",
+    "contractId": "c1",
+    "employeeId": "michal-wysocki",
+    "workDate": "2026-05-26",
+    "hours": 6,
+    "category": "project"
+  },
+  {
+    "id": "te-120",
+    "contractId": null,
+    "employeeId": "karolina-sowa",
+    "workDate": "2026-05-02",
+    "hours": 4,
+    "category": "nonProject"
+  },
+  {
+    "id": "te-121",
+    "contractId": "c1",
+    "employeeId": "tomasz-malec",
+    "workDate": "2026-05-04",
+    "hours": 8,
+    "category": "project"
+  },
+  {
+    "id": "te-122",
+    "contractId": null,
+    "employeeId": "aleksandra-krol",
+    "workDate": "2026-05-06",
+    "hours": 8,
+    "category": "absence"
   }
 ]

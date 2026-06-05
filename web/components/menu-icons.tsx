@@ -131,3 +131,25 @@ export function SettingsIcon(props: SVGProps<SVGSVGElement>) {
     </IconBase>
   );
 }
+
+export function WorkTimeIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <IconBase {...props}>
+      <circle cx="12" cy="12" r="8" />
+      <path d="M12 8v4l2.5 2" />
+      <path d="M8 3h8" />
+    </IconBase>
+  );
+}
+
+export function ProfitLossIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <IconBase {...props}>
+      <path d="M4 19h16" />
+      <path d="M7 16V9" />
+      <path d="M12 16V5" />
+      <path d="M17 16v-4" />
+      <path d="m6 11 3-2 3 1 4-3" />
+    </IconBase>
+  );
+}

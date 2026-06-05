@@ -9,7 +9,7 @@ const settingsRows = [
   { label: "Tryb makiety", value: "Mock-first", helper: "Aplikacja korzysta z JSON-owych danych demonstracyjnych" },
   { label: "Synchronizacja", value: "Optima / mock", helper: "Integracje pokazują przepływ danych, bez realnego API" },
   { label: "Widoczność menu", value: "Pełna", helper: "Każdy route ma już ekran zamiast placeholdera" },
-  { label: "Zestaw danych", value: "Baseline / Stress / Incomplete", helper: "Przełączanie zestawu zapisuje się lokalnie" },
+  { label: "Zestaw danych", value: "Bazowy / Stresowy / Niekompletny", helper: "Przełączanie zestawu zapisuje się lokalnie" },
 ];
 
 export function SettingsPage() {
@@ -48,7 +48,7 @@ export function SettingsPage() {
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-sm font-semibold text-[#383433]">Zestaw danych mock</p>
-                <p className="mt-1 text-sm text-[var(--brand-muted)]">Zmieniaj baseline i stress, aby sprawdzić inne warianty makiety</p>
+                <p className="mt-1 text-sm text-[var(--brand-muted)]">Zmieniaj zestawy, aby sprawdzić różne warianty makiety</p>
               </div>
               <div className="flex gap-2">
                 <button
@@ -56,21 +56,21 @@ export function SettingsPage() {
                   onClick={() => changeDataset("baseline")}
                   className={`rounded-xl px-4 py-2 text-sm font-semibold ${dataset === "baseline" ? "bg-[var(--brand-primary)] text-white" : "bg-white text-[#383433] shadow-sm"}`}
                 >
-                  Baseline
+                  Bazowy
                 </button>
                 <button
                   type="button"
                   onClick={() => changeDataset("stress")}
                   className={`rounded-xl px-4 py-2 text-sm font-semibold ${dataset === "stress" ? "bg-[var(--brand-primary)] text-white" : "bg-white text-[#383433] shadow-sm"}`}
                 >
-                  Stress
+                  Stresowy
                 </button>
                 <button
                   type="button"
                   onClick={() => changeDataset("incomplete")}
                   className={`rounded-xl px-4 py-2 text-sm font-semibold ${dataset === "incomplete" ? "bg-[var(--brand-primary)] text-white" : "bg-white text-[#383433] shadow-sm"}`}
                 >
-                  Incomplete
+                  Niekompletny
                 </button>
               </div>
             </div>
@@ -99,7 +99,7 @@ export function SettingsPage() {
           <article className="rounded-2xl bg-white p-4 shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:p-6">
             <h3 className="text-xl font-semibold tracking-tight text-[#383433]">Status makiety</h3>
             <p className="mt-2 text-sm text-[var(--brand-muted)]">Ustawienia zmieniają tylko lokalny widok i zapis w przeglądarce.</p>
-            <p className="mt-4 text-sm font-semibold text-[#383433]">Dataset: {dataset}</p>
+            <p className="mt-4 text-sm font-semibold text-[#383433]">Zestaw: {dataset === "baseline" ? "Bazowy" : dataset === "stress" ? "Stresowy" : "Niekompletny"}</p>
             <p className="mt-2 text-sm text-[#5a524d]">Tryb kompaktowy: {compactMode ? "tak" : "nie"}</p>
             <p className="mt-1 text-sm text-[#5a524d]">Podpowiedzi: {showHints ? "tak" : "nie"}</p>
             <p className="mt-1 text-sm text-[#5a524d]">Auto-refresh: {autoRefresh ? "tak" : "nie"}</p>

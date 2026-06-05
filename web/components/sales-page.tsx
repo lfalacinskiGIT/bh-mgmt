@@ -96,9 +96,9 @@ export function SalesPage() {
               onChange={(event) => setDataset(normalizeMockDataset(event.target.value))}
               className="h-10 rounded-xl border border-[rgb(107_107_107_/_18%)] bg-[#fbfaf8] px-3 text-sm text-[#383433] shadow-sm"
             >
-              <option value="baseline">Dataset: Baseline</option>
-              <option value="stress">Dataset: Stress</option>
-              <option value="incomplete">Dataset: Incomplete</option>
+              <option value="baseline">Zestaw: Bazowy</option>
+              <option value="stress">Zestaw: Stresowy</option>
+              <option value="incomplete">Zestaw: Niekompletny</option>
             </select>
           </div>
 
@@ -116,7 +116,7 @@ export function SalesPage() {
                   <div className="flex items-center justify-between gap-3"><span>Lokalizacja</span><span className="font-medium text-[#383433]">{item.city}</span></div>
                   <div className="flex items-center justify-between gap-3"><span>Wartość</span><span className="font-medium text-[#383433]">{currency.format(item.valueNet)}</span></div>
                   <div className="flex items-center justify-between gap-3"><span>Szansa</span><span className="font-medium text-[#383433]">{Math.round(item.probability * 100)}%</span></div>
-                  <div className="flex items-center justify-between gap-3"><span>Owner</span><span className="font-medium text-[#383433]">{item.owner}</span></div>
+                  <div className="flex items-center justify-between gap-3"><span>Opiekun</span><span className="font-medium text-[#383433]">{item.owner}</span></div>
                 </div>
                 <p className="mt-3 text-sm text-[var(--brand-muted)]">{item.nextStep}</p>
                 <Link href={`/kontrakty?dataset=${dataset}`} className="mt-4 inline-flex text-sm font-semibold text-[var(--brand-primary)]">

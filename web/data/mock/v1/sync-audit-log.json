@@ -1,5 +1,18 @@
 [
   {
+    "id": "f4ea1aed-6257-46bb-bea2-03bc912503ea",
+    "provider": "optima",
+    "mode": "quick",
+    "startedAt": "2026-06-05T20:11:34.355Z",
+    "finishedAt": "2026-06-05T20:11:34.451Z",
+    "created": 3,
+    "updated": 0,
+    "skipped": 0,
+    "errors": 0,
+    "status": "success",
+    "message": "Added 3 invoice(s) from mock sync"
+  },
+  {
     "id": "923790ce-595b-4a80-b81f-3562ef6880fa",
     "provider": "optima",
     "mode": "quick",

@@ -1,5 +1,47 @@
 [
   {
+    "id": "42e82b3f-1e96-41da-aaa4-28a4d69ec502",
+    "number": "BH/2026/00154",
+    "customerName": "Box Haus Client 75",
+    "netAmount": 11399,
+    "grossAmount": 14020.77,
+    "issueDate": "2026-06-05",
+    "dueDate": "2026-06-17",
+    "status": "issued",
+    "flowType": "cost",
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-05T20:11:34.393Z"
+  },
+  {
+    "id": "aaa6a313-3f60-4ed4-a92d-c6628ba15963",
+    "number": "BH/2026/00155",
+    "customerName": "Box Haus Client 45",
+    "netAmount": 14215,
+    "grossAmount": 17484.45,
+    "issueDate": "2026-06-05",
+    "dueDate": "2026-06-12",
+    "status": "issued",
+    "flowType": "revenue",
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-05T20:11:34.394Z"
+  },
+  {
+    "id": "64ad5cbe-3b15-4cb5-ac10-c0bf4821e331",
+    "number": "BH/2026/00156",
+    "customerName": "Box Haus Client 56",
+    "netAmount": 16054,
+    "grossAmount": 19746.42,
+    "issueDate": "2026-06-05",
+    "dueDate": "2026-06-12",
+    "status": "overdue",
+    "flowType": "cost",
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-05T20:11:34.394Z"
+  },
+  {
     "id": "74d4189c-2f5e-4191-87f0-fe58b1e59767",
     "number": "BH/2026/00151",
     "customerName": "Box Haus Client 83",
@@ -50,10 +92,10 @@
     "issueDate": "2026-06-05",
     "dueDate": "2026-06-15",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-06-05T13:17:28.351Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-05T13:17:28.351Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103",
@@ -64,10 +106,10 @@
     "issueDate": "2026-06-05",
     "dueDate": "2026-06-23",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-06-05T13:17:28.352Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-05T13:17:28.352Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa",
@@ -78,10 +120,10 @@
     "issueDate": "2026-06-05",
     "dueDate": "2026-06-21",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-06-05T13:17:28.352Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-05T13:17:28.352Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901",
@@ -92,10 +134,10 @@
     "issueDate": "2026-06-01",
     "dueDate": "2026-06-14",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-01T08:30:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-01T08:30:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c",
@@ -106,10 +148,10 @@
     "issueDate": "2026-05-28",
     "dueDate": "2026-06-11",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-05-28T11:40:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-05-28T11:40:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb",
@@ -120,10 +162,10 @@
     "issueDate": "2026-05-22",
     "dueDate": "2026-06-03",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-05-22T09:15:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-05-22T09:15:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e",
@@ -134,10 +176,10 @@
     "issueDate": "2026-05-18",
     "dueDate": "2026-05-31",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-05-18T15:20:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-05-18T15:20:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad",
@@ -148,10 +190,10 @@
     "issueDate": "2026-05-10",
     "dueDate": "2026-05-24",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-05-10T10:10:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-05-10T10:10:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00009",
@@ -162,10 +204,10 @@
     "issueDate": "2026-06-08",
     "dueDate": "2026-06-25",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-06-08T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-08T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00010",
@@ -176,10 +218,10 @@
     "issueDate": "2026-06-09",
     "dueDate": "2026-06-27",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-06-09T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c5-010"
+    "contractId": "c5-010",
+    "source": "mock-sync",
+    "createdAt": "2026-06-09T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00011",
@@ -190,10 +232,10 @@
     "issueDate": "2026-06-10",
     "dueDate": "2026-06-24",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-06-10T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-10T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00012",
@@ -204,10 +246,10 @@
     "issueDate": "2026-06-07",
     "dueDate": "2026-06-22",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-07T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-07T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00013",
@@ -218,10 +260,10 @@
     "issueDate": "2026-06-04",
     "dueDate": "2026-06-20",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-04T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c3-013"
+    "contractId": "c3-013",
+    "source": "seed",
+    "createdAt": "2026-06-04T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00014",
@@ -232,10 +274,10 @@
     "issueDate": "2026-05-30",
     "dueDate": "2026-06-16",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-05-30T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-05-30T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00015",
@@ -246,10 +288,10 @@
     "issueDate": "2026-05-27",
     "dueDate": "2026-06-14",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-05-27T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-05-27T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00016",
@@ -260,10 +302,10 @@
     "issueDate": "2026-05-20",
     "dueDate": "2026-06-03",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-05-20T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c1-016"
+    "contractId": "c1-016",
+    "source": "seed",
+    "createdAt": "2026-05-20T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00017",
@@ -274,10 +316,10 @@
     "issueDate": "2026-06-11",
     "dueDate": "2026-06-26",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-06-11T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-11T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00018",
@@ -288,10 +330,10 @@
     "issueDate": "2026-06-12",
     "dueDate": "2026-06-28",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-06-12T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-12T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00019",
@@ -302,10 +344,10 @@
     "issueDate": "2026-06-13",
     "dueDate": "2026-06-30",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-06-13T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c4-019"
+    "contractId": "c4-019",
+    "source": "mock-sync",
+    "createdAt": "2026-06-13T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00020",
@@ -316,10 +358,10 @@
     "issueDate": "2026-06-10",
     "dueDate": "2026-06-28",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-10T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-10T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00021",
@@ -330,10 +372,10 @@
     "issueDate": "2026-06-07",
     "dueDate": "2026-06-21",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-07T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-07T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00022",
@@ -344,10 +386,10 @@
     "issueDate": "2026-06-02",
     "dueDate": "2026-06-17",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-02T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c2-022"
+    "contractId": "c2-022",
+    "source": "seed",
+    "createdAt": "2026-06-02T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00023",
@@ -358,10 +400,10 @@
     "issueDate": "2026-05-30",
     "dueDate": "2026-06-15",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-05-30T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-05-30T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00024",
@@ -372,10 +414,10 @@
     "issueDate": "2026-05-23",
     "dueDate": "2026-06-09",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-05-23T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-05-23T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00025",
@@ -386,10 +428,10 @@
     "issueDate": "2026-06-14",
     "dueDate": "2026-07-02",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-06-14T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c5-025"
+    "contractId": "c5-025",
+    "source": "mock-sync",
+    "createdAt": "2026-06-14T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00026",
@@ -400,10 +442,10 @@
     "issueDate": "2026-06-15",
     "dueDate": "2026-06-29",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-06-15T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-15T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00027",
@@ -414,10 +456,10 @@
     "issueDate": "2026-06-16",
     "dueDate": "2026-07-01",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-06-16T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-16T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00028",
@@ -428,10 +470,10 @@
     "issueDate": "2026-06-13",
     "dueDate": "2026-06-29",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-13T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c3-028"
+    "contractId": "c3-028",
+    "source": "seed",
+    "createdAt": "2026-06-13T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00029",
@@ -442,10 +484,10 @@
     "issueDate": "2026-06-10",
     "dueDate": "2026-06-27",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-10T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-10T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00030",
@@ -456,10 +498,10 @@
     "issueDate": "2026-06-05",
     "dueDate": "2026-06-23",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-05T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-05T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00031",
@@ -470,10 +512,10 @@
     "issueDate": "2026-06-02",
     "dueDate": "2026-06-16",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-02T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c1-031"
+    "contractId": "c1-031",
+    "source": "seed",
+    "createdAt": "2026-06-02T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00032",
@@ -484,10 +526,10 @@
     "issueDate": "2026-05-26",
     "dueDate": "2026-06-10",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-05-26T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-05-26T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00033",
@@ -498,10 +540,10 @@
     "issueDate": "2026-06-17",
     "dueDate": "2026-07-03",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-06-17T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-17T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00034",
@@ -512,10 +554,10 @@
     "issueDate": "2026-06-18",
     "dueDate": "2026-07-05",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-06-18T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c4-034"
+    "contractId": "c4-034",
+    "source": "mock-sync",
+    "createdAt": "2026-06-18T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00035",
@@ -526,10 +568,10 @@
     "issueDate": "2026-06-19",
     "dueDate": "2026-07-07",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-06-19T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-19T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00036",
@@ -540,10 +582,10 @@
     "issueDate": "2026-06-16",
     "dueDate": "2026-06-30",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-16T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-16T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00037",
@@ -554,10 +596,10 @@
     "issueDate": "2026-06-13",
     "dueDate": "2026-06-28",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-13T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c2-037"
+    "contractId": "c2-037",
+    "source": "seed",
+    "createdAt": "2026-06-13T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00038",
@@ -568,10 +610,10 @@
     "issueDate": "2026-06-08",
     "dueDate": "2026-06-24",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-08T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-08T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00039",
@@ -582,10 +624,10 @@
     "issueDate": "2026-06-05",
     "dueDate": "2026-06-22",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-05T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-05T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00040",
@@ -596,10 +638,10 @@
     "issueDate": "2026-05-29",
     "dueDate": "2026-06-16",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-05-29T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c5-040"
+    "contractId": "c5-040",
+    "source": "seed",
+    "createdAt": "2026-05-29T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00041",
@@ -610,10 +652,10 @@
     "issueDate": "2026-06-20",
     "dueDate": "2026-07-04",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-06-20T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-20T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00042",
@@ -624,10 +666,10 @@
     "issueDate": "2026-06-21",
     "dueDate": "2026-07-06",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-06-21T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-21T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00043",
@@ -638,10 +680,10 @@
     "issueDate": "2026-06-22",
     "dueDate": "2026-07-08",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-06-22T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c3-043"
+    "contractId": "c3-043",
+    "source": "mock-sync",
+    "createdAt": "2026-06-22T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00044",
@@ -652,10 +694,10 @@
     "issueDate": "2026-06-19",
     "dueDate": "2026-07-06",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-19T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-19T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00045",
@@ -666,10 +708,10 @@
     "issueDate": "2026-06-16",
     "dueDate": "2026-07-04",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-16T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-16T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00046",
@@ -680,10 +722,10 @@
     "issueDate": "2026-06-11",
     "dueDate": "2026-06-25",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-11T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c1-046"
+    "contractId": "c1-046",
+    "source": "seed",
+    "createdAt": "2026-06-11T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00047",
@@ -694,10 +736,10 @@
     "issueDate": "2026-06-08",
     "dueDate": "2026-06-23",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-08T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-08T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00048",
@@ -708,10 +750,10 @@
     "issueDate": "2026-06-01",
     "dueDate": "2026-06-17",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-01T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-01T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00049",
@@ -722,10 +764,10 @@
     "issueDate": "2026-06-23",
     "dueDate": "2026-07-10",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-06-23T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c4-049"
+    "contractId": "c4-049",
+    "source": "mock-sync",
+    "createdAt": "2026-06-23T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00050",
@@ -736,10 +778,10 @@
     "issueDate": "2026-06-24",
     "dueDate": "2026-07-12",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-06-24T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-24T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00051",
@@ -750,10 +792,10 @@
     "issueDate": "2026-06-25",
     "dueDate": "2026-07-09",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-06-25T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-25T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00052",
@@ -764,10 +806,10 @@
     "issueDate": "2026-06-22",
     "dueDate": "2026-07-07",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-22T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c2-002"
+    "contractId": "c2-002",
+    "source": "seed",
+    "createdAt": "2026-06-22T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00053",
@@ -778,10 +820,10 @@
     "issueDate": "2026-06-19",
     "dueDate": "2026-07-05",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-19T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-19T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00054",
@@ -792,10 +834,10 @@
     "issueDate": "2026-06-14",
     "dueDate": "2026-07-01",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-14T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-14T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00055",
@@ -806,10 +848,10 @@
     "issueDate": "2026-06-11",
     "dueDate": "2026-06-29",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-11T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c5-005"
+    "contractId": "c5-005",
+    "source": "seed",
+    "createdAt": "2026-06-11T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00056",
@@ -820,10 +862,10 @@
     "issueDate": "2026-06-04",
     "dueDate": "2026-06-18",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-04T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-04T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00057",
@@ -834,10 +876,10 @@
     "issueDate": "2026-06-26",
     "dueDate": "2026-07-11",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-06-26T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-26T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00058",
@@ -848,10 +890,10 @@
     "issueDate": "2026-06-27",
     "dueDate": "2026-07-13",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-06-27T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c3-008"
+    "contractId": "c3-008",
+    "source": "mock-sync",
+    "createdAt": "2026-06-27T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00059",
@@ -862,10 +904,10 @@
     "issueDate": "2026-06-28",
     "dueDate": "2026-07-15",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-06-28T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-28T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00060",
@@ -876,10 +918,10 @@
     "issueDate": "2026-06-25",
     "dueDate": "2026-07-13",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-25T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-25T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00061",
@@ -890,10 +932,10 @@
     "issueDate": "2026-06-22",
     "dueDate": "2026-07-06",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-22T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c1-011"
+    "contractId": "c1-011",
+    "source": "seed",
+    "createdAt": "2026-06-22T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00062",
@@ -904,10 +946,10 @@
     "issueDate": "2026-06-17",
     "dueDate": "2026-07-02",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-17T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-17T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00063",
@@ -918,10 +960,10 @@
     "issueDate": "2026-06-14",
     "dueDate": "2026-06-30",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-14T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-14T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00064",
@@ -932,10 +974,10 @@
     "issueDate": "2026-06-07",
     "dueDate": "2026-06-24",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-07T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c4-014"
+    "contractId": "c4-014",
+    "source": "seed",
+    "createdAt": "2026-06-07T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00065",
@@ -946,10 +988,10 @@
     "issueDate": "2026-06-29",
     "dueDate": "2026-07-17",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-06-29T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-29T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00066",
@@ -960,10 +1002,10 @@
     "issueDate": "2026-06-30",
     "dueDate": "2026-07-14",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-06-30T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-06-30T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00067",
@@ -974,10 +1016,10 @@
     "issueDate": "2026-07-01",
     "dueDate": "2026-07-16",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-01T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c2-017"
+    "contractId": "c2-017",
+    "source": "mock-sync",
+    "createdAt": "2026-07-01T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00068",
@@ -988,10 +1030,10 @@
     "issueDate": "2026-06-28",
     "dueDate": "2026-07-14",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-28T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-28T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00069",
@@ -1002,10 +1044,10 @@
     "issueDate": "2026-06-25",
     "dueDate": "2026-07-12",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-25T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-25T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00070",
@@ -1016,10 +1058,10 @@
     "issueDate": "2026-06-20",
     "dueDate": "2026-07-08",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-20T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c5-020"
+    "contractId": "c5-020",
+    "source": "seed",
+    "createdAt": "2026-06-20T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00071",
@@ -1030,10 +1072,10 @@
     "issueDate": "2026-06-17",
     "dueDate": "2026-07-01",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-17T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-17T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00072",
@@ -1044,10 +1086,10 @@
     "issueDate": "2026-06-10",
     "dueDate": "2026-06-25",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-10T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-10T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00073",
@@ -1058,10 +1100,10 @@
     "issueDate": "2026-07-02",
     "dueDate": "2026-07-18",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-02T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c3-023"
+    "contractId": "c3-023",
+    "source": "mock-sync",
+    "createdAt": "2026-07-02T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00074",
@@ -1072,10 +1114,10 @@
     "issueDate": "2026-07-03",
     "dueDate": "2026-07-20",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-07-03T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-03T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00075",
@@ -1086,10 +1128,10 @@
     "issueDate": "2026-07-04",
     "dueDate": "2026-07-22",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-07-04T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-04T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00076",
@@ -1100,10 +1142,10 @@
     "issueDate": "2026-07-01",
     "dueDate": "2026-07-15",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-01T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c1-026"
+    "contractId": "c1-026",
+    "source": "seed",
+    "createdAt": "2026-07-01T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00077",
@@ -1114,10 +1156,10 @@
     "issueDate": "2026-06-28",
     "dueDate": "2026-07-13",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-28T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-28T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00078",
@@ -1128,10 +1170,10 @@
     "issueDate": "2026-06-23",
     "dueDate": "2026-07-09",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-23T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-23T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00079",
@@ -1142,10 +1184,10 @@
     "issueDate": "2026-06-20",
     "dueDate": "2026-07-07",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-20T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c4-029"
+    "contractId": "c4-029",
+    "source": "seed",
+    "createdAt": "2026-06-20T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00080",
@@ -1156,10 +1198,10 @@
     "issueDate": "2026-06-13",
     "dueDate": "2026-07-01",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-13T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-13T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00081",
@@ -1170,10 +1212,10 @@
     "issueDate": "2026-07-05",
     "dueDate": "2026-07-19",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-07-05T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-05T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00082",
@@ -1184,10 +1226,10 @@
     "issueDate": "2026-07-06",
     "dueDate": "2026-07-21",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-06T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c2-032"
+    "contractId": "c2-032",
+    "source": "mock-sync",
+    "createdAt": "2026-07-06T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00083",
@@ -1198,10 +1240,10 @@
     "issueDate": "2026-07-07",
     "dueDate": "2026-07-23",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-07-07T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-07T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00084",
@@ -1212,10 +1254,10 @@
     "issueDate": "2026-07-04",
     "dueDate": "2026-07-21",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-04T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-04T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00085",
@@ -1226,10 +1268,10 @@
     "issueDate": "2026-07-01",
     "dueDate": "2026-07-19",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-01T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c5-035"
+    "contractId": "c5-035",
+    "source": "seed",
+    "createdAt": "2026-07-01T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00086",
@@ -1240,10 +1282,10 @@
     "issueDate": "2026-06-26",
     "dueDate": "2026-07-10",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-26T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-26T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00087",
@@ -1254,10 +1296,10 @@
     "issueDate": "2026-06-23",
     "dueDate": "2026-07-08",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-23T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-23T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00088",
@@ -1268,10 +1310,10 @@
     "issueDate": "2026-06-16",
     "dueDate": "2026-07-02",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-16T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c3-038"
+    "contractId": "c3-038",
+    "source": "seed",
+    "createdAt": "2026-06-16T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00089",
@@ -1282,10 +1324,10 @@
     "issueDate": "2026-07-08",
     "dueDate": "2026-07-25",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-07-08T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-08T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00090",
@@ -1296,10 +1338,10 @@
     "issueDate": "2026-07-09",
     "dueDate": "2026-07-27",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-07-09T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-09T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00091",
@@ -1310,10 +1352,10 @@
     "issueDate": "2026-07-10",
     "dueDate": "2026-07-24",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-10T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c1-041"
+    "contractId": "c1-041",
+    "source": "mock-sync",
+    "createdAt": "2026-07-10T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00092",
@@ -1324,10 +1366,10 @@
     "issueDate": "2026-07-07",
     "dueDate": "2026-07-22",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-07T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-07T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00093",
@@ -1338,10 +1380,10 @@
     "issueDate": "2026-07-04",
     "dueDate": "2026-07-20",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-04T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-04T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00094",
@@ -1352,10 +1394,10 @@
     "issueDate": "2026-06-29",
     "dueDate": "2026-07-16",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-29T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c4-044"
+    "contractId": "c4-044",
+    "source": "seed",
+    "createdAt": "2026-06-29T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00095",
@@ -1366,10 +1408,10 @@
     "issueDate": "2026-06-26",
     "dueDate": "2026-07-14",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-26T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-26T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00096",
@@ -1380,10 +1422,10 @@
     "issueDate": "2026-06-19",
     "dueDate": "2026-07-03",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-19T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-19T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00097",
@@ -1394,10 +1436,10 @@
     "issueDate": "2026-07-11",
     "dueDate": "2026-07-26",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-11T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c2-047"
+    "contractId": "c2-047",
+    "source": "mock-sync",
+    "createdAt": "2026-07-11T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00098",
@@ -1408,10 +1450,10 @@
     "issueDate": "2026-07-12",
     "dueDate": "2026-07-28",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-07-12T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-12T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00099",
@@ -1422,10 +1464,10 @@
     "issueDate": "2026-07-13",
     "dueDate": "2026-07-30",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-07-13T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-13T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00100",
@@ -1436,10 +1478,10 @@
     "issueDate": "2026-07-10",
     "dueDate": "2026-07-28",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-10T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c5-050"
+    "contractId": "c5-050",
+    "source": "seed",
+    "createdAt": "2026-07-10T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00101",
@@ -1450,10 +1492,10 @@
     "issueDate": "2026-07-07",
     "dueDate": "2026-07-21",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-07T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-07T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00102",
@@ -1464,10 +1506,10 @@
     "issueDate": "2026-07-02",
     "dueDate": "2026-07-17",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-02T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-02T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00103",
@@ -1478,10 +1520,10 @@
     "issueDate": "2026-06-29",
     "dueDate": "2026-07-15",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-29T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c3-003"
+    "contractId": "c3-003",
+    "source": "seed",
+    "createdAt": "2026-06-29T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00104",
@@ -1492,10 +1534,10 @@
     "issueDate": "2026-06-22",
     "dueDate": "2026-07-09",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-06-22T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-22T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00105",
@@ -1506,10 +1548,10 @@
     "issueDate": "2026-07-14",
     "dueDate": "2026-08-01",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-07-14T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-14T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00106",
@@ -1520,10 +1562,10 @@
     "issueDate": "2026-07-15",
     "dueDate": "2026-07-29",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-15T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c1-006"
+    "contractId": "c1-006",
+    "source": "mock-sync",
+    "createdAt": "2026-07-15T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00107",
@@ -1534,10 +1576,10 @@
     "issueDate": "2026-07-16",
     "dueDate": "2026-07-31",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-07-16T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-16T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00108",
@@ -1548,10 +1590,10 @@
     "issueDate": "2026-07-13",
     "dueDate": "2026-07-29",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-13T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-13T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00109",
@@ -1562,10 +1604,10 @@
     "issueDate": "2026-07-10",
     "dueDate": "2026-07-27",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-10T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c4-009"
+    "contractId": "c4-009",
+    "source": "seed",
+    "createdAt": "2026-07-10T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00110",
@@ -1576,10 +1618,10 @@
     "issueDate": "2026-07-05",
     "dueDate": "2026-07-23",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-05T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-05T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00111",
@@ -1590,10 +1632,10 @@
     "issueDate": "2026-07-02",
     "dueDate": "2026-07-16",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-02T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-02T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00112",
@@ -1604,10 +1646,10 @@
     "issueDate": "2026-06-25",
     "dueDate": "2026-07-10",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-06-25T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c2-012"
+    "contractId": "c2-012",
+    "source": "seed",
+    "createdAt": "2026-06-25T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00113",
@@ -1618,10 +1660,10 @@
     "issueDate": "2026-07-17",
     "dueDate": "2026-08-02",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-07-17T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-17T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00114",
@@ -1632,10 +1674,10 @@
     "issueDate": "2026-07-18",
     "dueDate": "2026-08-04",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-07-18T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-18T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00115",
@@ -1646,10 +1688,10 @@
     "issueDate": "2026-07-19",
     "dueDate": "2026-08-06",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-19T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c5-015"
+    "contractId": "c5-015",
+    "source": "mock-sync",
+    "createdAt": "2026-07-19T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00116",
@@ -1660,10 +1702,10 @@
     "issueDate": "2026-07-16",
     "dueDate": "2026-07-30",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-16T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-16T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00117",
@@ -1674,10 +1716,10 @@
     "issueDate": "2026-07-13",
     "dueDate": "2026-07-28",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-13T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-13T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00118",
@@ -1688,10 +1730,10 @@
     "issueDate": "2026-07-08",
     "dueDate": "2026-07-24",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-08T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c3-018"
+    "contractId": "c3-018",
+    "source": "seed",
+    "createdAt": "2026-07-08T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00119",
@@ -1702,10 +1744,10 @@
     "issueDate": "2026-07-05",
     "dueDate": "2026-07-22",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-05T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-05T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00120",
@@ -1716,10 +1758,10 @@
     "issueDate": "2026-06-28",
     "dueDate": "2026-07-16",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-06-28T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-06-28T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00121",
@@ -1730,10 +1772,10 @@
     "issueDate": "2026-07-20",
     "dueDate": "2026-08-03",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-20T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c1-021"
+    "contractId": "c1-021",
+    "source": "mock-sync",
+    "createdAt": "2026-07-20T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00122",
@@ -1744,10 +1786,10 @@
     "issueDate": "2026-07-21",
     "dueDate": "2026-08-05",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-07-21T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-21T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00123",
@@ -1758,10 +1800,10 @@
     "issueDate": "2026-07-22",
     "dueDate": "2026-08-07",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-07-22T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-22T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00124",
@@ -1772,10 +1814,10 @@
     "issueDate": "2026-07-19",
     "dueDate": "2026-08-05",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-19T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c4-024"
+    "contractId": "c4-024",
+    "source": "seed",
+    "createdAt": "2026-07-19T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00125",
@@ -1786,10 +1828,10 @@
     "issueDate": "2026-07-16",
     "dueDate": "2026-08-03",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-16T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-16T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00126",
@@ -1800,10 +1842,10 @@
     "issueDate": "2026-07-11",
     "dueDate": "2026-07-25",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-11T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-11T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00127",
@@ -1814,10 +1856,10 @@
     "issueDate": "2026-07-08",
     "dueDate": "2026-07-23",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-08T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c2-027"
+    "contractId": "c2-027",
+    "source": "seed",
+    "createdAt": "2026-07-08T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00128",
@@ -1828,10 +1870,10 @@
     "issueDate": "2026-07-01",
     "dueDate": "2026-07-17",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-01T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-01T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00129",
@@ -1842,10 +1884,10 @@
     "issueDate": "2026-07-23",
     "dueDate": "2026-08-09",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-07-23T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-23T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00130",
@@ -1856,10 +1898,10 @@
     "issueDate": "2026-07-24",
     "dueDate": "2026-08-11",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-24T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c5-030"
+    "contractId": "c5-030",
+    "source": "mock-sync",
+    "createdAt": "2026-07-24T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00131",
@@ -1870,10 +1912,10 @@
     "issueDate": "2026-07-25",
     "dueDate": "2026-08-08",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-07-25T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-25T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00132",
@@ -1884,10 +1926,10 @@
     "issueDate": "2026-07-22",
     "dueDate": "2026-08-06",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-22T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-22T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00133",
@@ -1898,10 +1940,10 @@
     "issueDate": "2026-07-19",
     "dueDate": "2026-08-04",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-19T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c3-033"
+    "contractId": "c3-033",
+    "source": "seed",
+    "createdAt": "2026-07-19T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00134",
@@ -1912,10 +1954,10 @@
     "issueDate": "2026-07-14",
     "dueDate": "2026-07-31",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-14T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-14T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00135",
@@ -1926,10 +1968,10 @@
     "issueDate": "2026-07-11",
     "dueDate": "2026-07-29",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-11T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-11T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00136",
@@ -1940,10 +1982,10 @@
     "issueDate": "2026-07-04",
     "dueDate": "2026-07-18",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-04T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c1-036"
+    "contractId": "c1-036",
+    "source": "seed",
+    "createdAt": "2026-07-04T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00137",
@@ -1954,10 +1996,10 @@
     "issueDate": "2026-07-26",
     "dueDate": "2026-08-10",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-07-26T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-26T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00138",
@@ -1968,10 +2010,10 @@
     "issueDate": "2026-07-27",
     "dueDate": "2026-08-12",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-07-27T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-27T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00139",
@@ -1982,10 +2024,10 @@
     "issueDate": "2026-07-28",
     "dueDate": "2026-08-14",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-28T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c4-039"
+    "contractId": "c4-039",
+    "source": "mock-sync",
+    "createdAt": "2026-07-28T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00140",
@@ -1996,10 +2038,10 @@
     "issueDate": "2026-07-25",
     "dueDate": "2026-08-12",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-25T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-25T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00141",
@@ -2010,10 +2052,10 @@
     "issueDate": "2026-07-22",
     "dueDate": "2026-08-05",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-22T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-22T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00142",
@@ -2024,10 +2066,10 @@
     "issueDate": "2026-07-17",
     "dueDate": "2026-08-01",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-17T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c2-042"
+    "contractId": "c2-042",
+    "source": "seed",
+    "createdAt": "2026-07-17T08:00:00.000Z"
   },
   {
     "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e-00143",
@@ -2038,10 +2080,10 @@
     "issueDate": "2026-07-14",
     "dueDate": "2026-07-30",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-14T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-14T08:00:00.000Z"
   },
   {
     "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad-00144",
@@ -2052,10 +2094,10 @@
     "issueDate": "2026-07-07",
     "dueDate": "2026-07-24",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-07T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-07T08:00:00.000Z"
   },
   {
     "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3-00145",
@@ -2066,10 +2108,10 @@
     "issueDate": "2026-07-29",
     "dueDate": "2026-08-16",
     "status": "issued",
-    "source": "mock-sync",
-    "createdAt": "2026-07-29T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": "c5-045"
+    "contractId": "c5-045",
+    "source": "mock-sync",
+    "createdAt": "2026-07-29T08:00:00.000Z"
   },
   {
     "id": "c0a61a83-b1a0-4881-b512-35f909db9103-00146",
@@ -2080,10 +2122,10 @@
     "issueDate": "2026-07-30",
     "dueDate": "2026-08-13",
     "status": "paid",
-    "source": "mock-sync",
-    "createdAt": "2026-07-30T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-30T08:00:00.000Z"
   },
   {
     "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa-00147",
@@ -2094,10 +2136,10 @@
     "issueDate": "2026-07-31",
     "dueDate": "2026-08-15",
     "status": "overdue",
-    "source": "mock-sync",
-    "createdAt": "2026-07-31T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "mock-sync",
+    "createdAt": "2026-07-31T08:00:00.000Z"
   },
   {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901-00148",
@@ -2108,10 +2150,10 @@
     "issueDate": "2026-07-28",
     "dueDate": "2026-08-13",
     "status": "issued",
-    "source": "seed",
-    "createdAt": "2026-07-28T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": "c3-048"
+    "contractId": "c3-048",
+    "source": "seed",
+    "createdAt": "2026-07-28T08:00:00.000Z"
   },
   {
     "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c-00149",
@@ -2122,10 +2164,10 @@
     "issueDate": "2026-07-25",
     "dueDate": "2026-08-11",
     "status": "paid",
-    "source": "seed",
-    "createdAt": "2026-07-25T08:00:00.000Z",
     "flowType": "revenue",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-25T08:00:00.000Z"
   },
   {
     "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb-00150",
@@ -2136,9 +2178,9 @@
     "issueDate": "2026-07-20",
     "dueDate": "2026-08-07",
     "status": "overdue",
-    "source": "seed",
-    "createdAt": "2026-07-20T08:00:00.000Z",
     "flowType": "cost",
-    "contractId": null
+    "contractId": null,
+    "source": "seed",
+    "createdAt": "2026-07-20T08:00:00.000Z"
   }
 ]

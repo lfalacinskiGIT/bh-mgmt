@@ -29,7 +29,7 @@ describe("mock operation datasets", () => {
     const baseline = getTeamSummary("baseline");
     const stress = getTeamSummary("stress");
 
-    expect(baseline.members).toHaveLength(5);
+    expect(baseline.members).toHaveLength(10);
     expect(baseline.overloadedCount).toBe(1);
     expect(baseline.disciplines).toContain("IT");
     expect(stress.members).toHaveLength(6);

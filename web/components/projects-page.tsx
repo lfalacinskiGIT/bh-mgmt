@@ -76,11 +76,13 @@ export function ProjectsPage() {
             <select
               value={dataset}
               onChange={(event) => setDataset(normalizeMockDataset(event.target.value))}
+              title="Wybór datasetu projektów"
+              aria-label="Wybór datasetu projektów"
               className="h-10 rounded-xl border border-[rgb(107_107_107_/_18%)] bg-[#fbfaf8] px-3 text-sm text-[#383433] shadow-sm"
             >
-              <option value="baseline">Dataset: Baseline</option>
-              <option value="stress">Dataset: Stress</option>
-              <option value="incomplete">Dataset: Incomplete</option>
+              <option value="baseline">Zestaw: Bazowy</option>
+              <option value="stress">Zestaw: Stresowy</option>
+              <option value="incomplete">Zestaw: Niekompletny</option>
             </select>
           </div>
 

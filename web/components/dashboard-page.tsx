@@ -103,6 +103,12 @@ export function DashboardPage({ initialInvoices }: DashboardPageProps) {
     "Domknij negocjacje dla Klara Development",
     "Przygotuj odbiór dla Osiedla Nadmorskie A",
   ];
+  const kpiTrends = {
+    active: [35, 42, 51, 57, 62, 68, 74],
+    invoices: [22, 30, 41, 49, 55, 63, 71],
+    portfolio: [26, 34, 43, 56, 64, 73, 82],
+    overdue: [58, 49, 44, 38, 30, 24, 18],
+  };
   const aiRecommendations = [
     overdueInvoices.length > 0
       ? `Priorytet 1: obsłuż ${overdueInvoices.length} przeterminowane faktury (wartość ${currency.format(overdueGross)}) i zaplanuj kontakt z klientami jeszcze dziś.`
@@ -157,28 +163,56 @@ export function DashboardPage({ initialInvoices }: DashboardPageProps) {
                 Sprawdź projekty
               </Link>
             </div>
+
+            <div className="mt-5 rounded-2xl border border-[rgb(107_107_107_/_14%)] bg-white/85 p-4 shadow-sm backdrop-blur-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-muted)]">Insight strip</p>
+              <div className="mt-2 grid gap-2 md:grid-cols-2">
+                <p className="rounded-xl bg-[#fff7ef] px-3 py-2 text-sm text-[#5a524d]">Negocjacje: {negotiationContracts.length} temat(y) wymagają decyzji handlowej w 48h.</p>
+                <p className="rounded-xl bg-[#fff7ef] px-3 py-2 text-sm text-[#5a524d]">Ryzyko płatności: {overdueInvoices.length} faktur po terminie o wartości {currency.format(overdueGross)}.</p>
+              </div>
+            </div>
           </div>
 
           <div className="grid gap-3 rounded-3xl border border-white/70 bg-white/70 p-4 shadow-sm backdrop-blur-sm md:grid-cols-2 lg:grid-cols-1">
             <article className="rounded-2xl bg-white px-4 py-4 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Aktywne kontrakty</p>
-              <p className="mt-2 text-3xl font-semibold text-[#383433]">{activeContracts.length}</p>
+              <p className="kpi-count-anim mt-2 text-3xl font-semibold text-[#383433]">{activeContracts.length}</p>
               <p className="mt-2 text-sm text-[var(--brand-muted)]">{negotiationContracts.length} w negocjacjach</p>
+              <div className="mt-2 flex items-end gap-1">
+                {kpiTrends.active.map((value, index) => (
+                  <span key={`active-${index}`} className="w-1.5 rounded bg-[#3d8bfd]/70" style={{ height: `${Math.max(6, value / 5)}px` }} />
+                ))}
+              </div>
             </article>
             <article className="rounded-2xl bg-white px-4 py-4 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Otwarte faktury</p>
-              <p className="mt-2 text-3xl font-semibold text-[#383433]">{openInvoices.length}</p>
+              <p className="kpi-count-anim mt-2 text-3xl font-semibold text-[#383433]">{openInvoices.length}</p>
               <p className="mt-2 text-sm text-[var(--brand-muted)]">{overdueInvoices.length} po terminie</p>
+              <div className="mt-2 flex items-end gap-1">
+                {kpiTrends.invoices.map((value, index) => (
+                  <span key={`inv-${index}`} className="w-1.5 rounded bg-[#f28b25]/70" style={{ height: `${Math.max(6, value / 5)}px` }} />
+                ))}
+              </div>
             </article>
             <article className="rounded-2xl bg-white px-4 py-4 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Portfel netto</p>
-              <p className="mt-2 text-3xl font-semibold text-[#383433]">{currency.format(totalPortfolio)}</p>
+              <p className="kpi-count-anim mt-2 text-3xl font-semibold text-[#383433]">{currency.format(totalPortfolio)}</p>
               <p className="mt-2 text-sm text-[var(--brand-muted)]">Suma aktywnych i nowych tematów</p>
+              <div className="mt-2 flex items-end gap-1">
+                {kpiTrends.portfolio.map((value, index) => (
+                  <span key={`port-${index}`} className="w-1.5 rounded bg-[#4cb24f]/70" style={{ height: `${Math.max(6, value / 5)}px` }} />
+                ))}
+              </div>
             </article>
             <article className="rounded-2xl bg-white px-4 py-4 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Przeterminowane</p>
-              <p className="mt-2 text-3xl font-semibold text-[#383433]">{currency.format(overdueGross)}</p>
+              <p className="kpi-count-anim mt-2 text-3xl font-semibold text-[#383433]">{currency.format(overdueGross)}</p>
               <p className="mt-2 text-sm text-[var(--brand-muted)]">Wartość brutto do szybkiej reakcji</p>
+              <div className="mt-2 flex items-end gap-1">
+                {kpiTrends.overdue.map((value, index) => (
+                  <span key={`over-${index}`} className="w-1.5 rounded bg-[#db1832]/70" style={{ height: `${Math.max(6, value / 5)}px` }} />
+                ))}
+              </div>
             </article>
           </div>
         </div>
@@ -246,7 +280,7 @@ export function DashboardPage({ initialInvoices }: DashboardPageProps) {
         <article className="rounded-2xl bg-white p-4 shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:p-6">
           <div className="flex items-end justify-between gap-3">
             <div>
-              <h3 className="text-xl font-semibold tracking-tight text-[#383433]">Co wymaga uwagi</h3>
+              <h3 className="text-xl font-semibold tracking-tight text-[#383433]">Decyzje na dzis</h3>
               <p className="text-sm text-[var(--brand-muted)]">Priorytety dla osoby, która wchodzi do aplikacji pierwszy raz</p>
             </div>
             <span className="rounded-full bg-[#fff4ea] px-3 py-1 text-xs font-semibold text-[#8e4a14]">3 zadania</span>

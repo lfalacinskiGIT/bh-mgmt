@@ -1,62 +1,192 @@
 [
   {
-    "id": "t1",
+    "id": "jan-kowalski",
     "name": "Jan Kowalski",
     "role": "Dyrektor operacyjny",
     "discipline": "Zarządzanie",
     "utilizationPct": 64,
     "capacityStatus": "ok",
-    "currentProjects": ["Pulpit", "Raporty"],
-    "skills": ["budżetowanie", "priorytety", "nadzór"],
+    "currentProjects": [
+      "Pulpit",
+      "Raporty"
+    ],
+    "skills": [
+      "budżetowanie",
+      "priorytety",
+      "nadzór"
+    ],
     "location": "Gdańsk",
     "focus": "Kontrola harmonogramów i cash flow"
   },
   {
-    "id": "t2",
+    "id": "anna-maj",
     "name": "Anna Maj",
     "role": "Kierownik sprzedaży",
     "discipline": "Sprzedaż",
     "utilizationPct": 81,
     "capacityStatus": "busy",
-    "currentProjects": ["Sprzedaż", "Kontrakty"],
-    "skills": ["negocjacje", "oferty", "pipeline"],
+    "currentProjects": [
+      "Sprzedaż",
+      "Kontrakty"
+    ],
+    "skills": [
+      "negocjacje",
+      "oferty",
+      "pipeline"
+    ],
     "location": "Warszawa",
     "focus": "Domykanie leadów wysokiej wartości"
   },
   {
-    "id": "t3",
+    "id": "marta-lis",
     "name": "Marta Lis",
     "role": "Kierownik projektu",
     "discipline": "Operacje",
     "utilizationPct": 92,
     "capacityStatus": "overloaded",
-    "currentProjects": ["Projekty", "Kontrola kosztów"],
-    "skills": ["harmonogram", "ryzyko", "kooperacja"],
+    "currentProjects": [
+      "Projekty",
+      "Kontrola kosztów"
+    ],
+    "skills": [
+      "harmonogram",
+      "ryzyko",
+      "kooperacja"
+    ],
     "location": "Poznań",
     "focus": "Utrzymanie terminów i odbiorów"
   },
   {
-    "id": "t4",
+    "id": "julia-bak",
     "name": "Julia Bąk",
     "role": "Analityk finansowy",
     "discipline": "Finanse",
     "utilizationPct": 58,
     "capacityStatus": "ok",
-    "currentProjects": ["Faktury", "Płatności"],
-    "skills": ["rozliczenia", "marża", "kontrola"],
+    "currentProjects": [
+      "Faktury",
+      "Płatności"
+    ],
+    "skills": [
+      "rozliczenia",
+      "marża",
+      "kontrola"
+    ],
     "location": "Kraków",
     "focus": "Monitoring należności i kosztów"
   },
   {
-    "id": "t5",
+    "id": "pawel-domanski",
     "name": "Paweł Domański",
     "role": "Architekt danych",
     "discipline": "IT",
     "utilizationPct": 76,
     "capacityStatus": "busy",
-    "currentProjects": ["Integracje", "Ustawienia"],
-    "skills": ["MCP", "Next.js", "model danych"],
+    "currentProjects": [
+      "Integracje",
+      "Ustawienia"
+    ],
+    "skills": [
+      "MCP",
+      "Next.js",
+      "model danych"
+    ],
     "location": "Wrocław",
     "focus": "Utrzymanie mocków i jakości danych"
+  },
+  {
+    "id": "oliwia-zawadzka",
+    "name": "Oliwia Zawadzka",
+    "role": "Koordynator back office",
+    "discipline": "Administracja",
+    "utilizationPct": 62,
+    "capacityStatus": "ok",
+    "currentProjects": [
+      "Płatności",
+      "Dokumenty"
+    ],
+    "skills": [
+      "procedury",
+      "obiegi",
+      "compliance"
+    ],
+    "location": "Łódź",
+    "focus": "Spójność dokumentacji i terminów"
+  },
+  {
+    "id": "michal-wysocki",
+    "name": "Michał Wysocki",
+    "role": "Inżynier budowy",
+    "discipline": "Operacje",
+    "utilizationPct": 87,
+    "capacityStatus": "busy",
+    "currentProjects": [
+      "Kontrakty",
+      "Realizacje"
+    ],
+    "skills": [
+      "koordynacja ekip",
+      "harmonogram",
+      "odbiór"
+    ],
+    "location": "Gdynia",
+    "focus": "Nadzór prac terenowych"
+  },
+  {
+    "id": "karolina-sowa",
+    "name": "Karolina Sowa",
+    "role": "Specjalista zakupów",
+    "discipline": "Zakupy",
+    "utilizationPct": 73,
+    "capacityStatus": "busy",
+    "currentProjects": [
+      "Kontrakty",
+      "Koszty"
+    ],
+    "skills": [
+      "negocjacje",
+      "dostawcy",
+      "procurement"
+    ],
+    "location": "Warszawa",
+    "focus": "Redukcja kosztu materiałów"
+  },
+  {
+    "id": "tomasz-malec",
+    "name": "Tomasz Malec",
+    "role": "Specjalista ds. jakości",
+    "discipline": "Jakość",
+    "utilizationPct": 79,
+    "capacityStatus": "busy",
+    "currentProjects": [
+      "Odbiory",
+      "Raporty"
+    ],
+    "skills": [
+      "kontrola jakości",
+      "inspekcje",
+      "normy"
+    ],
+    "location": "Katowice",
+    "focus": "Minimalizacja poprawek"
+  },
+  {
+    "id": "aleksandra-krol",
+    "name": "Aleksandra Król",
+    "role": "HR Business Partner",
+    "discipline": "HR",
+    "utilizationPct": 55,
+    "capacityStatus": "ok",
+    "currentProjects": [
+      "Zespół",
+      "Czas pracy"
+    ],
+    "skills": [
+      "planowanie zasobów",
+      "rekrutacja",
+      "kompetencje"
+    ],
+    "location": "Poznań",
+    "focus": "Bilans dostępności i kompetencji"
   }
 ]

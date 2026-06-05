@@ -31,6 +31,7 @@ function getPreviousMonth(month: string): string {
 export function CostControlPage() {
   const [dataset] = useMockDataset();
   const [selectedMonth, setSelectedMonth] = useState<string>("all");
+  const [presentationMode, setPresentationMode] = useState<boolean>(false);
 
   const contracts = useMemo(() => getContractEconomics(dataset), [dataset]);
   const sourceCostEntries = useMemo(() => getSourceCostEntries(dataset), [dataset]);
@@ -95,16 +96,27 @@ export function CostControlPage() {
               <h2 className="text-[22px] font-semibold tracking-tight text-[#383433]">Kontrola budżetu i KWS</h2>
               <p className="text-sm text-[var(--brand-muted)]">Porównanie wykonania, rezerw i sygnałów antyduplikacyjnych</p>
             </div>
-            <select
-              value={selectedMonth}
-              onChange={(event) => setSelectedMonth(event.target.value)}
-              className="h-10 rounded-xl border border-[rgb(107_107_107_/_18%)] bg-[#fbfaf8] px-3 text-sm text-[#383433] shadow-sm"
-            >
-              <option value="all">Wszystkie miesiące</option>
-              {months.map((month) => (
-                <option key={month} value={month}>{month}</option>
-              ))}
-            </select>
+            <div className="flex items-center gap-2">
+              <select
+                value={selectedMonth}
+                onChange={(event) => setSelectedMonth(event.target.value)}
+                aria-label="Wybierz miesiąc raportowania"
+                title="Wybierz miesiąc raportowania"
+                className="h-10 rounded-xl border border-[rgb(107_107_107_/_18%)] bg-[#fbfaf8] px-3 text-sm text-[#383433] shadow-sm"
+              >
+                <option value="all">Wszystkie miesiące</option>
+                {months.map((month) => (
+                  <option key={month} value={month}>{month}</option>
+                ))}
+              </select>
+              <button
+                type="button"
+                onClick={() => setPresentationMode((current) => !current)}
+                className="h-10 rounded-xl border border-[rgb(107_107_107_/_18%)] bg-white px-4 text-sm font-semibold text-[#383433] shadow-sm transition hover:bg-[#fff7ef]"
+              >
+                {presentationMode ? "Tryb szczegółowy" : "Tryb prezentacji"}
+              </button>
+            </div>
           </div>
 
           <div className="mt-4 grid gap-3 md:grid-cols-2">
@@ -132,9 +144,9 @@ export function CostControlPage() {
           <article className="rounded-2xl bg-white p-4 shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:p-6">
             <h3 className="text-xl font-semibold tracking-tight text-[#383433]">Top ryzyka</h3>
             <div className="mt-3 space-y-2">
-              {duplicateRisks.slice(0, 3).map((risk) => (
+              {duplicateRisks.slice(0, presentationMode ? 2 : 3).map((risk) => (
                 <div key={`${risk.ruleCode}-${risk.referenceKey}`} className="rounded-xl border border-[rgb(107_107_107_/_14%)] bg-[#faf8f6] p-3 text-sm">
-                  <p className="font-semibold text-[#383433]">{risk.ruleCode}</p>
+                  <p className="font-semibold text-[#383433]">{risk.ruleCode} • {risk.severity === "high" ? "Wysokie" : "Średnie"}</p>
                   <p className="mt-1 text-[var(--brand-muted)]">{risk.note}</p>
                   <p className="mt-2 text-[#5a524d]">{currency.format(risk.amountAtRiskNet)}</p>
                 </div>
@@ -142,6 +154,7 @@ export function CostControlPage() {
             </div>
           </article>
 
+          {presentationMode ? null : (
           <article className="rounded-2xl bg-white p-4 shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:p-6">
             <h3 className="text-xl font-semibold tracking-tight text-[#383433]">Bridging</h3>
             <p className="mt-2 text-sm text-[var(--brand-muted)]">{contracts.length} kontraktów i {outsideContractPositions.length} pozycji poza kontraktem</p>
@@ -151,6 +164,7 @@ export function CostControlPage() {
               <p>• Marża zarządcza: {avgManagerialMarginPct.toFixed(1)}%</p>
             </div>
           </article>
+          )}
         </aside>
       </section>
     </AppShell>

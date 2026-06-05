@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   ContractsIcon,
@@ -11,11 +11,12 @@ import {
   IntegrationsIcon,
   InvoicesIcon,
   PaymentsIcon,
+  ProfitLossIcon,
   ProjectsIcon,
   ReportsIcon,
   SalesIcon,
   SettingsIcon,
-  TeamIcon,
+  WorkTimeIcon,
 } from "@/components/menu-icons";
 import type { MockDatasetName } from "@/lib/mock-contract-economics";
 import { MOCK_DATASET_CHANGED_EVENT, readMockDatasetFromStorage } from "@/lib/mock-dataset";
@@ -48,9 +49,10 @@ const menuItems: MenuItem[] = [
   { label: "Projekty", href: "/projekty", icon: ProjectsIcon },
   { label: "Faktury", href: "/faktury", icon: InvoicesIcon },
   { label: "Płatności", href: "/platnosci", icon: PaymentsIcon },
+  { label: "Czas i zespół", href: "/czas-pracy", icon: WorkTimeIcon },
   { label: "Kontrola kosztów", href: "/kontrola-kosztow", icon: CostControlIcon },
   { label: "Raporty", href: "/raporty", icon: ReportsIcon },
-  { label: "Zespół", href: "/zespol", icon: TeamIcon },
+  { label: "P&L", href: "/pl", icon: ProfitLossIcon },
   { label: "Integracje", href: "/integracje", icon: IntegrationsIcon },
   { label: "Ustawienia", href: "/ustawienia", icon: SettingsIcon },
 ];
@@ -65,11 +67,16 @@ export function AppShell({
   onSearchChange,
 }: AppShellProps) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   // Keep SSR/CSR initial markup stable; hydrate dataset from storage after mount.
   const [activeDataset, setActiveDataset] = useState<MockDatasetName>("baseline");
   const [themeMode, setThemeMode] = useState<ThemeMode>("system");
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const [isFocusMode, setIsFocusMode] = useState(false);
+  const [syncContext, setSyncContext] = useState<{
+    status: "ok" | "error" | "idle";
+    label: string;
+  }>({ status: "idle", label: "Sync: brak danych" });
   const themeMenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -85,6 +92,56 @@ export function AppShell({
     return () => {
       window.removeEventListener("storage", syncDataset);
       window.removeEventListener(MOCK_DATASET_CHANGED_EVENT, syncDataset);
+    };
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadSyncContext() {
+      try {
+        const response = await fetch("/api/sync/audit", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("Sync audit unavailable");
+        }
+
+        const payload = (await response.json()) as {
+          items?: Array<{ status: string; finishedAt: string }>;
+        };
+
+        if (!active) {
+          return;
+        }
+
+        const latest = payload.items?.[0];
+        if (!latest) {
+          setSyncContext({ status: "idle", label: "Sync: brak historii" });
+          return;
+        }
+
+        const status = latest.status === "success" ? "ok" : "error";
+        const finishedAt = new Intl.DateTimeFormat("pl-PL", {
+          day: "2-digit",
+          month: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        }).format(new Date(latest.finishedAt));
+
+        setSyncContext({
+          status,
+          label: status === "ok" ? `Sync OK: ${finishedAt}` : `Sync z błędem: ${finishedAt}`,
+        });
+      } catch {
+        if (active) {
+          setSyncContext({ status: "error", label: "Sync: niedostępny" });
+        }
+      }
+    }
+
+    void loadSyncContext();
+
+    return () => {
+      active = false;
     };
   }, []);
 
@@ -165,6 +222,22 @@ export function AppShell({
     return "Systemowy";
   }, [themeMode]);
 
+  const contextPeriod = useMemo(() => {
+    return searchParams.get("period") || searchParams.get("month") || "bieżący";
+  }, [searchParams]);
+
+  const syncBadgeClass = syncContext.status === "ok"
+    ? "bg-emerald-100 text-emerald-800"
+    : syncContext.status === "error"
+      ? "bg-rose-100 text-rose-800"
+      : "bg-slate-100 text-slate-700";
+
+  const datasetLabel: Record<MockDatasetName, string> = {
+    baseline: "Bazowy",
+    stress: "Stresowy",
+    incomplete: "Niekompletny",
+  };
+
   function withDataset(path: string) {
     const separator = path.includes("?") ? "&" : "?";
     return `${path}${separator}dataset=${encodeURIComponent(activeDataset)}`;
@@ -203,12 +276,12 @@ export function AppShell({
           </nav>
 
           <div className="mt-auto rounded-2xl bg-[#fff4ea] px-4 py-4 text-[#8e4a14] shadow-inner">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em]">Szybki dostęp</p>
-            <p className="mt-1 text-sm text-[#8c6a53]">Najczęściej używane obszary makiety.</p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-[#8c6a53] shadow-sm">Kontrakty</span>
-              <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-[#8c6a53] shadow-sm">Faktury</span>
-              <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-[#8c6a53] shadow-sm">Raporty</span>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em]">Dzisiaj</p>
+            <p className="mt-1 text-sm text-[#8c6a53]">3 priorytety operacyjne dla demo.</p>
+            <div className="mt-3 space-y-2 text-xs">
+              <div className="rounded-xl bg-white px-3 py-2 text-[#5a524d] shadow-sm">1. Zweryfikuj ryzyka KWS w raportach</div>
+              <div className="rounded-xl bg-white px-3 py-2 text-[#5a524d] shadow-sm">2. Sprawdź status synchronizacji Optima</div>
+              <div className="rounded-xl bg-white px-3 py-2 text-[#5a524d] shadow-sm">3. Potwierdź marżę top kontraktu</div>
             </div>
           </div>
         </aside>
@@ -290,7 +363,7 @@ export function AppShell({
                 type="button"
                 onClick={() => setIsFocusMode(true)}
                 className={headerActionButtonClass}
-                aria-label="Focus on content"
+                aria-label="Skupienie na treści"
               >
                 <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
                   <path d="M9 3H3v6M15 3h6v6M9 21H3v-6M21 15v6h-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -317,7 +390,15 @@ export function AppShell({
             </div>
           </header>
 
-          <main className={`flex-1 ${isFocusMode ? "px-2 py-2 md:px-3 md:py-3" : "px-4 py-5 md:px-6 md:py-6"}`}>{children}</main>
+          <div className={`${isFocusMode ? "hidden" : "flex flex-wrap items-center gap-2 border-b border-[rgb(107_107_107_/_10%)] bg-[#fff7ef] px-4 py-2 text-xs md:px-6"}`}>
+            <span className="rounded-full bg-white px-2.5 py-1 font-semibold text-[#6a563f] shadow-sm">Zestaw: {datasetLabel[activeDataset]}</span>
+            <span className="rounded-full bg-white px-2.5 py-1 font-semibold text-[#6a563f] shadow-sm">Okres: {contextPeriod}</span>
+            <span className={`rounded-full px-2.5 py-1 font-semibold shadow-sm ${syncBadgeClass}`}>{syncContext.label}</span>
+          </div>
+
+          <main className={`flex-1 ${isFocusMode ? "px-2 py-2 md:px-3 md:py-3" : "px-4 py-5 md:px-6 md:py-6"}`}>
+            <div className="exec-enter">{children}</div>
+          </main>
 
           {isFocusMode ? (
             <button

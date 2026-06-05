@@ -6,6 +6,11 @@
   --brand-primary: #e4650e;
   --brand-muted: #6b6b6b;
   --brand-surface: #ffffff;
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
 }
 
 html[data-theme="light"] {
@@ -39,6 +44,12 @@ body {
   background-image:
     radial-gradient(circle at 10% 10%, rgb(228 101 14 / 10%), transparent 45%),
     radial-gradient(circle at 80% 20%, rgb(107 107 107 / 12%), transparent 40%);
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.015em;
 }
 
 html[data-theme="dark"] body {
@@ -135,5 +146,56 @@ html[data-theme="dark"] .shadow-\[0_0_24px_rgba\(0\,0\,0\,0\.04\)\] {
   .finance-point-anim {
     animation: none;
     opacity: 1;
+  }
+
+  .exec-enter,
+  .kpi-count-anim,
+  .row-flash {
+    animation: none !important;
+  }
+}
+
+.exec-enter > section,
+.exec-enter > div,
+.exec-enter > article {
+  animation: exec-fade-in 180ms ease-out both;
+}
+
+.kpi-count-anim {
+  animation: kpi-pop-in 180ms ease-out both;
+}
+
+.row-flash {
+  animation: row-flash-bg 420ms ease-out;
+}
+
+@keyframes exec-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kpi-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes row-flash-bg {
+  from {
+    background-color: rgb(228 101 14 / 12%);
+  }
+  to {
+    background-color: transparent;
   }
 }

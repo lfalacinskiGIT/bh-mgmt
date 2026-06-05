@@ -1,14 +1,14 @@
 [
   {
     "id": "pr-1",
-    "employeeId": "emp-1",
+    "employeeId": "jan-kowalski",
     "month": "2026-06",
     "grossCost": 14600,
     "netCost": 11300
   },
   {
     "id": "pr-2",
-    "employeeId": "emp-2",
+    "employeeId": "anna-maj",
     "month": "2026-06",
     "grossCost": 13200,
     "netCost": 10250

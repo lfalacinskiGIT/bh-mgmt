@@ -1,350 +1,164 @@
 # Analiza dopasowania dvlp-planner do wymagan Box Haus
 
-Data: 2026-06-05
+Data: 2026-06-05 (aktualizacja po wdrozeniu makiety w bh-mgmt/web)
 
 ## 1. Cel dokumentu
 
-Dokument porownuje wymagania klienta Box Haus (ekonomika kontraktow) z aktualnymi mozliwosciami projektu dvlp-planner i wskazuje:
+Dokument porownuje wymagania Box Haus z aktualnym stanem aplikacji makietowej i wskazuje:
 
-1. Co mozemy wykorzystac 1:1.
-2. Co mozemy wykorzystac po modyfikacjach.
-3. Co trzeba zbudowac od zera.
+1. Co jest juz dzialajace 1:1.
+2. Co jest zaimplementowane czesciowo.
+3. Co nadal jest luka i wymaga implementacji.
+4. Jakie sa rozbieznosci miedzy poprzednia dokumentacja a rzeczywistym stanem kodu.
 
-## 2. Szybkie podsumowanie
+## 2. Kontekst i zakres porownania
 
-- dvlp-planner jest dobra baza pod warstwe zarzadcza: ma gotowe API, dashboard finansowy per projekt, statusy ryzyka, filtrowanie, eksport, RBAC i integracje Dataverse.
-- Najwieksza luka dotyczy modelu kosztow kontraktowych Box Haus: brak silnika alokacji kosztow produkcji/ekip/floty/prowizji oraz brak natywnej integracji z Comarch ERP Optima i magazynami wirtualnymi.
-- W obecnym stanie projekt liczy koszty projektowe uproszczonym modelem (w tym placeholder stawki godzinowej 100 PLN), wiec wyniki nie sa jeszcze gotowe na docelowy rachunek kontraktowy klienta.
+To porownanie dotyczy aktualnej aplikacji makietowej w repo bh-mgmt, folder web.
 
-## 3. Co juz mamy i mozemy wykorzystac 1:1
+Weryfikowane byly:
 
-### 3.1. Dashboard finansowy portfolio kontraktow/projektow
+1. Moduly dostepne w menu i routing.
+2. Ekrany biznesowe (kontrakty, raporty, czas pracy, P&L, kontrola kosztow, integracje).
+3. API route dla sync, raportowania i czasu pracy.
+4. Warstwa danych JSON i walidacja danych wymaganych.
 
-Do bezposredniego reuse:
+## 3. Stan obecny aplikacji (moduly aktywne)
 
-- API agregujace finanse projektow: bucket, okres, tracked-only, KPI, alerty, lista projektow.
-- Widok "Projects Finance" z KPI, tabela, alertami i wykresami.
-- Statusy ryzyka (critical/at-risk/healthy/no-data) i logika alertow.
+Menu i trasy aplikacji sa aktywne dla nastepujacych obszarow:
 
-Dowody w kodzie:
+1. Pulpit
+2. Sprzedaz
+3. Kontrakty
+4. Projekty
+5. Faktury
+6. Platnosci
+7. Czas i zespol (trasa czas-pracy)
+8. Kontrola kosztow
+9. Raporty
+10. P&L
+11. Integracje
+12. Ustawienia
 
-- app/api/dashboard/projects-finance-summary/route.ts
-- app/dashboard/page.tsx
-- components/dashboard/projects-finance-view.tsx
-- components/dashboard/projects-finance-kpi-cards.tsx
-- components/dashboard/projects-finance-table.tsx
-- lib/finance-utils.ts
+Istnieje tez oddzielna trasa Zespol, ale nie jest eksponowana jako osobna pozycja menu (zostala scalona koncepcyjnie z Czas i zespol).
 
-### 3.2. Podstawowe metryki ekonomiki projektu
-
-Do bezposredniego reuse:
-
-- Budzet, wykorzystanie budzetu, wynik netto, marza %, alert count.
-- Agregacja i sortowanie po projekcie/kliencie/statusie.
-
-Dowody w kodzie:
-
-- types/dashboard-finance.ts
-- components/dashboard/projects-finance-table.tsx
-- app/api/dashboard/projects-finance-summary/route.ts
-
-### 3.3. Warstwa danych i bezpieczenstwo
-
-Do bezposredniego reuse:
-
-- Gotowe mapowania encji Dataverse (projekty, faktury, rejestr czasu, profile zasobow, stawki kosztowe, actual costs).
-- API route-level authorization przez permission checks.
-- Model rol App Roles (Administrator/Board/Finance/Viewer).
-
-Dowody w kodzie:
-
-- lib/dataverse-config.ts
-- app/api/dashboard/summary/route.ts
-- app/api/actual-costs/route.ts
-- lib/authz.ts
-- docs/ROLES.md
-
-### 3.4. Ewidencja kosztow rzeczywistych (manual/operacyjna)
-
-Do bezposredniego reuse:
-
-- Moduly "Actual Costs" (CRUD + filtry + kategorie + flagowanie + trendy).
-- To moze byc baza pod formatki zarzadcze klienta (narzuty, koszty ekip, koszty techniczne).
-
-Dowody w kodzie:
-
-- app/finance/actual-costs/page.tsx
-- components/finance/actual-costs-table.tsx
-- app/api/actual-costs/route.ts
-
-## 4. Matryca dopasowania wymagan Box Haus
+## 4. Zaktualizowana matryca dopasowania wymagan Box Haus
 
 Legenda:
 
-- 1:1 = gotowe praktycznie bez zmian.
-- Czesc = jest baza, ale trzeba rozbudowac.
-- Brak = funkcjonalnosc do zbudowania.
+- 1:1 = gotowe i dzialajace w makiecie.
+- Czesc = dziala, ale zakres jest uproszczony lub niepelny.
+- Brak = brak dedykowanego modulu/flow.
 
-| Wymaganie klienta | Ocena | Uzasadnienie |
+| Wymaganie klienta | Ocena | Status obecny |
 |---|---|---|
-| Karta kontraktu (wartosc umowna, przychody, koszty, marza, zapas marzy) | Czesc | Jest portfolio per projekt i metryki marzy, ale brak dedykowanej karty kontraktu z pelnym modelem Box Haus. |
-| Zestawienie kontraktow i porownywanie | 1:1 | Tabela projektow z sortowaniem, filtrowaniem, statusami i eksportem juz istnieje. |
-| Podsumowanie linii biznesowych | Czesc | Sa agregacje po kliencie/statusie; brak natywnego wymiaru "linia biznesowa" zgodnego z Box Haus. |
-| Drilldown / audit trail kosztu kontraktu | Czesc | Sa szczegoly i moduly kosztowe, ale brak jednego, spojnego audit trail laczacego wszystkie zrodla kosztu kontraktu. |
-| Integracja z Optima (zapisy zrodlowe) | Brak | Brak gotowego konektora/integracji do Comarch ERP Optima. |
-| Magazyny wirtualne jako koszt bezposredni | Brak | Brak modelu i feedu magazynow wirtualnych w obecnym kodzie. |
-| Rozliczenie wynagrodzen per kontrakt wg czasu pracy | Czesc | Istnieja time entries + resource profile + cost rates, ale model payroll nie jest jeszcze zgodny z wymaganym sourcingiem z listy plac. |
-| Rozliczenie produkcji wg stawek narzutu | Brak | Brak silnika alokacji kosztow produkcji na kontrakt. |
-| Rozliczenie ekip/floty/narzedzi (narzuty) | Brak | Brak dedykowanego modelu narzutow ekip/floty/narzedzi i reguly alokacji po godzinach ekip. |
-| Prowizje handlowe kalkulacyjne | Brak | Brak modulu naliczania prowizji per kontrakt wg stawek. |
-| Pozycje poza kontraktami / niealokowane | Czesc | Da sie odwzorowac przez kategorie i kosztowe wpisy, ale nie ma zamknietego modelu reconcile kontrakt vs poza kontraktami. |
-| Kontrola ryzyka podwojnego ujecia (KWS) | Brak | Brak dedykowanych kontroli reguly KWS i mechanizmow anty-dublet na poziomie modelu kontraktowego. |
-
-## 5. Najwazniejsze luki funkcjonalne
-
-### 5.1. Luki danych i integracji
-
-1. Brak zasilania z Comarch ERP Optima.
-2. Brak zasilania kosztami z magazynow wirtualnych.
-3. Brak dedykowanych formatow importu dla list plac i ewidencji czasu specyficznej dla Box Haus.
+| Karta kontraktu (wartosc, przychody, koszty, marza, zapas marzy) | 1:1 | Dziala panel 360 kontraktu z zakladkami: przeglad, finanse, dokumenty, czas pracy, audit trail. |
+| Zestawienie kontraktow i porownywanie | 1:1 | Dziala lista i filtrowanie kontraktow, KPI, drilldown i porownywanie na widokach raportowych. |
+| Podsumowanie linii biznesowych | 1:1 | Dostepne w raportach i ekonomice kontraktow (agregacje per lineOfBusiness). |
+| Drilldown / audit trail kosztu kontraktu | Czesc | Audit trail jest dostepny, ale nie wszystkie strumienie zrodlowe sa jeszcze zmaterializowane jako niezalezne moduly UI. |
+| Integracja z Optima (zapisy zrodlowe) | Czesc | Dziala mock-sync i audit sync, ale brak produkcyjnego konektora ETL/API. |
+| Magazyny wirtualne jako koszt bezposredni | Czesc | Obecne w modelu kosztowym i uzgodnieniach, brak oddzielnego dedykowanego modulu operacyjnego. |
+| Rozliczenie wynagrodzen per kontrakt wg czasu pracy | 1:1 | Dziala modul czasu pracy z alokacja payroll na kontrakty i pozycje poza kontraktami. |
+| Rozliczenie produkcji wg stawek narzutu | Czesc | Dane istnieja w mockach, ale brak dedykowanego ekranu/flow produkcyjnego. |
+| Rozliczenie ekip/floty/narzedzi (narzuty) | Czesc | Dane istnieja w mockach, ale brak dedykowanego modulu UI/API. |
+| Prowizje handlowe kalkulacyjne | Czesc | Dane istnieja w mockach, ale brak osobnego modulu obliczen i prezentacji prowizji. |
+| Pozycje poza kontraktami / niealokowane | 1:1 | Dostepne w uzgodnieniu i bridge raportowym oraz w logice kontroli kosztow. |
+| Kontrola ryzyka podwojnego ujecia (KWS) | 1:1 | Dzialaja reguly anty-dublety, ryzyka KWS i raportowanie KWS w kontroli kosztow i raportach. |
+
+## 5. Najwazniejsze rozbieznosci poprzednia dokumentacja vs aplikacja
+
+1. Poprzednia dokumentacja zaniża poziom wdrozenia.
+- Wczesniej wiele obszarow mialo status Brak/Czesc.
+- Obecnie dzialaja: karta kontraktu 360, czas pracy z payroll, KWS/uzgodnienie, P&L.
+
+2. Referencje techniczne wskazuja historycznie dvlp-planner zamiast aktualnego bh-mgmt/web.
+- To jest glowna rozbieznosc formalna i audytowa.
+
+3. Integracje sa obecne funkcjonalnie jako mock, ale nie jako produkcyjne lacza.
+- UX sync i endpointy sa gotowe.
+- Brakuje rzeczywistego ETL i mapowan do systemow produkcyjnych.
+
+4. Zespol ma osobny ekran, ale menu jest scalone jako Czas i zespol.
+- Funkcjonalnosc jest dostepna.
+- Nalezy utrzymac spojnosc opisu w dokumentacji i nawigacji.
+
+## 6. Co realnie nadal jest luka
+
+### 6.1. Luki integracyjne
+
+1. Brak produkcyjnego konektora Comarch ERP Optima.
+2. Brak produkcyjnych konektorow payroll/timesheet.
+3. Brak kontraktow integracyjnych i monitoringu ETL end-to-end.
+
+### 6.2. Luki modulowe (UI/API)
+
+1. Brak dedykowanego modulu Produkcja (osobny ekran i flow).
+2. Brak dedykowanego modulu Ekipy i flota (osobny ekran i flow).
+3. Brak dedykowanego modulu Prowizje (osobny ekran i flow).
+
+### 6.3. Luki governance
+
+1. Brak twardego rozdzialu mock vs live na poziomie kontraktow SLA i monitoringu.
+2. Brak docelowej polityki danych referencyjnych i mapowan miedzy systemami zrodlowymi.
+
+## 7. Co mozemy wykorzystac od razu do warsztatu z klientem
+
+1. Karta kontraktu 360 i drilldown kosztowy.
+2. Raporty uzgodnieniowe: kontrakty vs poza kontraktami.
+3. Kontrola KWS i anty-dublety.
+4. Czas pracy + alokacja payroll.
+5. P&L zarzadczy i bridge roznic.
+6. Integracje mock sync (do demonstracji procesu).
+
+## 8. Co trzeba dopracowac przed przejsciem z makiety do produktu
+
+1. Zamienic mock-sync na realne integracje i harmonogramy zasilan.
+2. Dodac dedykowane moduly: produkcja, ekipy/flota, prowizje.
+3. Ujednolicic definicje kontrakt/projekt i slowniki biznesowe.
+4. Zdefiniowac i wdrozyc kontrakty danych ETL + monitoring jakosci danych.
+
+## 9. Zaktualizowana lista minimalna implementacji od zera
+
+1. Produkcyjny konektor Optima (read + incremental sync + retry + audit).
+2. Produkcyjny konektor payroll/timesheet.
+3. Modul Produkcja (UI + API + reguly alokacji).
+4. Modul Ekipy i flota (UI + API + reguly alokacji).
+5. Modul Prowizje (UI + API + reguly naliczania).
+6. Warstwa operacyjna monitoringu ETL i jakosci danych.
+
+## 10. Zaktualizowane referencje techniczne (aktualna aplikacja)
+
+- web/components/app-shell.tsx
+- web/app/pulpit/page.tsx
+- web/components/dashboard-page.tsx
+- web/app/kontrakty/page.tsx
+- web/components/contracts-page.tsx
+- web/app/czas-pracy/page.tsx
+- web/components/time-tracking-page.tsx
+- web/app/api/time/summary/route.ts
+- web/app/api/time/entries/route.ts
+- web/app/pl/page.tsx
+- web/components/profit-loss-page.tsx
+- web/app/raporty/page.tsx
+- web/components/reports-page.tsx
+- web/app/kontrola-kosztow/page.tsx
+- web/components/cost-control-page.tsx
+- web/app/integracje/page.tsx
+- web/components/integrations-page.tsx
+- web/app/api/sync/optima/route.ts
+- web/app/api/sync/ifirma/route.ts
+- web/app/api/sync/audit/route.ts
+- web/app/api/mock/validate/route.ts
+- web/lib/mock-reporting-controls.ts
+- web/lib/mock-profit-loss.ts
+- web/lib/mock-time-tracking.ts
+- web/lib/mock-required-data-validation.ts
 
-### 5.2. Luki modelu rozliczeniowego
-
-1. Brak silnika alokacji kosztow produkcji.
-2. Brak silnika alokacji kosztow ekip/floty/narzedzi.
-3. Brak kalkulacji prowizji handlowych.
-4. Brak warstwy kontroli podwojnego ujecia (KWS).
+## 11. Konkluzja
 
-### 5.3. Luki raportowe
+Aktualna makieta jest bardziej zaawansowana niz opisywala poprzednia wersja dokumentu.
 
-1. Brak dedykowanego widoku "Karta kontraktu" z pelnym przekrojem Box Haus.
-2. Brak raportu "ekonomika kontraktow + pozycje poza kontraktami + uzgodnienie" (opcja 1 klienta).
-3. Brak oddzielnego strumienia P&L z obrotowki (opcja 2 klienta).
-
-## 6. Obszary ryzyka (techniczne i biznesowe)
-
-1. Uproszczona kalkulacja kosztow projektowych w obecnym API projects-finance (placeholder stawka godzinowa) moze zafalszowac rentownosc.
-2. Roznice definicji "kontrakt" vs "projekt" moga wymagac osobnej encji lub twardej normalizacji modelu.
-3. Bez polityki anti-double-counting (KWS) istnieje realne ryzyko blednych marz.
-4. Integracje z Optima beda krytyczne dla wiarygodnosci wyniku i wymagaja osobnego strumienia ETL.
+Najwazniejsze wnioski:
 
-## 7. Rekomendacja: jak wykorzystac dvlp-planner jako baze makiety
-
-### 7.1. Zakres makiety v1 (na bazie istniejacego kodu)
-
-Do pokazania klientowi szybko:
-
-1. Dashboard kontraktowy (fork z Projects Finance).
-2. Lista kontraktow z alertami i eksportem.
-3. Wstepna karta kontraktu (na danych testowych/mocked).
-4. Sekcja "Koszty rzeczywiste" jako zaplecze formatek zarzadczych.
-
-### 7.2. Elementy do domodelowania w makiecie (wizualnie i logicznie)
-
-1. Bloki kosztowe kontraktu:
-   - magazyny wirtualne,
-   - wynagrodzenia,
-   - produkcja,
-   - ekipy/flota/narzedzia,
-   - prowizje,
-   - niealokowane.
-2. Wskaznik "zapas marzy" oparty o wartosc umowna.
-3. Audit trail zrodla kazdej kwoty.
-4. Widok uzgodnienia (kontrakty vs poza kontraktami).
-
-## 8. Co jest do implementacji od zera (lista minimalna)
-
-1. Konektor/integracja do Comarch ERP Optima (zapisy zrodlowe + magazyny wirtualne).
-2. Silnik alokacji kosztow produkcji.
-3. Silnik alokacji kosztow ekip/floty/narzedzi.
-4. Modul prowizji handlowych.
-5. Mechanizm kontroli KWS / anti-double-counting.
-6. Raport uzgodnieniowy (opcja 1 klienta).
-7. Ewentualnie niezalezny P&L z obrotowki (opcja 2).
-
-## 9. Co mozna zrobic bezpiecznie w kolejnym kroku
-
-1. Opracowac docelowy model danych kontraktu (encje, klucze, relacje, slowniki).
-2. Zaprojektowac makiete UX 3 ekranow:
-   - karta kontraktu,
-   - lista kontraktow,
-   - uzgodnienie i audit trail.
-3. Zdefiniowac kontrakty integracyjne ETL (Optima + payroll + timesheet + formatki).
-4. Uzgodnic z klientem reguly alokacji i priorytet wdrozenia opcji 1/opcji 2.
-
-## 10. Referencje techniczne (najwazniejsze)
-
-- dvlp-planner/app/api/dashboard/projects-finance-summary/route.ts
-- dvlp-planner/lib/finance-utils.ts
-- dvlp-planner/components/dashboard/projects-finance-view.tsx
-- dvlp-planner/components/dashboard/projects-finance-kpi-cards.tsx
-- dvlp-planner/components/dashboard/projects-finance-table.tsx
-- dvlp-planner/app/dashboard/page.tsx
-- dvlp-planner/lib/dataverse-config.ts
-- dvlp-planner/app/api/actual-costs/route.ts
-- dvlp-planner/components/finance/actual-costs-table.tsx
-- dvlp-planner/docs/ROLES.md
-
-## 11. Studium przypadku: makieta uproszczona (JSON-only)
-
-### 11.1. Zalozenia makiety
-
-1. Brak warstwy DB i brak integracji z zewnetrznymi systemami produkcyjnymi.
-2. Wszystkie dane trzymane lokalnie w plikach JSON.
-3. UI i kontrolki bazujemy na dvlp-planner (reuse), tylko theme pod kolory Box Haus.
-4. W menu pokazujemy wszystkie obiekty biznesowe klienta, ale aktywne sa tylko te mapujace sie 1:1 do planera.
-
-### 11.2. Czy podejscie jest wykonalne?
-
-Tak, podejscie jest wykonalne i dobre na etap makiety.
-
-Powody:
-
-1. Planner ma gotowe flow i API dla finansow i synchronizacji faktur.
-2. "Sync" jest juz osobnym endpointem i mozna go podmienic na mock provider bez zmian UX.
-3. Widoki dashboard/lista/raporty dzialaja na danych tabelarycznych, wiec JSON jest naturalnym zrodlem dla prototypu.
-4. Model uprawnien mozna uproscic (np. 1 rola demo), bez ryzyka naruszenia logiki UI.
-
-### 11.3. Co wykorzystujemy 1:1 w makiecie
-
-1. Nawigacja i modulowa struktura aplikacji.
-2. Widoki Finance: listy, filtry, grupowania, raporty.
-3. Dashboard projects-finance i alerting.
-4. Ekran i flow sync (przycisk + progress + rezultat + odswiezenie listy).
-
-### 11.4. Jak zasymulowac integracje ERP Optima/iFirma
-
-Rekomendacja: zachowac kontrakt API, podmienic implementacje na lokalny adapter mock.
-
-1. UI nadal wywoluje ten sam endpoint sync.
-2. Endpoint sync zamiast zewn. API:
-   - generuje 1..N pseudo-losowych faktur,
-   - dopisuje je do invoices.json,
-   - zwraca metryki created/updated/skipped/errors.
-3. Lista faktur czyta dane z invoices.json (z paginacja po stronie API dla realizmu).
-
-Efekt: uzytkownik ma identyczne doswiadczenie jak przy realnej integracji, ale bez zaleznosci zewnetrznych.
-
-### 11.5. Strategia danych mock (duzo danych, ale prosto)
-
-Minimalny zestaw plikow JSON:
-
-1. projects.json
-2. contracts.json (lub rozszerzenie projects o pola kontraktowe)
-3. invoices.json
-4. time-entries.json
-5. payroll.json
-6. actual-costs.json
-7. production-overheads.json
-8. crews-and-fleet.json
-9. commissions.json
-10. business-lines.json
-
-Zasady:
-
-1. Seed generator (deterministyczny) do hurtowego tworzenia danych demo.
-2. Rozmiar danych: docelowo min. 500-2000 faktur i 100-300 kontraktow/projektow, aby przetestowac UX.
-3. Proste relacje po id (contractId/projectId/resourceId).
-4. Wersjonowanie danych mock (np. data/mock/v1/*.json).
-
-### 11.6. Obiekty biznesowe w menu (makieta)
-
-Aktywne (mapowanie 1:1):
-
-1. Kontrakty/Projekty (lista)
-2. Finanse: Faktury, Koszty rzeczywiste, Inne przychody, Forecast
-3. Dashboard ekonomiki
-4. Settings + Sync
-
-Widoczne, ale jako placeholder (na razie):
-
-1. Produkcja
-2. Ekipy i flota
-3. Prowizje
-4. Uzgodnienie/KWS
-
-Placeholdery powinny miec status "Prototype scope" i krotki opis, ze ekran pokazuje tylko koncept.
-
-## 12. Proponowana sciezka postepowania
-
-### Etap 1: Skeleton makiety (1-2 dni)
-
-Cel:
-
-1. Uruchomic fork UI planera dla Box Haus.
-2. Podmienic branding (kolory, logo, nazewnictwo).
-3. Dodac/ukryc pozycje menu zgodnie ze scope makiety.
-
-Kryterium akceptacji:
-
-1. Nawigacja dziala, wszystkie kluczowe ekrany sa otwieralne.
-
-### Etap 2: Mock data layer (2-4 dni)
-
-Cel:
-
-1. Dodac lokalny "MockDataProvider" czytajacy JSON.
-2. Przepiac kluczowe endpointy read (dashboard, invoices, costs) na JSON.
-3. Dodac generator danych demo.
-
-Kryterium akceptacji:
-
-1. Aplikacja dziala bez Dataverse i bez zewnetrznych API.
-2. Dane sa stabilne po restarcie (persistencja w plikach).
-
-### Etap 3: Mock sync ERP/iFirma (1-2 dni)
-
-Cel:
-
-1. Zachowac obecny UX "Synchronizuj".
-2. Implementowac pseudo-sync: dopisywanie nowych rekordow do invoices.json.
-3. Pokazac rezultat sync (created/updated/skipped/errors) i odswiezenie listy.
-
-Kryterium akceptacji:
-
-1. Klik sync zawsze daje wiarygodny efekt biznesowy na liscie faktur.
-
-### Etap 4: Karta kontraktu v1 i mapowanie Box Haus (3-5 dni)
-
-Cel:
-
-1. Zbudowac prosty widok karty kontraktu na bazie istniejacych komponentow.
-2. Dodac sekcje kosztowe zgodne z dokumentem klienta (na danych mock).
-3. Dodac prosty "zapas marzy" i drilldown zrodla kwot.
-
-Kryterium akceptacji:
-
-1. Dla dowolnego kontraktu widac przychody, koszty i marze oraz breakdown.
-
-### Etap 5: Demo hardening (1-2 dni)
-
-Cel:
-
-1. Ujednolicic etykiety i slownik biznesowy Box Haus.
-2. Dodac 2-3 scenariusze demo (np. kontrakt rentowny, kontrakt pod ryzykiem, kontrakt z opoznionymi platnosciami).
-3. Przygotowac skrypt prezentacyjny.
-
-Kryterium akceptacji:
-
-1. Makieta jest gotowa do warsztatu z klientem bez "martwych" flow na kluczowej sciezce.
-
-## 13. Ryzyka i jak je kontrolowac
-
-1. Ryzyko: mock nie odzwierciedli realnych edge-case danych z ERP.
-   Mitigacja: 2-3 zbiory testowe (clean/messy/extreme).
-2. Ryzyko: scope creep (proba budowy docelowego systemu zamiast makiety).
-   Mitigacja: twardy podzial ekranow na active vs placeholder.
-3. Ryzyko: niespojnosc definicji kontrakt vs projekt.
-   Mitigacja: decyzja modelowa na starcie etapu 4 i jeden slownik pojec.
-
-## 14. Konkluzja
-
-Podejscie zaproponowane przez Ciebie jest sensowne, wykonalne i niskoryzykowne na etap makiety.
-
-Najbardziej efektywna strategia:
-
-1. Reuse UI i flow z dvlp-planner.
-2. JSON-only data backend + mock sync.
-3. Tylko funkcje 1:1 jako aktywne, reszta jako kontrolowany placeholder.
-
-To pozwoli szybko pokazac klientowi wartosc i zebrac feedback przed inwestycja w docelowe integracje (Optima/KWS/alokacje).
+1. Warstwa zarzadcza ekonomiki kontraktow, KWS, uzgodnien i P&L jest funkcjonalnie gotowa do demo.
+2. Najwieksze luki dotycza przejscia z mock do produkcji (integracje ETL) oraz dedykowanych modulow produkcja/flota/prowizje.
+3. Kolejny etap powinien koncentrowac sie na integracjach produkcyjnych i domknieciu brakujacych modulow domenowych.
