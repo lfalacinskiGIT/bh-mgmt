@@ -1,0 +1,152 @@
+[
+  {
+    "id": "src-2026-05-r1",
+    "postedAt": "2026-05-31",
+    "type": "revenue",
+    "origin": "optima-source",
+    "contractId": "c1",
+    "netAmount": 420000,
+    "referenceKey": "REV-C1-2026-05",
+    "description": "Przychody rozpoznane dla kontraktu c1"
+  },
+  {
+    "id": "src-2026-05-r2",
+    "postedAt": "2026-05-31",
+    "type": "revenue",
+    "origin": "optima-source",
+    "contractId": "c4",
+    "netAmount": 310000,
+    "referenceKey": "REV-C4-2026-05",
+    "description": "Przychody rozpoznane dla kontraktu c4"
+  },
+  {
+    "id": "src-2026-05-r3",
+    "postedAt": "2026-05-31",
+    "type": "revenue",
+    "origin": "optima-source",
+    "contractId": null,
+    "netAmount": 96000,
+    "referenceKey": "REV-OUT-2026-05",
+    "description": "Przychody poza kontraktami"
+  },
+  {
+    "id": "src-2026-05-c1",
+    "postedAt": "2026-05-31",
+    "type": "cost",
+    "origin": "virtual-warehouse",
+    "contractId": "c1",
+    "netAmount": 87000,
+    "referenceKey": "MW-C1-2026-05-87",
+    "description": "Materiały pod realizację c1"
+  },
+  {
+    "id": "src-2026-05-c2",
+    "postedAt": "2026-05-31",
+    "type": "cost",
+    "origin": "payroll",
+    "contractId": "c4",
+    "netAmount": 45000,
+    "referenceKey": "PAY-C4-2026-05",
+    "description": "Koszty płacowe kontraktowe"
+  },
+  {
+    "id": "src-2026-05-c3",
+    "postedAt": "2026-05-31",
+    "type": "cost",
+    "origin": "payroll",
+    "contractId": null,
+    "netAmount": 89000,
+    "referenceKey": "PAY-OUT-2026-05",
+    "description": "Koszty ogólne poza kontraktami"
+  },
+  {
+    "id": "src-2026-06-r1",
+    "postedAt": "2026-06-30",
+    "type": "revenue",
+    "origin": "optima-source",
+    "contractId": "c1",
+    "netAmount": 980000,
+    "referenceKey": "REV-C1-2026-06",
+    "description": "Przychody rozpoznane dla kontraktu c1"
+  },
+  {
+    "id": "src-2026-06-r2",
+    "postedAt": "2026-06-30",
+    "type": "revenue",
+    "origin": "optima-source",
+    "contractId": "c2",
+    "netAmount": 620000,
+    "referenceKey": "REV-C2-2026-06",
+    "description": "Przychody rozpoznane dla kontraktu c2"
+  },
+  {
+    "id": "src-2026-06-r3",
+    "postedAt": "2026-06-30",
+    "type": "revenue",
+    "origin": "optima-source",
+    "contractId": null,
+    "netAmount": 185000,
+    "referenceKey": "REV-OUT-2026-06",
+    "description": "Przychody poza kontraktami"
+  },
+  {
+    "id": "src-2026-06-c1",
+    "postedAt": "2026-06-30",
+    "type": "cost",
+    "origin": "virtual-warehouse",
+    "contractId": "c1",
+    "netAmount": 112000,
+    "referenceKey": "MW-C1-2026-06-112",
+    "description": "Materiały - etap elewacje"
+  },
+  {
+    "id": "src-2026-06-c2",
+    "postedAt": "2026-06-30",
+    "type": "cost",
+    "origin": "kws",
+    "contractId": "c1",
+    "netAmount": 112000,
+    "referenceKey": "MW-C1-2026-06-112",
+    "description": "KWS do materiałów c1"
+  },
+  {
+    "id": "src-2026-06-c3",
+    "postedAt": "2026-06-29",
+    "type": "cost",
+    "origin": "virtual-warehouse",
+    "contractId": "c2",
+    "netAmount": 83000,
+    "referenceKey": "MW-C2-2026-06-83",
+    "description": "Materiały pod kontrakt c2"
+  },
+  {
+    "id": "src-2026-06-c4",
+    "postedAt": "2026-06-30",
+    "type": "cost",
+    "origin": "kws",
+    "contractId": "c2",
+    "netAmount": 82800,
+    "referenceKey": "KWS-C2-2026-06-ALT",
+    "description": "KWS częściowo pokrywający koszt c2"
+  },
+  {
+    "id": "src-2026-06-c5",
+    "postedAt": "2026-06-30",
+    "type": "cost",
+    "origin": "payroll",
+    "contractId": null,
+    "netAmount": 97000,
+    "referenceKey": "PAY-OUT-2026-06",
+    "description": "Koszty ogólne poza kontraktami"
+  },
+  {
+    "id": "src-2026-06-c6",
+    "postedAt": "2026-06-30",
+    "type": "cost",
+    "origin": "managerial-sheet",
+    "contractId": null,
+    "netAmount": 38000,
+    "referenceKey": "MGR-OUT-2026-06",
+    "description": "Koszty techniczne i niealokowane"
+  }
+]

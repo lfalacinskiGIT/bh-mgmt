@@ -1,0 +1,74 @@
+[
+  {
+    "id": "t1",
+    "name": "Jan Kowalski",
+    "role": "Dyrektor operacyjny",
+    "discipline": "Zarządzanie",
+    "utilizationPct": 71,
+    "capacityStatus": "busy",
+    "currentProjects": ["Pulpit", "Raporty", "Ustawienia"],
+    "skills": ["budżetowanie", "priorytety", "nadzór"],
+    "location": "Gdańsk",
+    "focus": "Kontrola harmonogramów i cash flow"
+  },
+  {
+    "id": "t2",
+    "name": "Anna Maj",
+    "role": "Kierownik sprzedaży",
+    "discipline": "Sprzedaż",
+    "utilizationPct": 88,
+    "capacityStatus": "busy",
+    "currentProjects": ["Sprzedaż", "Kontrakty", "Integracje"],
+    "skills": ["negocjacje", "oferty", "pipeline"],
+    "location": "Warszawa",
+    "focus": "Domykanie leadów wysokiej wartości"
+  },
+  {
+    "id": "t3",
+    "name": "Marta Lis",
+    "role": "Kierownik projektu",
+    "discipline": "Operacje",
+    "utilizationPct": 96,
+    "capacityStatus": "overloaded",
+    "currentProjects": ["Projekty", "Kontrola kosztów", "Płatności"],
+    "skills": ["harmonogram", "ryzyko", "kooperacja"],
+    "location": "Poznań",
+    "focus": "Utrzymanie terminów i odbiorów"
+  },
+  {
+    "id": "t4",
+    "name": "Julia Bąk",
+    "role": "Analityk finansowy",
+    "discipline": "Finanse",
+    "utilizationPct": 67,
+    "capacityStatus": "ok",
+    "currentProjects": ["Faktury", "Płatności", "Raporty"],
+    "skills": ["rozliczenia", "marża", "kontrola"],
+    "location": "Kraków",
+    "focus": "Monitoring należności i kosztów"
+  },
+  {
+    "id": "t5",
+    "name": "Paweł Domański",
+    "role": "Architekt danych",
+    "discipline": "IT",
+    "utilizationPct": 82,
+    "capacityStatus": "busy",
+    "currentProjects": ["Integracje", "Ustawienia", "Dashboard"],
+    "skills": ["MCP", "Next.js", "model danych"],
+    "location": "Wrocław",
+    "focus": "Utrzymanie mocków i jakości danych"
+  },
+  {
+    "id": "t6",
+    "name": "Oliwia Zawadzka",
+    "role": "Koordynator back office",
+    "discipline": "Administracja",
+    "utilizationPct": 61,
+    "capacityStatus": "ok",
+    "currentProjects": ["Płatności", "Ustawienia"],
+    "skills": ["procedury", "dokumenty", "raporty"],
+    "location": "Łódź",
+    "focus": "Porządkowanie ustawień i obiegu dokumentów"
+  }
+]

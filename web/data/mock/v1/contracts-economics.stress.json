@@ -1,0 +1,114 @@
+[
+  {
+    "id": "s1",
+    "number": "BH/KON/2026/101",
+    "clientName": "Aurora Living",
+    "objectName": "Osiedle Północ",
+    "city": "Gdańsk",
+    "lineOfBusiness": "Box Haus",
+    "valueContractNet": 980000,
+    "revenueRecognizedNet": 720000,
+    "status": "realizacja",
+    "priority": "wysoki",
+    "startDate": "2026-03-15",
+    "endDate": "2026-10-20",
+    "costBreakdown": {
+      "warehouseDirectNet": 410000,
+      "laborNet": 190000,
+      "productionNet": 110000,
+      "crewFleetToolsNet": 85000,
+      "salesCommissionNet": 26000
+    },
+    "auditTrail": [
+      {
+        "id": "s1-a1",
+        "source": "Magazyn wirtualny",
+        "description": "Korekta materiałowa po inwentaryzacji",
+        "amountNet": 94000,
+        "recordedAt": "2026-06-28"
+      }
+    ]
+  },
+  {
+    "id": "s2",
+    "number": "BH/KON/2026/102",
+    "clientName": "Nova Group",
+    "objectName": "Apartamenty Zachód",
+    "city": "Poznań",
+    "lineOfBusiness": "Erdol",
+    "valueContractNet": 1320000,
+    "revenueRecognizedNet": 540000,
+    "status": "negocjacje",
+    "priority": "wysoki",
+    "startDate": "2026-05-02",
+    "endDate": "2026-12-15",
+    "costBreakdown": {
+      "warehouseDirectNet": 225000,
+      "laborNet": 143000,
+      "productionNet": 98000,
+      "crewFleetToolsNet": 41000,
+      "salesCommissionNet": 38000
+    },
+    "auditTrail": [
+      {
+        "id": "s2-a1",
+        "source": "Formatka prowizji",
+        "description": "Wysoka prowizja dla kontraktu premium",
+        "amountNet": 38000,
+        "recordedAt": "2026-06-24"
+      }
+    ]
+  },
+  {
+    "id": "s3",
+    "number": "BH/KON/2026/103",
+    "clientName": "Mira Estates",
+    "objectName": "Zielone Tarasy II",
+    "city": "Katowice",
+    "lineOfBusiness": "Box Haus",
+    "valueContractNet": 710000,
+    "revenueRecognizedNet": 0,
+    "status": "nowy",
+    "priority": "średni",
+    "startDate": "2026-06-10",
+    "endDate": "2026-11-10",
+    "costBreakdown": {
+      "warehouseDirectNet": 58000,
+      "laborNet": 31000,
+      "productionNet": 22000,
+      "crewFleetToolsNet": 17000,
+      "salesCommissionNet": 12000
+    },
+    "auditTrail": []
+  },
+  {
+    "id": "s4",
+    "number": "BH/KON/2026/104",
+    "clientName": "Sunrise Invest",
+    "objectName": "Hala S3",
+    "city": "Łódź",
+    "lineOfBusiness": "Erdol",
+    "valueContractNet": 1580000,
+    "revenueRecognizedNet": 1440000,
+    "status": "zakończony",
+    "priority": "niski",
+    "startDate": "2026-01-12",
+    "endDate": "2026-06-30",
+    "costBreakdown": {
+      "warehouseDirectNet": 505000,
+      "laborNet": 220000,
+      "productionNet": 141000,
+      "crewFleetToolsNet": 56000,
+      "salesCommissionNet": 26000
+    },
+    "auditTrail": [
+      {
+        "id": "s4-a1",
+        "source": "Lista płac",
+        "description": "Domknięcie rozliczeń za II kwartał",
+        "amountNet": 67000,
+        "recordedAt": "2026-06-30"
+      }
+    ]
+  }
+]

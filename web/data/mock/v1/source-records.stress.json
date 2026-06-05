@@ -1,0 +1,92 @@
+[
+  {
+    "id": "st-05-r1",
+    "postedAt": "2026-05-31",
+    "type": "revenue",
+    "origin": "optima-source",
+    "contractId": "s1",
+    "netAmount": 410000,
+    "referenceKey": "REV-S1-2026-05",
+    "description": "Przychody rozpoznane s1"
+  },
+  {
+    "id": "st-05-r2",
+    "postedAt": "2026-05-31",
+    "type": "revenue",
+    "origin": "optima-source",
+    "contractId": null,
+    "netAmount": 123000,
+    "referenceKey": "REV-OUT-2026-05",
+    "description": "Przychody poza kontraktami"
+  },
+  {
+    "id": "st-05-c1",
+    "postedAt": "2026-05-31",
+    "type": "cost",
+    "origin": "virtual-warehouse",
+    "contractId": "s1",
+    "netAmount": 126000,
+    "referenceKey": "MW-S1-2026-05-126",
+    "description": "Materiały s1"
+  },
+  {
+    "id": "st-05-c2",
+    "postedAt": "2026-05-31",
+    "type": "cost",
+    "origin": "kws",
+    "contractId": "s1",
+    "netAmount": 126000,
+    "referenceKey": "MW-S1-2026-05-126",
+    "description": "KWS duplikat s1"
+  },
+  {
+    "id": "st-06-r1",
+    "postedAt": "2026-06-30",
+    "type": "revenue",
+    "origin": "optima-source",
+    "contractId": "s4",
+    "netAmount": 580000,
+    "referenceKey": "REV-S4-2026-06",
+    "description": "Przychody rozpoznane s4"
+  },
+  {
+    "id": "st-06-r2",
+    "postedAt": "2026-06-30",
+    "type": "revenue",
+    "origin": "optima-source",
+    "contractId": null,
+    "netAmount": 176000,
+    "referenceKey": "REV-OUT-2026-06",
+    "description": "Przychody poza kontraktami"
+  },
+  {
+    "id": "st-06-c1",
+    "postedAt": "2026-06-30",
+    "type": "cost",
+    "origin": "kws",
+    "contractId": "s2",
+    "netAmount": 98000,
+    "referenceKey": "KWS-S2-2026-06-ONLY",
+    "description": "KWS bez kosztu bazowego"
+  },
+  {
+    "id": "st-06-c2",
+    "postedAt": "2026-06-30",
+    "type": "cost",
+    "origin": "kws",
+    "contractId": null,
+    "netAmount": 54000,
+    "referenceKey": "KWS-OUT-2026-06-54",
+    "description": "KWS poza kontraktem"
+  },
+  {
+    "id": "st-06-c3",
+    "postedAt": "2026-06-30",
+    "type": "cost",
+    "origin": "managerial-sheet",
+    "contractId": null,
+    "netAmount": 62000,
+    "referenceKey": "MGR-OUT-2026-06",
+    "description": "Koszty techniczne"
+  }
+]

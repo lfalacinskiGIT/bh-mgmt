@@ -1,0 +1,187 @@
+[
+  {
+    "id": "c1",
+    "number": "BH/KON/2026/001",
+    "clientName": "Baltic Living Sp. z o.o.",
+    "objectName": "Osiedle Nadmorskie A",
+    "city": "Gdańsk",
+    "lineOfBusiness": "Box Haus",
+    "valueContractNet": 1240000,
+    "revenueRecognizedNet": 980000,
+    "status": "realizacja",
+    "priority": "wysoki",
+    "startDate": "2026-05-12",
+    "endDate": "2026-09-30",
+    "costBreakdown": {
+      "warehouseDirectNet": 365000,
+      "laborNet": 184000,
+      "productionNet": 126000,
+      "crewFleetToolsNet": 72000,
+      "salesCommissionNet": 36000
+    },
+    "auditTrail": [
+      {
+        "id": "c1-a1",
+        "source": "Magazyn wirtualny",
+        "description": "Wydanie materiałów - etap elewacje",
+        "amountNet": 112000,
+        "recordedAt": "2026-06-28"
+      },
+      {
+        "id": "c1-a2",
+        "source": "Lista płac",
+        "description": "Rozliczenie roboczogodzin brygady A",
+        "amountNet": 59000,
+        "recordedAt": "2026-06-30"
+      },
+      {
+        "id": "c1-a3",
+        "source": "Formatka narzutów",
+        "description": "Narzut ekip i floty - czerwiec",
+        "amountNet": 24000,
+        "recordedAt": "2026-06-30"
+      }
+    ]
+  },
+  {
+    "id": "c2",
+    "number": "BH/KON/2026/002",
+    "clientName": "Nova Group",
+    "objectName": "Apartamenty Centrum",
+    "city": "Poznań",
+    "lineOfBusiness": "Erdol",
+    "valueContractNet": 860000,
+    "revenueRecognizedNet": 620000,
+    "status": "podpisany",
+    "priority": "średni",
+    "startDate": "2026-06-01",
+    "endDate": "2026-08-15",
+    "costBreakdown": {
+      "warehouseDirectNet": 221000,
+      "laborNet": 112000,
+      "productionNet": 78000,
+      "crewFleetToolsNet": 41000,
+      "salesCommissionNet": 19000
+    },
+    "auditTrail": [
+      {
+        "id": "c2-a1",
+        "source": "Magazyn wirtualny",
+        "description": "Zakup i wydanie materiałów pod kontrakt",
+        "amountNet": 83000,
+        "recordedAt": "2026-06-22"
+      },
+      {
+        "id": "c2-a2",
+        "source": "Ewidencja czasu",
+        "description": "Alokacja godzin projektowych",
+        "amountNet": 37000,
+        "recordedAt": "2026-06-29"
+      }
+    ]
+  },
+  {
+    "id": "c3",
+    "number": "BH/KON/2026/003",
+    "clientName": "Klara Development",
+    "objectName": "Budynek usługowy Parkowa",
+    "city": "Wrocław",
+    "lineOfBusiness": "Box Haus",
+    "valueContractNet": 2100000,
+    "revenueRecognizedNet": 460000,
+    "status": "negocjacje",
+    "priority": "wysoki",
+    "startDate": "2026-06-10",
+    "endDate": "2026-12-31",
+    "costBreakdown": {
+      "warehouseDirectNet": 98000,
+      "laborNet": 52000,
+      "productionNet": 48000,
+      "crewFleetToolsNet": 23000,
+      "salesCommissionNet": 31000
+    },
+    "auditTrail": [
+      {
+        "id": "c3-a1",
+        "source": "Formatka prowizji",
+        "description": "Prowizja kalkulacyjna dla działu sprzedaży",
+        "amountNet": 31000,
+        "recordedAt": "2026-06-27"
+      },
+      {
+        "id": "c3-a2",
+        "source": "Produkcja",
+        "description": "Narzut produkcyjny wg stawki dziennej",
+        "amountNet": 48000,
+        "recordedAt": "2026-06-30"
+      }
+    ]
+  },
+  {
+    "id": "c4",
+    "number": "BH/KON/2026/004",
+    "clientName": "Sunrise Invest",
+    "objectName": "Hala magazynowa S1",
+    "city": "Łódź",
+    "lineOfBusiness": "Erdol",
+    "valueContractNet": 740000,
+    "revenueRecognizedNet": 740000,
+    "status": "zakończony",
+    "priority": "niski",
+    "startDate": "2026-04-18",
+    "endDate": "2026-07-20",
+    "costBreakdown": {
+      "warehouseDirectNet": 288000,
+      "laborNet": 126000,
+      "productionNet": 62000,
+      "crewFleetToolsNet": 28000,
+      "salesCommissionNet": 18000
+    },
+    "auditTrail": [
+      {
+        "id": "c4-a1",
+        "source": "Magazyn wirtualny",
+        "description": "Zamknięcie kosztów materiałowych",
+        "amountNet": 91000,
+        "recordedAt": "2026-06-18"
+      },
+      {
+        "id": "c4-a2",
+        "source": "Lista płac",
+        "description": "Finalne rozliczenie czasu pracy",
+        "amountNet": 46000,
+        "recordedAt": "2026-06-30"
+      }
+    ]
+  },
+  {
+    "id": "c5",
+    "number": "BH/KON/2026/005",
+    "clientName": "Mira Estates",
+    "objectName": "Osiedle Zielone Tarasy",
+    "city": "Katowice",
+    "lineOfBusiness": "Box Haus",
+    "valueContractNet": 1590000,
+    "revenueRecognizedNet": 180000,
+    "status": "nowy",
+    "priority": "średni",
+    "startDate": "2026-06-18",
+    "endDate": "2026-11-15",
+    "costBreakdown": {
+      "warehouseDirectNet": 46000,
+      "laborNet": 22000,
+      "productionNet": 28000,
+      "crewFleetToolsNet": 17000,
+      "salesCommissionNet": 21000
+    },
+    "auditTrail": [
+      {
+        "id": "c5-a1",
+        "source": "Formatka zarządcza",
+        "description": "Wartość umowna i przypisanie linii biznesowej",
+        "amountNet": 0,
+        "recordedAt": "2026-06-20"
+      }
+    ]
+  }
+]

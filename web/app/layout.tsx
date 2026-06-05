@@ -8,8 +8,8 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Box Haus - Finance Mock",
-  description: "Prototype finance panel with local JSON sync",
+  title: "Box Haus - Kontrakty",
+  description: "Makieta Box Haus z ekranem kontraktów i lokalnymi danymi demo",
 };
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${workSans.variable} h-full antialiased`}>
+    <html lang="pl" className={`${workSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

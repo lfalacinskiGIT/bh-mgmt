@@ -1,0 +1,20 @@
+[
+  {
+    "id": "outside-st-1",
+    "label": "Koszty ogólne administracji",
+    "amountNet": 238000,
+    "category": "general"
+  },
+  {
+    "id": "outside-st-2",
+    "label": "Absencje i czas nieprojektowy",
+    "amountNet": 99000,
+    "category": "technical"
+  },
+  {
+    "id": "outside-st-3",
+    "label": "Koszty techniczne bez alokacji",
+    "amountNet": 76000,
+    "category": "unallocated"
+  }
+]

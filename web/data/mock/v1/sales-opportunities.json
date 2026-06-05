@@ -1,0 +1,72 @@
+[
+  {
+    "id": "s1",
+    "number": "BH/SPR/2026/001",
+    "clientName": "Baltic Living Sp. z o.o.",
+    "opportunityName": "Osiedle Nadmorskie B",
+    "city": "Gdańsk",
+    "stage": "negocjacje",
+    "valueNet": 1240000,
+    "probability": 0.72,
+    "owner": "Anna Maj",
+    "source": "polecenie",
+    "nextStep": "Wysłać poprawioną ofertę i potwierdzić zakres elewacji",
+    "expectedClose": "2026-06-18"
+  },
+  {
+    "id": "s2",
+    "number": "BH/SPR/2026/002",
+    "clientName": "Klara Development",
+    "opportunityName": "Budynek usługowy Parkowa",
+    "city": "Wrocław",
+    "stage": "oferta",
+    "valueNet": 2100000,
+    "probability": 0.54,
+    "owner": "Michał Nowak",
+    "source": "networking",
+    "nextStep": "Dopieścić harmonogram i warunki gwarancji",
+    "expectedClose": "2026-07-05"
+  },
+  {
+    "id": "s3",
+    "number": "BH/SPR/2026/003",
+    "clientName": "Mira Estates",
+    "opportunityName": "Osiedle Zielone Tarasy",
+    "city": "Katowice",
+    "stage": "lead",
+    "valueNet": 1590000,
+    "probability": 0.31,
+    "owner": "Julia Bąk",
+    "source": "marketing",
+    "nextStep": "Umówić krótką prezentację referencji",
+    "expectedClose": "2026-08-01"
+  },
+  {
+    "id": "s4",
+    "number": "BH/SPR/2026/004",
+    "clientName": "Nova Group",
+    "opportunityName": "Apartamenty Centrum",
+    "city": "Poznań",
+    "stage": "wygrana",
+    "valueNet": 860000,
+    "probability": 0.97,
+    "owner": "Anna Maj",
+    "source": "rekomendacja",
+    "nextStep": "Przekazać kontrakt do uruchomienia",
+    "expectedClose": "2026-06-07"
+  },
+  {
+    "id": "s5",
+    "number": "BH/SPR/2026/005",
+    "clientName": "Sunrise Invest",
+    "opportunityName": "Hala magazynowa S2",
+    "city": "Łódź",
+    "stage": "utracona",
+    "valueNet": 740000,
+    "probability": 0.12,
+    "owner": "Michał Nowak",
+    "source": "przetarg",
+    "nextStep": "Zarchiwizować feedback i utrzymać kontakt",
+    "expectedClose": "2026-05-29"
+  }
+]

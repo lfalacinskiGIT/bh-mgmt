@@ -1,0 +1,48 @@
+[
+  {
+    "id": "stc-05-1",
+    "month": "2026-05",
+    "source": "warehouse",
+    "contractId": "s1",
+    "referenceKey": "MV-2026-05-S1-01",
+    "amountNet": 67000
+  },
+  {
+    "id": "stc-05-2",
+    "month": "2026-05",
+    "source": "kws",
+    "contractId": "s1",
+    "referenceKey": "MV-2026-05-S1-01",
+    "amountNet": 67000
+  },
+  {
+    "id": "stc-05-3",
+    "month": "2026-05",
+    "source": "kws",
+    "referenceKey": "KWS-OUT-2026-05-10",
+    "amountNet": 10000
+  },
+  {
+    "id": "stc-06-1",
+    "month": "2026-06",
+    "source": "kws",
+    "contractId": "s2",
+    "referenceKey": "KWS-S2-2026-06-ONLY",
+    "amountNet": 98000
+  },
+  {
+    "id": "stc-06-2",
+    "month": "2026-06",
+    "source": "kws",
+    "referenceKey": "KWS-OUT-2026-06-54",
+    "amountNet": 54000
+  },
+  {
+    "id": "stc-06-3",
+    "month": "2026-06",
+    "source": "warehouse",
+    "contractId": "s4",
+    "referenceKey": "MV-2026-06-S4-02",
+    "amountNet": 89000
+  }
+]

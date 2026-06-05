@@ -1,5 +1,41 @@
 [
   {
+    "id": "1454a7a1-28db-46c3-97c9-4af625e15ed3",
+    "number": "BH/2026/00006",
+    "customerName": "Box Haus Client 64",
+    "netAmount": 18727,
+    "grossAmount": 23034.21,
+    "issueDate": "2026-06-05",
+    "dueDate": "2026-06-15",
+    "status": "overdue",
+    "source": "mock-sync",
+    "createdAt": "2026-06-05T13:17:28.351Z"
+  },
+  {
+    "id": "c0a61a83-b1a0-4881-b512-35f909db9103",
+    "number": "BH/2026/00007",
+    "customerName": "Box Haus Client 55",
+    "netAmount": 4020,
+    "grossAmount": 4944.6,
+    "issueDate": "2026-06-05",
+    "dueDate": "2026-06-23",
+    "status": "issued",
+    "source": "mock-sync",
+    "createdAt": "2026-06-05T13:17:28.352Z"
+  },
+  {
+    "id": "22849401-3c3a-4870-8aa1-8cd7229e33fa",
+    "number": "BH/2026/00008",
+    "customerName": "Box Haus Client 66",
+    "netAmount": 18559,
+    "grossAmount": 22827.57,
+    "issueDate": "2026-06-05",
+    "dueDate": "2026-06-21",
+    "status": "paid",
+    "source": "mock-sync",
+    "createdAt": "2026-06-05T13:17:28.352Z"
+  },
+  {
     "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901",
     "number": "BH/2026/00001",
     "customerName": "Box Haus Client 14",
