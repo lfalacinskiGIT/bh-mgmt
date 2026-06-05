@@ -1,0 +1,33 @@
+# Next.js
+web/.next/
+web/out/
+
+# Node
+web/node_modules/
+
+# Build
+web/build/
+web/dist/
+
+# Env files
+web/.env
+web/.env.local
+web/.env.*.local
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+
+# TypeScript
+web/*.tsbuildinfo
+web/next-env.d.ts

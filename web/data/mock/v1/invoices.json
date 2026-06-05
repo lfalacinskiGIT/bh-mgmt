@@ -1,0 +1,62 @@
+[
+  {
+    "id": "aa4c5d34-16a4-44fb-9f4d-a80621d8f901",
+    "number": "BH/2026/00001",
+    "customerName": "Box Haus Client 14",
+    "netAmount": 6500,
+    "grossAmount": 7995,
+    "issueDate": "2026-06-01",
+    "dueDate": "2026-06-14",
+    "status": "issued",
+    "source": "seed",
+    "createdAt": "2026-06-01T08:30:00.000Z"
+  },
+  {
+    "id": "77fd3817-14fd-4d5b-a38a-c8e6f789f74c",
+    "number": "BH/2026/00002",
+    "customerName": "Box Haus Client 27",
+    "netAmount": 12000,
+    "grossAmount": 14760,
+    "issueDate": "2026-05-28",
+    "dueDate": "2026-06-11",
+    "status": "paid",
+    "source": "seed",
+    "createdAt": "2026-05-28T11:40:00.000Z"
+  },
+  {
+    "id": "7c50a2be-5bc5-4b2f-b56f-5529226245bb",
+    "number": "BH/2026/00003",
+    "customerName": "Box Haus Client 39",
+    "netAmount": 4300,
+    "grossAmount": 5289,
+    "issueDate": "2026-05-22",
+    "dueDate": "2026-06-03",
+    "status": "overdue",
+    "source": "seed",
+    "createdAt": "2026-05-22T09:15:00.000Z"
+  },
+  {
+    "id": "56a8ee55-82c2-45c3-8f7e-1a8bcedf3d2e",
+    "number": "BH/2026/00004",
+    "customerName": "Box Haus Client 51",
+    "netAmount": 9800,
+    "grossAmount": 12054,
+    "issueDate": "2026-05-18",
+    "dueDate": "2026-05-31",
+    "status": "paid",
+    "source": "seed",
+    "createdAt": "2026-05-18T15:20:00.000Z"
+  },
+  {
+    "id": "70f95d6f-fdbc-4839-bdc8-b53f8500a6ad",
+    "number": "BH/2026/00005",
+    "customerName": "Box Haus Client 68",
+    "netAmount": 7700,
+    "grossAmount": 9471,
+    "issueDate": "2026-05-10",
+    "dueDate": "2026-05-24",
+    "status": "issued",
+    "source": "seed",
+    "createdAt": "2026-05-10T10:10:00.000Z"
+  }
+]

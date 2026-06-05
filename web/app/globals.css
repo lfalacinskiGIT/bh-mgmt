@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f7f7;
+  --foreground: #1f1f1f;
+  --brand-primary: #e4650e;
+  --brand-muted: #6b6b6b;
+  --brand-surface: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-work-sans);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-work-sans), "Segoe UI", sans-serif;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgb(228 101 14 / 10%), transparent 45%),
+    radial-gradient(circle at 80% 20%, rgb(107 107 107 / 12%), transparent 40%);
+}
+
+.card-surface {
+  background: var(--brand-surface);
+  border: 1px solid rgb(107 107 107 / 18%);
+}
