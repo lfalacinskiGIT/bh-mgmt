@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { AppShell } from "@/components/app-shell";
+import { normalizeMockDataset } from "@/lib/mock-dataset";
 import { getTeamSummary } from "@/lib/mock-team";
 import { useMockDataset } from "@/lib/use-mock-dataset";
 
@@ -51,11 +52,12 @@ export function TeamPage() {
             </div>
             <select
               value={dataset}
-              onChange={(event) => setDataset(event.target.value === "stress" ? "stress" : "baseline")}
+              onChange={(event) => setDataset(normalizeMockDataset(event.target.value))}
               className="h-10 rounded-xl border border-[rgb(107_107_107_/_18%)] bg-[#fbfaf8] px-3 text-sm text-[#383433] shadow-sm"
             >
               <option value="baseline">Dataset: Baseline</option>
               <option value="stress">Dataset: Stress</option>
+              <option value="incomplete">Dataset: Incomplete</option>
             </select>
           </div>
 

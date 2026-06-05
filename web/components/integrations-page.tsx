@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "@/components/app-shell";
 import type { MockInvoice } from "@/lib/mock-invoices-store";
 
@@ -28,6 +28,9 @@ export function IntegrationsPage({ initialInvoices, isMockEnabled }: Integration
   const [syncMessage, setSyncMessage] = useState<string | null>(null);
   const [lastSyncAt, setLastSyncAt] = useState<string | null>(null);
   const [invoiceCount, setInvoiceCount] = useState(initialInvoices.length);
+  const [validationStatus, setValidationStatus] = useState<"idle" | "ok" | "error">("idle");
+  const [validationSummary, setValidationSummary] = useState<string>("Walidacja nieuruchomiona");
+  const [auditPreview, setAuditPreview] = useState<Array<{ id: string; finishedAt: string; status: string; created: number; errors: number }>>([]);
 
   const sourceStats = useMemo(() => {
     const mockSourceCount = initialInvoices.filter((invoice) => invoice.source === "mock-sync").length;
@@ -37,6 +40,48 @@ export function IntegrationsPage({ initialInvoices, isMockEnabled }: Integration
       mockSourceCount,
     };
   }, [initialInvoices]);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadDiagnostics() {
+      try {
+        const [validationRes, auditRes] = await Promise.all([
+          fetch("/api/mock/validate", { cache: "no-store" }),
+          fetch("/api/sync/audit", { cache: "no-store" }),
+        ]);
+
+        if (active) {
+          if (validationRes.ok) {
+            const payload = (await validationRes.json()) as { total: number; failed: number };
+            setValidationStatus(payload.failed === 0 ? "ok" : "error");
+            setValidationSummary(`Sprawdzone pliki: ${payload.total}, błędy: ${payload.failed}`);
+          } else {
+            setValidationStatus("error");
+            setValidationSummary("Walidacja danych mock zwróciła błędy");
+          }
+
+          if (auditRes.ok) {
+            const auditPayload = (await auditRes.json()) as {
+              items: Array<{ id: string; finishedAt: string; status: string; created: number; errors: number }>;
+            };
+            setAuditPreview((auditPayload.items ?? []).slice(0, 4));
+          }
+        }
+      } catch {
+        if (active) {
+          setValidationStatus("error");
+          setValidationSummary("Nie udało się pobrać diagnostyki mock danych");
+        }
+      }
+    }
+
+    void loadDiagnostics();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   async function runOptimaSync() {
     try {
@@ -134,6 +179,34 @@ export function IntegrationsPage({ initialInvoices, isMockEnabled }: Integration
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Formatki zarządcze</p>
             <p className="mt-2 text-sm font-semibold text-[#383433]">Planowane</p>
             <p className="mt-1 text-xs text-[var(--brand-muted)]">Następny etap: narzuty i prowizje</p>
+          </article>
+        </div>
+
+        <div className="mt-5 grid gap-4 xl:grid-cols-2">
+          <article className="rounded-xl border border-[rgb(107_107_107_/_14%)] bg-white p-4 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Walidacja danych mock</p>
+            <p className={`mt-2 text-sm font-semibold ${validationStatus === "ok" ? "text-emerald-700" : validationStatus === "error" ? "text-rose-700" : "text-[#383433]"}`}>
+              {validationStatus === "ok" ? "Status: OK" : validationStatus === "error" ? "Status: ERROR" : "Status: IDLE"}
+            </p>
+            <p className="mt-1 text-sm text-[var(--brand-muted)]">{validationSummary}</p>
+          </article>
+
+          <article className="rounded-xl border border-[rgb(107_107_107_/_14%)] bg-white p-4 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-muted)]">Audit log synchronizacji</p>
+            <div className="mt-2 space-y-2 text-sm text-[#383433]">
+              {auditPreview.length > 0 ? (
+                auditPreview.map((entry) => (
+                  <div key={entry.id} className="flex items-center justify-between rounded-lg bg-[#faf8f6] px-3 py-2">
+                    <span>{formatDateTime(entry.finishedAt)}</span>
+                    <span className={entry.status === "success" ? "text-emerald-700" : "text-rose-700"}>{entry.status}</span>
+                    <span>+{entry.created}</span>
+                    <span>err {entry.errors}</span>
+                  </div>
+                ))
+              ) : (
+                <p className="text-[var(--brand-muted)]">Brak zapisanych operacji sync.</p>
+              )}
+            </div>
           </article>
         </div>
       </section>

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "bl-1",
+    "code": "box-haus",
+    "name": "Box Haus",
+    "isActive": true
+  },
+  {
+    "id": "bl-2",
+    "code": "erdol",
+    "name": "Erdol",
+    "isActive": true
+  }
+]

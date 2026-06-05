@@ -1,0 +1,18 @@
+[
+  {
+    "id": "c1",
+    "number": "BH/KON/2026/001",
+    "clientName": "Baltic Living Sp. z o.o.",
+    "lineOfBusiness": "Box Haus",
+    "status": "realizacja",
+    "valueContractNet": 1240000
+  },
+  {
+    "id": "c2",
+    "number": "BH/KON/2026/002",
+    "clientName": "Nova Group",
+    "lineOfBusiness": "Erdol",
+    "status": "podpisany",
+    "valueContractNet": 860000
+  }
+]

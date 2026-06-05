@@ -1,0 +1,18 @@
+[
+  {
+    "id": "cf-1",
+    "crewId": "crew-a",
+    "month": "2026-06",
+    "costType": "fleet",
+    "amountNet": 18500,
+    "allocationBasis": "project-hours"
+  },
+  {
+    "id": "cf-2",
+    "crewId": "crew-b",
+    "month": "2026-06",
+    "costType": "tools",
+    "amountNet": 9200,
+    "allocationBasis": "project-hours"
+  }
+]

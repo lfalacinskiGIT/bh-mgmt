@@ -43,12 +43,23 @@ export interface KwsDuplicateRisk {
   note: string;
 }
 
-const sourceRecordsByDataset: Record<MockDatasetName, SourceRecord[]> = {
+const sourceRecordsByDataset: Record<Exclude<MockDatasetName, "incomplete">, SourceRecord[]> = {
   baseline: sourceRecordsData as SourceRecord[],
   stress: sourceRecordsStressData as SourceRecord[],
 };
 
+function buildIncompleteSourceRecordsDataset(source: SourceRecord[]): SourceRecord[] {
+  return source.slice(0, Math.max(6, source.length - 3)).map((record, index) => ({
+    ...record,
+    netAmount: index % 5 === 0 ? Math.round(record.netAmount * 0.85) : record.netAmount,
+  }));
+}
+
 export function getSourceRecords(dataset: MockDatasetName = "baseline"): SourceRecord[] {
+  if (dataset === "incomplete") {
+    return buildIncompleteSourceRecordsDataset(sourceRecordsByDataset.baseline);
+  }
+
   return sourceRecordsByDataset[dataset] ?? sourceRecordsByDataset.baseline;
 }
 

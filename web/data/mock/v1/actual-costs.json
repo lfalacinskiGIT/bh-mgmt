@@ -1,0 +1,16 @@
+[
+  {
+    "id": "ac-1",
+    "contractId": "c1",
+    "category": "warehouse",
+    "amountNet": 112000,
+    "recordedAt": "2026-06-28"
+  },
+  {
+    "id": "ac-2",
+    "contractId": "c2",
+    "category": "labor",
+    "amountNet": 37000,
+    "recordedAt": "2026-06-29"
+  }
+]

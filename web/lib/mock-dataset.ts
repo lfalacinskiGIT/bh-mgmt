@@ -4,7 +4,15 @@ export const MOCK_DATASET_KEY = "bh-mock-dataset";
 export const MOCK_DATASET_CHANGED_EVENT = "bh-mock-dataset-change";
 
 export function normalizeMockDataset(value: string | null | undefined): MockDatasetName {
-  return value === "stress" ? "stress" : "baseline";
+  if (value === "stress") {
+    return "stress";
+  }
+
+  if (value === "incomplete") {
+    return "incomplete";
+  }
+
+  return "baseline";
 }
 
 export function readMockDatasetFromStorage(): MockDatasetName {

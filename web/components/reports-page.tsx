@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "@/components/app-shell";
 import { getContractEconomics, type MockDatasetName } from "@/lib/mock-contract-economics";
 import type { MockInvoice } from "@/lib/mock-invoices-store";
-import { persistMockDataset, readMockDatasetFromStorage } from "@/lib/mock-dataset";
+import { normalizeMockDataset, persistMockDataset, readMockDatasetFromStorage } from "@/lib/mock-dataset";
 import {
   getContractEconomicsTotals,
   getLineOfBusinessSummary,
@@ -279,12 +279,13 @@ export function ReportsPage({ initialInvoices }: ReportsPageProps) {
           <div className="flex flex-wrap items-center gap-2">
             <select
               value={dataset}
-              onChange={(event) => setDataset(event.target.value === "stress" ? "stress" : "baseline")}
+              onChange={(event) => setDataset(normalizeMockDataset(event.target.value))}
               aria-label="Zestaw danych"
               className="h-10 rounded-xl border border-[rgb(107_107_107_/_18%)] bg-[#fbfaf8] px-3 text-sm text-[#383433]"
             >
               <option value="baseline">Dataset: Baseline</option>
               <option value="stress">Dataset: Stress</option>
+              <option value="incomplete">Dataset: Incomplete</option>
             </select>
             <select
               value={selectedPeriod}

@@ -17,12 +17,24 @@ export interface TeamMember {
   focus: string;
 }
 
-const teamByDataset: Record<MockDatasetName, TeamMember[]> = {
+const teamByDataset: Record<Exclude<MockDatasetName, "incomplete">, TeamMember[]> = {
   baseline: teamData as TeamMember[],
   stress: teamStressData as TeamMember[],
 };
 
+function buildIncompleteTeamDataset(source: TeamMember[]): TeamMember[] {
+  return source.slice(0, 4).map((member, index) => ({
+    ...member,
+    focus: `${member.focus} (brak części ewidencji godzin)`,
+    utilizationPct: Math.min(100, member.utilizationPct + (index === 0 ? 0 : 5)),
+  }));
+}
+
 export function getTeamMembers(dataset: MockDatasetName = "baseline") {
+  if (dataset === "incomplete") {
+    return buildIncompleteTeamDataset(teamByDataset.baseline);
+  }
+
   return teamByDataset[dataset] ?? teamByDataset.baseline;
 }
 

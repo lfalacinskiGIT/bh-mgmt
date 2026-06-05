@@ -64,21 +64,40 @@ export interface ContractReconciliationSnapshot {
   unexplainedDifferenceNet: number;
 }
 
-const outsideContractPositionsByDataset: Record<MockDatasetName, OutsideContractPosition[]> = {
+const outsideContractPositionsByDataset: Record<Exclude<MockDatasetName, "incomplete">, OutsideContractPosition[]> = {
   baseline: outsideContractPositionsData as OutsideContractPosition[],
   stress: outsideContractPositionsStressData as OutsideContractPosition[],
 };
 
-const sourceCostEntriesByDataset: Record<MockDatasetName, SourceCostEntry[]> = {
+const sourceCostEntriesByDataset: Record<Exclude<MockDatasetName, "incomplete">, SourceCostEntry[]> = {
   baseline: sourceCostEntriesData as SourceCostEntry[],
   stress: sourceCostEntriesStressData as SourceCostEntry[],
 };
 
+function buildIncompleteOutsidePositionsDataset(source: OutsideContractPosition[]): OutsideContractPosition[] {
+  return source.slice(0, Math.max(2, source.length - 1));
+}
+
+function buildIncompleteSourceCostEntriesDataset(source: SourceCostEntry[]): SourceCostEntry[] {
+  return source.slice(0, Math.max(8, source.length - 2)).map((entry, index) => ({
+    ...entry,
+    amountNet: index % 4 === 0 ? Math.round(entry.amountNet * 0.92) : entry.amountNet,
+  }));
+}
+
 export function getOutsideContractPositions(dataset: MockDatasetName = "baseline"): OutsideContractPosition[] {
+  if (dataset === "incomplete") {
+    return buildIncompleteOutsidePositionsDataset(outsideContractPositionsByDataset.baseline);
+  }
+
   return outsideContractPositionsByDataset[dataset] ?? outsideContractPositionsByDataset.baseline;
 }
 
 export function getSourceCostEntries(dataset: MockDatasetName = "baseline"): SourceCostEntry[] {
+  if (dataset === "incomplete") {
+    return buildIncompleteSourceCostEntriesDataset(sourceCostEntriesByDataset.baseline);
+  }
+
   return sourceCostEntriesByDataset[dataset] ?? sourceCostEntriesByDataset.baseline;
 }
 

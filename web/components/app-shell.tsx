@@ -17,6 +17,7 @@ import {
   SettingsIcon,
   TeamIcon,
 } from "@/components/menu-icons";
+import type { MockDatasetName } from "@/lib/mock-contract-economics";
 import { MOCK_DATASET_CHANGED_EVENT, readMockDatasetFromStorage } from "@/lib/mock-dataset";
 
 interface AppShellProps {
@@ -59,12 +60,15 @@ export function AppShell({
   onSearchChange,
 }: AppShellProps) {
   const pathname = usePathname();
-  const [activeDataset, setActiveDataset] = useState<"baseline" | "stress">(() => readMockDatasetFromStorage());
+  // Keep SSR/CSR initial markup stable; hydrate dataset from storage after mount.
+  const [activeDataset, setActiveDataset] = useState<MockDatasetName>("baseline");
 
   useEffect(() => {
     function syncDataset() {
       setActiveDataset(readMockDatasetFromStorage());
     }
+
+    syncDataset();
 
     window.addEventListener("storage", syncDataset);
     window.addEventListener(MOCK_DATASET_CHANGED_EVENT, syncDataset);

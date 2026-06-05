@@ -1,0 +1,17 @@
+[
+  {
+    "id": "cm-1",
+    "contractId": "c1",
+    "salesOwner": "Anna Nowak",
+    "ratePct": 2.9,
+    "baseAmountNet": 980000,
+    "amountNet": 28420
+  },
+  {
+    "id": "cm-2",
+    "contractId": "c2",
+    "salesOwner": "Piotr Zielinski",
+    "ratePct": 2.2,
+    "baseAmountNet": 620000,
+    "amountNet": 13640
+  }

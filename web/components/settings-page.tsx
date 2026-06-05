@@ -9,7 +9,7 @@ const settingsRows = [
   { label: "Tryb makiety", value: "Mock-first", helper: "Aplikacja korzysta z JSON-owych danych demonstracyjnych" },
   { label: "Synchronizacja", value: "Optima / mock", helper: "Integracje pokazują przepływ danych, bez realnego API" },
   { label: "Widoczność menu", value: "Pełna", helper: "Każdy route ma już ekran zamiast placeholdera" },
-  { label: "Zestaw danych", value: "Baseline / Stress", helper: "Przełączanie zestawu zapisuje się lokalnie" },
+  { label: "Zestaw danych", value: "Baseline / Stress / Incomplete", helper: "Przełączanie zestawu zapisuje się lokalnie" },
 ];
 
 export function SettingsPage() {
@@ -64,6 +64,13 @@ export function SettingsPage() {
                   className={`rounded-xl px-4 py-2 text-sm font-semibold ${dataset === "stress" ? "bg-[var(--brand-primary)] text-white" : "bg-white text-[#383433] shadow-sm"}`}
                 >
                   Stress
+                </button>
+                <button
+                  type="button"
+                  onClick={() => changeDataset("incomplete")}
+                  className={`rounded-xl px-4 py-2 text-sm font-semibold ${dataset === "incomplete" ? "bg-[var(--brand-primary)] text-white" : "bg-white text-[#383433] shadow-sm"}`}
+                >
+                  Incomplete
                 </button>
               </div>
             </div>

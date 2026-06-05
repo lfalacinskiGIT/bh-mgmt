@@ -19,12 +19,24 @@ export interface SalesOpportunity {
   expectedClose: string;
 }
 
-const opportunitiesByDataset: Record<MockDatasetName, SalesOpportunity[]> = {
+const opportunitiesByDataset: Record<Exclude<MockDatasetName, "incomplete">, SalesOpportunity[]> = {
   baseline: salesOpportunitiesData as SalesOpportunity[],
   stress: salesOpportunitiesStressData as SalesOpportunity[],
 };
 
+function buildIncompleteSalesDataset(source: SalesOpportunity[]): SalesOpportunity[] {
+  return source.slice(0, 4).map((item, index) => ({
+    ...item,
+    probability: index === 0 ? item.probability : Math.max(0.2, item.probability - 0.15),
+    nextStep: `${item.nextStep} (część danych CRM nieuzupełniona)`,
+  }));
+}
+
 export function getSalesOpportunities(dataset: MockDatasetName = "baseline") {
+  if (dataset === "incomplete") {
+    return buildIncompleteSalesDataset(opportunitiesByDataset.baseline);
+  }
+
   return opportunitiesByDataset[dataset] ?? opportunitiesByDataset.baseline;
 }
 

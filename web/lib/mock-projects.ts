@@ -21,12 +21,25 @@ export interface ProjectItem {
   nextAction: string;
 }
 
-const projectsByDataset: Record<MockDatasetName, ProjectItem[]> = {
+const projectsByDataset: Record<Exclude<MockDatasetName, "incomplete">, ProjectItem[]> = {
   baseline: projectsData as ProjectItem[],
   stress: projectsStressData as ProjectItem[],
 };
 
+function buildIncompleteProjectsDataset(source: ProjectItem[]): ProjectItem[] {
+  return source.slice(0, 3).map((project, index) => ({
+    ...project,
+    spentNet: Math.round(project.spentNet * (0.78 + index * 0.08)),
+    progress: Math.max(0.2, project.progress - 0.18),
+    risk: `${project.risk} (część danych operacyjnych niekompletna)`,
+  }));
+}
+
 export function getProjects(dataset: MockDatasetName = "baseline") {
+  if (dataset === "incomplete") {
+    return buildIncompleteProjectsDataset(projectsByDataset.baseline);
+  }
+
   return projectsByDataset[dataset] ?? projectsByDataset.baseline;
 }
 

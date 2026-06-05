@@ -1,10 +1,19 @@
 import { appendMockInvoices, getAllMockInvoices, type MockInvoice } from "@/lib/mock-invoices-store";
+import { appendSyncAuditLog } from "@/lib/mock-sync-audit-log";
 import { isMockMode } from "@/lib/mock-mode";
 
 type SyncResult = {
   success: boolean;
   syncedCount: number;
+  createdCount: number;
+  updatedCount: number;
+  skippedCount: number;
+  errorCount: number;
   created: MockInvoice[];
+  updated: MockInvoice[];
+  skipped: string[];
+  errors: string[];
+  mode: "quick";
   syncedAt: string;
 };
 
@@ -37,27 +46,98 @@ function createInvoice(index: number): MockInvoice {
 }
 
 export async function POST() {
+  const startedAt = new Date().toISOString();
+
   if (!isMockMode()) {
     return Response.json({
       success: false,
       syncedCount: 0,
+      createdCount: 0,
+      updatedCount: 0,
+      skippedCount: 0,
+      errorCount: 0,
       created: [],
+      updated: [],
+      skipped: [],
+      errors: [],
+      mode: "quick",
       syncedAt: new Date().toISOString(),
       message: "Only MOCK_MODE is supported in this prototype",
     } satisfies SyncResult & { message: string });
   }
 
-  const existing = await getAllMockInvoices();
-  const nextIndex = existing.length + 1;
-  const toCreate = randomInt(1, 3);
-  const created = Array.from({ length: toCreate }, (_, idx) => createInvoice(nextIndex + idx));
+  try {
+    const existing = await getAllMockInvoices();
+    const nextIndex = existing.length + 1;
+    const toCreate = randomInt(1, 3);
+    const created = Array.from({ length: toCreate }, (_, idx) => createInvoice(nextIndex + idx));
 
-  await appendMockInvoices(created);
+    await appendMockInvoices(created);
 
-  return Response.json({
-    success: true,
-    syncedCount: created.length,
-    created,
-    syncedAt: new Date().toISOString(),
-  } satisfies SyncResult);
+    const syncedAt = new Date().toISOString();
+
+    await appendSyncAuditLog({
+      id: crypto.randomUUID(),
+      provider: "optima",
+      mode: "quick",
+      startedAt,
+      finishedAt: syncedAt,
+      created: created.length,
+      updated: 0,
+      skipped: 0,
+      errors: 0,
+      status: "success",
+      message: `Added ${created.length} invoice(s) from mock sync`,
+    });
+
+    return Response.json({
+      success: true,
+      syncedCount: created.length,
+      createdCount: created.length,
+      updatedCount: 0,
+      skippedCount: 0,
+      errorCount: 0,
+      created,
+      updated: [],
+      skipped: [],
+      errors: [],
+      mode: "quick",
+      syncedAt,
+    } satisfies SyncResult);
+  } catch (error) {
+    const syncedAt = new Date().toISOString();
+    const message = error instanceof Error ? error.message : "Unknown mock sync error";
+
+    await appendSyncAuditLog({
+      id: crypto.randomUUID(),
+      provider: "optima",
+      mode: "quick",
+      startedAt,
+      finishedAt: syncedAt,
+      created: 0,
+      updated: 0,
+      skipped: 0,
+      errors: 1,
+      status: "error",
+      message,
+    });
+
+    return Response.json(
+      {
+        success: false,
+        syncedCount: 0,
+        createdCount: 0,
+        updatedCount: 0,
+        skippedCount: 0,
+        errorCount: 1,
+        created: [],
+        updated: [],
+        skipped: [],
+        errors: [message],
+        mode: "quick",
+        syncedAt,
+      } satisfies SyncResult,
+      { status: 500 },
+    );
+  }
 }

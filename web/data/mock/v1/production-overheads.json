@@ -1,0 +1,20 @@
+[
+  {
+    "id": "po-1",
+    "contractId": "c1",
+    "month": "2026-06",
+    "rateType": "daily",
+    "rate": 4200,
+    "units": 18,
+    "amountNet": 75600
+  },
+  {
+    "id": "po-2",
+    "contractId": "c2",
+    "month": "2026-06",
+    "rateType": "hourly",
+    "rate": 180,
+    "units": 320,
+    "amountNet": 57600
+  }
+]

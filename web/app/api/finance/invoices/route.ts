@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { getAllMockInvoices, type MockInvoice } from "@/lib/mock-invoices-store";
+import { MockDataValidationError } from "@/lib/mock-json-validation";
 import { isMockMode } from "@/lib/mock-mode";
 
 interface InvoicesResponse {
@@ -26,7 +27,26 @@ export async function GET(request: NextRequest) {
   const status = searchParams.get("status")?.trim().toLowerCase();
   const search = searchParams.get("search")?.trim().toLowerCase();
 
-  const all = await getAllMockInvoices();
+  let all: MockInvoice[];
+
+  try {
+    all = await getAllMockInvoices();
+  } catch (error) {
+    if (error instanceof MockDataValidationError) {
+      return Response.json(
+        {
+          items: [],
+          total: 0,
+          page,
+          pageSize,
+          message: error.message,
+        } satisfies InvoicesResponse & { message: string },
+        { status: 500 },
+      );
+    }
+
+    throw error;
+  }
 
   const filtered = all.filter((invoice) => {
     const statusOk = !status || invoice.status === status;
